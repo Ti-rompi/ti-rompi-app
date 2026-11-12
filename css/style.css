@@ -229,3 +229,7 @@ details.citation span{display:block;margin-top:6px;font-style:italic}
 a.lien{padding:12px 0;margin:-6px 0}
 .mini{width:44px;height:44px}
 .puce{min-height:40px}
+/* iPhone : laisser la place à la barre d'état (heure, batterie) et à la barre d'accueil */
+.entete{padding-top:calc(18px + env(safe-area-inset-top, 0px))}
+.barre-bas{bottom:calc(22px + env(safe-area-inset-bottom, 0px))}
+.contenu{padding-bottom:calc(110px + env(safe-area-inset-bottom, 0px))}
