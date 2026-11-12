@@ -1,0 +1,12 @@
+// Ti rompi : fonctionnement hors connexion
+const CACHE = 'ti-rompi-86eabc183b';
+const FICHIERS = ["./", "index.html", "manifest.webmanifest", "css/style.css", "js/moteur.js", "js/i18n.js", "js/app.js", "data/synaxaire.js", "data/rites.js", "data/paroisses.js", "data/icones.js", "fonts/cs-avva-shenouda.ttf", "img/logo.svg", "img/icones/apple-touch-icon.png", "img/icones/icon-192.png", "img/icones/icon-512.png", "img/saints/samuel.jpg", "img/saints/moise.png", "img/saints/mercure.jpg", "img/saints/kyrillos.png", "img/saints/mina.jpg"];
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FICHIERS)).then(() => self.skipWaiting())); });
+self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
+self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(caches.match(e.request).then((r) => r || fetch(e.request).then((rep) => {
+    if (rep.ok && (e.request.url.startsWith(self.location.origin) || e.request.url.includes('fonts.g'))) { const copie = rep.clone(); caches.open(CACHE).then((c) => c.put(e.request, copie)); }
+    return rep;
+  }).catch(() => caches.match('index.html'))));
+});
