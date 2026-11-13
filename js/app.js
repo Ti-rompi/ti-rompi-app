@@ -31,7 +31,7 @@ const FETES_SAINTS = [
   [/georges/i, 'Saint Georges', 23, 8], [/mina/i, 'Saint Mina', 15, 3], [/merc|marcur/i, 'Saint Philopatir Mercure', 25, 3],
   [/mo[iï]se/i, 'Saint Moïse le Noir', 24, 10], [/samuel/i, 'Saint Samuel le Confesseur', 8, 4], [/antoine/i, 'Saint Antoine', 22, 5],
   [/pierre/i, 'Saints Pierre et Paul', 5, 11], [/paul/i, 'Saint Paul l’Ermite', 2, 6], [/bichoy/i, 'Saint Bichoy', 8, 11],
-  [/kar[a]?s/i, 'Anba Karas l’Anachorète', 8, 11], [/cyril/i, 'Pape Cyrille VI', 30, 6], [/jean/i, 'Saint Jean', 30, 10], [/marc\b/i, 'Saint Marc', 30, 8],
+  [/kar[a]?s/i, 'Anba Karas l’Anachorète', 8, 11], [/cyril/i, 'Pape Cyrille VI', 30, 6], [/jean/i, 'Saint Jean l’Évangéliste', 4, 5], [/marc\b/i, 'Saint Marc', 30, 8],
 ];
 function patronsDe(idx) {
   const p = PAR[idx]; if (!p) return [];
@@ -115,8 +115,11 @@ function occurrences(e, j1, j2) {
 }
 const evenementsDu = (j) => P.evenements.filter((e) => occurrences(e, j, j).length).sort((a, b) => a.debut.localeCompare(b.debut));
 // Icônes des saints patrons (fournies par la paroisse), reconnues d'après le nom du saint
-const ICONES_SAINTS = [[/mo[iï]se/i, 'moise'], [/samuel/i, 'samuel'], [/merc|marcur|seifein|philopat/i, 'mercure'], [/\bmina\b|m[eé]nas/i, 'mina'], [/cyril|kyril/i, 'kyrillos']];
-const CADRAGE = { moise: [50, 15, 3.4], samuel: [50, 33, 1.9], mercure: [49, 19, 3.8], kyrillos: [52, 23, 3.4], mina: [50, 9, 3.6] }; // visage : position x %, y %, zoom
+const ICONES_SAINTS = [[/mo[iï]se/i, 'moise'], [/samuel/i, 'samuel'], [/merc|marcur|seifein|philopat/i, 'mercure'], [/\bmina\b|m[eé]nas/i, 'mina'], [/cyril|kyril/i, 'kyrillos'], [/\bmarc\b/i, 'marc'], [/georges|guirguis/i, 'georges'], [/antoine/i, 'antoine'], [/rapha/i, 'raphael'], [/jean/i, 'jean']];
+// Icônes des jours de la Semaine sainte et des rites
+const RITE_ICONE = { jeudi: 'judas', vendredi: 'crucifixion', lakkan: 'lakkan' };
+const iconeRite = (id) => RITE_ICONE[id] && window.ICONES ? window.ICONES[RITE_ICONE[id]] : null;
+const CADRAGE = { moise: [50, 15, 3.4], samuel: [50, 33, 1.9], mercure: [49, 19, 3.8], kyrillos: [52, 23, 3.4], mina: [50, 9, 3.6], marc: [50, 20, 3.2], georges: [50, 31, 3.6], antoine: [50, 19, 3.4], raphael: [48, 20, 3], jean: [49, 26, 3.2] }; // visage : position x %, y %, zoom
 const cadrageSaint = (nom) => { const f = ICONES_SAINTS.find(([re]) => re.test(nom || '')); const c = f && CADRAGE[f[1]]; return c ? `object-position:${c[0]}% ${c[1]}%;transform:scale(${c[2]});transform-origin:${c[0]}% ${c[1]}%` : ''; };
 const iconeSaint = (nom) => { const f = ICONES_SAINTS.find(([re]) => re.test(nom || '')); return f && window.ICONES ? window.ICONES[f[1]] : null; };
 function patronsDu(j) {
@@ -257,7 +260,7 @@ function vueJour() {
       </div>
     </section>
     ${patronsDu(sel).map((pt) => { const ic = iconeSaint(pt.nom), ch = PAR[P.paroisse.idx]; return `<section class="carte carte-patron">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}">` : ''}<span><small class="etiquette">${t('fetePatronale')}</small><b class="serif">${esc(pt.nom)}</b><small class="mut">${esc(ch.nom.replace(/^Paroisse (de la |de |)/, ''))}</small></span></section>`; }).join('')}
-    ${ritesDuJour(sel).map((r) => `<button class="carte carte-rite" data-a="ouvrirRite" data-v="${r.id}"><i class="barre" style="background:${r.color}"></i><span><small class="etiquette">${t('riteDuJour')} · ${t('serviceDiacre')}</small><b class="serif">${esc(AR() ? (nomAr(RITE_EVT[r.id]) || r.nom) : r.nom)}</b><span class="lien">${t('lireRite')} ${fleche('next')}</span></span></button>`).join('')}
+    ${ritesDuJour(sel).map((r) => `<button class="carte carte-rite" data-a="ouvrirRite" data-v="${r.id}">${iconeRite(r.id) ? `<img class="icone-saint icone-rite" src="${iconeRite(r.id)}" alt="">` : `<i class="barre" style="background:${r.color}"></i>`}<span><small class="etiquette">${t('riteDuJour')} · ${t('serviceDiacre')}</small><b class="serif">${esc(AR() ? (nomAr(RITE_EVT[r.id]) || r.nom) : r.nom)}</b><span class="lien">${t('lireRite')} ${fleche('next')}</span></span></button>`).join('')}
     ${syn}
     <section class="carte"><div class="carte-tete"><h2>${t('mesEvenements')}</h2></div>${listeEvts}</section>
     ${pj ? `<div class="carte ligne-info"><span><b><i class="carre" style="background:${pj.type === 'careme' ? 'var(--careme)' : 'var(--ochre)'}"></i>${esc(t('prochainJeune')(pj.debut - sel, nomEvt(pj.id, pj.nom)))}</b><small>${maj(fGreg(pj.debut, false))} · ${fCopteCourt(pj.debut)}</small></span></div>` : ''}
@@ -451,13 +454,13 @@ function vueRites() {
   const mots = cur.blocs.reduce((n, b) => n + b.paras.reduce((m, p) => m + p.map((g) => g.t || g.q || g.c || '').join('').split(/\s+/).length, 0), 0);
   const texte = (reperes.length ? `<nav class="sommaire" aria-label="${t('aller')}"><span class="etiquette">${t('aller')}</span><div class="puces">${reperes.map((b) => `<button class="puce" data-a="allerRepere" data-v="r-${cur.blocs.indexOf(b)}">${esc(b.titre)}</button>`).join('')}</div><small class="mut">${t('tempsLecture')(Math.max(1, Math.round(mots / 220)))}</small></nav>` : '')
     + cur.blocs.map((b, k) => b.replie ? `<details class="intro"><summary>${t('lireIntro')}</summary>${b.paras.map(para).join('')}</details>`
-      : `${b.hasTitre ? `<h3 class="${b.repere ? 'repere' : 'sous-titre-rite'}" id="r-${k}">${esc(b.titre)}</h3>` : ''}${b.paras.map(para).join('')}`).join('');
+      : `${b.hasTitre ? `<h3 class="${b.repere ? 'repere' : 'sous-titre-rite'}" id="r-${k}">${esc(b.titre)}</h3>` : ''}${b.repere && /Lakkan/.test(b.titre) && cur.id !== 'lakkan' && window.ICONES && window.ICONES.lakkan ? `<img class="icone-saint icone-repere" src="${window.ICONES.lakkan}" alt="${t('iconeDe')} Lakkan">` : ''}${b.paras.map(para).join('')}`).join('');
   return `<header class="entete simple"><button class="rond" data-a="fermer" aria-label="${t('retour')}">${fleche('prev')}</button>
     <div class="titres"><span class="surtitre">${t('serviceDiacre')}</span><h1 class="titre">${t('rites')}</h1></div></header>
   <div class="contenu">
     <div class="onglets deux">${['p', 'f'].map((g) => `<button class="onglet${S.riteGroupe === g ? ' actif' : ''}" data-a="riteGroupe" data-v="${g}">${g === 'p' ? t('periodes') : t('fetesUnJour')}</button>`).join('')}</div>
     <div class="puces defile" role="tablist">${puces}</div>
-    <section class="carte rite-tete"><i class="barre" style="background:${cur.color}"></i><div><small class="etiquette">${esc(cur.kind)} · ${t('debut')}</small>
+    <section class="carte rite-tete">${iconeRite(cur.id) ? `<img class="icone-saint icone-rite-grande" src="${iconeRite(cur.id)}" alt="${t('iconeDe')} ${esc(cur.nom)}">` : `<i class="barre" style="background:${cur.color}"></i>`}<div><small class="etiquette">${esc(cur.kind)} · ${t('debut')}</small>
       <h2 class="serif">${esc(cur.nom)}</h2>${e ? `<b class="or">${maj(fGreg(e.debut))} · ${fCopte(e.debut)}</b>` : ''}</div></section>
     ${AR() ? `<p class="aide">${t('ritesFrSeulement')}</p>` : ''}
     <article class="texte-rite" lang="fr" dir="ltr"><span class="etiquette">${t('rite')}</span>${texte}<p class="source">${t('source')(cur.pages)}</p></article>

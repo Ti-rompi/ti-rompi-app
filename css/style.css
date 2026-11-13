@@ -233,3 +233,8 @@ a.lien{padding:12px 0;margin:-6px 0}
 .entete{padding-top:calc(18px + env(safe-area-inset-top, 0px))}
 .barre-bas{bottom:calc(22px + env(safe-area-inset-bottom, 0px))}
 .contenu{padding-bottom:calc(110px + env(safe-area-inset-bottom, 0px))}
+.carte-rite{align-items:center}
+.icone-rite{width:64px}
+.icone-rite-grande{width:96px}
+.rite-tete{align-items:center}
+.icone-repere{width:120px;align-self:center;margin:4px 0}
