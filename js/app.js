@@ -119,7 +119,7 @@ const ICONES_SAINTS = [[/mo[iï]se/i, 'moise'], [/samuel/i, 'samuel'], [/merc|ma
 // Icônes des jours de la Semaine sainte et des rites
 const RITE_ICONE = { jeudi: 'judas', vendredi: 'crucifixion', lakkan: 'lakkan' };
 const iconeRite = (id) => RITE_ICONE[id] && window.ICONES ? window.ICONES[RITE_ICONE[id]] : null;
-const CADRAGE = { moise: [50, 15, 3.4], samuel: [50, 33, 1.9], mercure: [49, 19, 3.8], kyrillos: [52, 23, 3.4], mina: [50, 9, 3.6], marc: [50, 20, 3.2], georges: [50, 31, 3.6], antoine: [50, 19, 3.4], raphael: [48, 20, 3], jean: [49, 26, 3.2] }; // visage : position x %, y %, zoom
+const CADRAGE = { moise: [50, 15, 3.4], samuel: [50, 33, 1.9], mercure: [49, 19, 3.8], kyrillos: [52, 23, 3.4], mina: [50, 9, 3.6], marc: [50, 20, 3.2], georges: [44, 35, 4.2], antoine: [50, 19, 3.4], raphael: [48, 20, 3], jean: [49, 26, 3.2] }; // visage : position x %, y %, zoom
 const cadrageSaint = (nom) => { const f = ICONES_SAINTS.find(([re]) => re.test(nom || '')); const c = f && CADRAGE[f[1]]; return c ? `object-position:${c[0]}% ${c[1]}%;transform:scale(${c[2]});transform-origin:${c[0]}% ${c[1]}%` : ''; };
 const iconeSaint = (nom) => { const f = ICONES_SAINTS.find(([re]) => re.test(nom || '')); return f && window.ICONES ? window.ICONES[f[1]] : null; };
 function patronsDu(j) {
