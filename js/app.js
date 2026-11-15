@@ -219,6 +219,19 @@ function dimancheCopte(j) {
   const c = jdnVersCopte(j), k = Math.floor((c.jour - 1) / 7) + 1;
   return AR() ? `الأحد ${ORD_AR[k - 1]} من ${nomMoisC(c.mois)}` : `${k === 1 ? '1er' : k + 'e'} dimanche de ${nomMoisC(c.mois)}`;
 }
+// Commémorations mensuelles : 12 = Archange Michel, 21 = Vierge Marie (sauf Nasie)
+function commemoMensuelle(j) {
+  const c = jdnVersCopte(j); if (c.mois === 13) return null;
+  if (c.jour === 12) return AR() ? 'رئيس الملائكة ميخائيل' : 'Archange Michel';
+  if (c.jour === 21) return AR() ? 'السيدة العذراء مريم' : 'Vierge Marie';
+  return null;
+}
+const ICO_COMMEMO = { 'Archange Michel': 'michel', 'Vierge Marie': 'vierge', 'رئيس الملائكة ميخائيل': 'michel', 'السيدة العذراء مريم': 'vierge' };
+function carteCommemo(j) {
+  const nom = commemoMensuelle(j); if (!nom) return '';
+  const ic = window.ICONES && window.ICONES[ICO_COMMEMO[nom]];
+  return `<section class="carte carte-patron carte-commemo">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(nom)}">` : ''}<span><small class="etiquette">${AR() ? 'تذكار شهري' : 'Commémoration mensuelle'}</small><b class="serif">${esc(nom)}</b><small class="mut">${AR() ? 'كل شهر قبطي' : 'Chaque ' + jdnVersCopte(j).jour + ' du mois copte'}</small></span></section>`;
+}
 function vueJour() {
   const sel = S.sel, x = jour(sel), c = jdnVersCopte(sel), g = jdnVersGreg(sel), auj = aujCivil();
   const lundi = sel - colonne(sel);
@@ -267,6 +280,7 @@ function vueJour() {
         <span class="veille">${icone.lune}${esc(ligneVeille)}</span>
       </div>
     </section>
+    ${carteCommemo(sel)}
     ${patronsDu(sel).map((pt) => { const ic = iconeSaint(pt.nom), ch = PAR[P.paroisse.idx]; return `<section class="carte carte-patron">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}">` : ''}<span><small class="etiquette">${t('fetePatronale')}</small><b class="serif">${esc(pt.nom)}</b><small class="mut">${esc(ch.nom.replace(/^Paroisse (de la |de |)/, ''))}</small></span></section>`; }).join('')}
     ${ritesDuJour(sel).map((r) => `<button class="carte carte-rite" data-a="ouvrirRite" data-v="${r.id}">${iconeRite(r.id) ? `<img class="icone-saint icone-rite" src="${iconeRite(r.id)}" alt="">` : `<i class="barre" style="background:${r.color}"></i>`}<span><small class="etiquette">${t('riteDuJour')} · ${t('serviceDiacre')}</small><b class="serif">${esc(AR() ? (nomAr(RITE_EVT[r.id]) || r.nom) : r.nom)}</b><span class="lien">${t('lireRite')} ${fleche('next')}</span></span></button>`).join('')}
     ${syn}
@@ -324,6 +338,7 @@ function vueMois() {
   }
   const s = jour(S.sel), notes = [];
   if (dimancheCopte(S.sel)) notes.push(dimancheCopte(S.sel) + '.');
+  if (commemoMensuelle(S.sel)) notes.push((AR() ? 'تذكار شهري: ' : 'Commémoration mensuelle : ') + commemoMensuelle(S.sel) + '.');
   if (s.fetes.length) notes.push(s.fetes.join(' · ') + '.');
   if (s.jeune) { notes.push(s.libelleJeune + '.'); if (s.niveau) notes.push(s.niveau + '.'); }
   if (!s.jeune && !s.fetes.length) notes.push(s.cinquanteJours ? t('cinquante') : t('pasDeJeune'));
