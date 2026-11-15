@@ -182,7 +182,7 @@ function appliquerApparence() {
 
 // ------------------------------------------------------------- en-tête commun des vues
 function entete(titreCopte, titre) {
-  const onglets = ['jour', 'semaine', 'mois', 'annee', 'avenir'].map((v) => `<button class="onglet${S.vue === v ? ' actif' : ''}" data-a="vue" data-v="${v}" ${S.vue === v ? 'aria-current="page"' : ''}>${v === 'avenir' ? (AR() ? 'القادم' : 'À venir') : t(v)}</button>`).join('');
+  const onglets = ['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus'].map((v) => `<button class="onglet${S.vue === v ? ' actif' : ''}" data-a="vue" data-v="${v}" ${S.vue === v ? 'aria-current="page"' : ''}>${v === 'avenir' ? (AR() ? 'القادم' : 'À venir') : v === 'actus' ? (AR() ? 'أخبار' : 'Actus') + (S.vue !== 'actus' && actusNouvelles() ? `<i class="pastille-new" aria-label="${actusNouvelles()} nouvelles"></i>` : '') : t(v)}</button>`).join('');
   return `<header class="entete">
     <div class="ligne-titre">
       <div class="titres"><span class="surtitre">${esc(titreCopte)}</span><h1 class="titre">${esc(titre)}</h1></div>
@@ -409,6 +409,52 @@ function vueAVenir() {
   <div class="contenu">
     <div class="puces defile">${filtres.map(([v, l]) => `<button class="puce${f === v ? ' on' : ''}" data-a="avFiltre" data-v="${v}" aria-pressed="${f === v}">${l}</button>`).join('')}</div>
     <div class="liste-av">${html}</div>
+  </div>${fab()}`;
+}
+
+// ------------------------------------------------------------- vue Actus (vidéos YouTube du diocèse et de la paroisse)
+const CLE_VU = 'ti-rompi-actus-vu';
+let ACTUS = null, actusEtat = 'rien', actusVu = 0;
+try { actusVu = +localStorage.getItem(CLE_VU) || 0; } catch (e) {}
+function chargerActus() {
+  if (actusEtat === 'chargement') return; actusEtat = 'chargement';
+  fetch('data/actus.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : Promise.reject()).then((d) => { ACTUS = d; actusEtat = 'ok'; rendre(); })
+    .catch(() => { actusEtat = 'erreur'; if (S.vue === 'actus') rendre(); });
+}
+function videosActus() {
+  if (!ACTUS) return [];
+  const cles = ['diocese'], ch = ACTUS.chaines || {};
+  if (P.paroisse.idx >= 0) cles.push('p' + P.paroisse.idx);
+  return cles.filter((k) => ch[k]).flatMap((k) => ch[k].videos.map((v) => ({ ...v, source: k === 'diocese' ? 'diocese' : 'paroisse', chaine: ch[k].nom, t: Date.parse(v.date) })))
+    .sort((a, b) => b.t - a.t);
+}
+const actusNouvelles = () => videosActus().filter((v) => v.t > actusVu).length;
+function ilYa(t) {
+  const j = Math.floor((Date.now() - t) / 864e5), d = new Date(t);
+  if (j <= 0) return AR() ? 'اليوم' : 'aujourd’hui';
+  if (j === 1) return AR() ? 'أمس' : 'hier';
+  if (j < 7) return AR() ? `منذ ${n(j)} أيام` : `il y a ${j} j`;
+  return `${n(d.getDate())} ${nomMoisG(d.getMonth() + 1).slice(0, AR() ? 99 : 4)}${AR() ? '' : '.'}${d.getFullYear() !== new Date().getFullYear() ? ' ' + n(d.getFullYear()) : ''}`;
+}
+function vueActus() {
+  if (actusEtat === 'rien' || actusEtat === 'erreur') chargerActus();
+  const f = S.acFiltre || 'tout', vuAvant = actusVu;
+  const par = P.paroisse.idx >= 0 ? PAR[P.paroisse.idx] : null;
+  const toutes = videosActus(), liste = toutes.filter((v) => f === 'tout' || v.source === f);
+  // marquer comme vues
+  if (toutes.length) { const max = Math.max(...toutes.map((v) => v.t)); if (max > actusVu) { actusVu = max; try { localStorage.setItem(CLE_VU, String(max)); } catch (e) {} } }
+  const filtres = [['tout', AR() ? 'الكل' : 'Tout'], ['diocese', AR() ? 'الإيبارشية' : 'Diocèse'], ['paroisse', AR() ? 'كنيستي' : 'Ma paroisse']];
+  let corps;
+  if (!ACTUS) corps = `<p class="mut vide">${actusEtat === 'erreur' ? (AR() ? 'تعذر تحميل الأخبار. تحقق من الاتصال.' : 'Impossible de charger les actus. Vérifiez la connexion.') : (AR() ? 'جارٍ التحميل…' : 'Chargement…')}</p>`;
+  else if (!liste.length) corps = `<p class="mut vide">${f === 'paroisse' ? (!par ? (AR() ? 'اختر كنيستك أولاً.' : 'Choisissez d’abord votre paroisse.') : (AR() ? 'لا توجد قناة مسجلة لهذه الكنيسة بعد.' : 'Pas encore de chaîne YouTube enregistrée pour votre paroisse.')) : (AR() ? 'لا توجد فيديوهات.' : 'Aucune vidéo pour l’instant.')}</p>`;
+  else corps = liste.map((v) => `<a class="carte-video" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">
+      <span class="miniature"><img src="https://i.ytimg.com/vi/${encodeURIComponent(v.id)}/mqdefault.jpg" alt="" loading="lazy">${v.t > vuAvant && vuAvant ? `<b class="nouveau">${AR() ? 'جديد' : 'Nouveau'}</b>` : ''}</span>
+      <span class="video-txt"><b>${esc(v.titre)}</b><small><i class="pt-src ${v.source}"></i>${esc(v.chaine)} · ${ilYa(v.t)}</small></span></a>`).join('');
+  return `${entete(AR() ? 'يوتيوب' : 'Vidéos YouTube', AR() ? 'الأخبار' : 'Actus')}
+  <div class="contenu">
+    <div class="puces defile">${filtres.map(([v, l]) => `<button class="puce${f === v ? ' on' : ''}" data-a="acFiltre" data-v="${v}" aria-pressed="${f === v}">${l}</button>`).join('')}</div>
+    <div class="liste-video">${corps}</div>
+    ${ACTUS ? `<small class="mut maj-actus">${AR() ? 'آخر تحديث' : 'Mis à jour'} ${ilYa(Date.parse(ACTUS.maj))}${AR() ? '' : ' à ' + new Date(ACTUS.maj).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</small>` : ''}
   </div>${fab()}`;
 }
 
@@ -663,7 +709,7 @@ function exporterCalendrier() {
 }
 
 // ------------------------------------------------------------- rendu et navigation
-const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages };
+const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, actus: vueActus, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages };
 let derniereVue = null;
 function rendre(garderFocus) {
   const actif = document.activeElement, idFocus = actif && actif.id, pos = actif && actif.selectionStart;
@@ -674,7 +720,7 @@ function rendre(garderFocus) {
   if (garderFocus && idFocus) { const el = document.getElementById(idFocus); if (el) { el.focus(); try { el.setSelectionRange(pos, pos); } catch (e) {} } }
   try { if (['jour', 'semaine', 'mois', 'annee', 'recherche', 'rites', 'reglages'].includes(S.vue) && location.hash !== '#' + S.vue) history.replaceState(null, '', '#' + S.vue); } catch (e) {}
 }
-function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir'].includes(S.vue)) S.retour = S.vue; S.vue = v; rendre(); }
+function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus'].includes(S.vue)) S.retour = S.vue; S.vue = v; rendre(); }
 
 document.addEventListener('click', (ev) => {
   const b = ev.target.closest('[data-a]');
@@ -683,6 +729,7 @@ document.addEventListener('click', (ev) => {
   switch (a) {
     case 'vue': S.vue = v; break;
     case 'avFiltre': S.avFiltre = v; break;
+    case 'acFiltre': S.acFiltre = v; break;
     case 'aujourdhui': S.sel = aujCivil(); break;
     case 'choisir': S.sel = j; break;
     case 'decaler': S.sel += d; break;
@@ -756,7 +803,8 @@ setInterval(() => {
 // ------------------------------------------------------------- démarrage
 chargerLocal();
 const h0 = location.hash.slice(1);
-if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'recherche', 'rites', 'reglages'].includes(h0)) S.vue = h0;
+if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus', 'recherche', 'rites', 'reglages'].includes(h0)) S.vue = h0;
 appliquerApparence();
 rendre();
+chargerActus();
 brancherCompte();

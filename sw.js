@@ -1,5 +1,5 @@
 // Ti rompi : fonctionnement hors connexion
-const CACHE = 'ti-rompi-7ae9fae79f';
+const CACHE = 'ti-rompi-22a0dbfaae';
 const FICHIERS = ["./", "index.html", "manifest.webmanifest", "css/style.css", "js/moteur.js", "js/i18n.js", "js/app.js", "data/synaxaire.js", "data/rites.js", "data/paroisses.js", "data/icones.js", "fonts/cs-avva-shenouda.ttf", "img/logo.svg", "img/icones/apple-touch-icon.png", "img/icones/icon-192.png", "img/icones/icon-512.png", "img/saints/samuel.jpg", "img/saints/moise.png", "img/saints/mercure.jpg", "img/saints/kyrillos.png", "img/saints/mina.jpg", "img/saints/marc.png", "img/saints/georges.png", "img/saints/judas.jpg", "img/saints/crucifixion.png", "img/saints/lakkan.png", "img/saints/antoine.png", "img/saints/raphael.jpg", "img/saints/jean.png", "img/saints/rameaux.jpg", "img/saints/michel.png", "img/saints/vierge.jpg"];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FICHIERS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
@@ -14,7 +14,8 @@ self.addEventListener('fetch', (e) => {
     }).catch(() => caches.match(e.request).then((r) => r || caches.match('index.html'))));
     return;
   }
-  // Polices Google : copie locale d'abord
+  // Polices Google : copie locale d'abord (le reste, ex. miniatures YouTube, passe directement)
+  if (!/fonts\.(googleapis|gstatic)\.com/.test(e.request.url)) return;
   e.respondWith(caches.match(e.request).then((r) => r || fetch(e.request).then((rep) => {
     if (rep.ok) { const copie = rep.clone(); caches.open(CACHE).then((c) => c.put(e.request, copie)); }
     return rep;
