@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-15T09:25:11+00:00",
+ "maj": "2026-11-15T09:32:17+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
@@ -83,6 +83,334 @@
     }
    ]
   },
+  "p1": {
+   "nom": "Ste Marie St Marc",
+   "handle": "@stemariestmarc",
+   "id": "UCBfx4G35mTLLZF5iHcJ7EgA",
+   "videos": [
+    {
+     "id": "NXiP7L27Kfw",
+     "titre": "Questions/Réponses - Conférence \"Qu'est-ce que nos enfants attendent de nous\" - 25/10/2026",
+     "date": "2026-11-03T22:50:43+00:00"
+    },
+    {
+     "id": "HIMBl1NYDh4",
+     "titre": "Conférence \"Qu'est-ce que nos enfants attendent de nous\" - 25/10/2026",
+     "date": "2026-11-03T22:20:59+00:00"
+    },
+    {
+     "id": "Tl3ZHWhLs54",
+     "titre": "Divine Liturgie du dimanche 01/11/2026",
+     "date": "2026-11-01T23:21:21+00:00"
+    },
+    {
+     "id": "sVIZrtYh5ns",
+     "titre": "Divine liturgie du Dimanche 11/10/2026",
+     "date": "2026-10-11T20:47:07+00:00"
+    },
+    {
+     "id": "mBGRF0Pml38",
+     "titre": "Mariage Marc & Caroline - 10/10/2026",
+     "date": "2026-10-11T02:20:32+00:00"
+    },
+    {
+     "id": "-H4Co9n7-B0",
+     "titre": "Mariage de Monika & Daniel - 04/02/2026",
+     "date": "2026-10-05T02:58:43+00:00"
+    },
+    {
+     "id": "w8J90FjYp3s",
+     "titre": "Divine Liturgie du Dimanche 04/10/2026",
+     "date": "2026-10-04T20:42:17+00:00"
+    },
+    {
+     "id": "IzJuqeFxMX0",
+     "titre": "Mariage de Monika & Daniel - 04/02/2026",
+     "date": "2026-10-04T13:04:25+00:00"
+    },
+    {
+     "id": "OQSHQiJGugc",
+     "titre": "Office de l’encens du soir à l’occasion de la Fête de la Croix - 26/09/2026",
+     "date": "2026-09-27T05:40:34+00:00"
+    },
+    {
+     "id": "--uF5Q62kh4",
+     "titre": "Divine Liturgie du Dimanche - 20/09/2026",
+     "date": "2026-09-20T21:52:51+00:00"
+    },
+    {
+     "id": "X0SuvZLxErw",
+     "titre": "Mariage de Sandra & Antoine - 13/09/2026",
+     "date": "2026-09-14T02:52:22+00:00"
+    },
+    {
+     "id": "tePoz-fUHX0",
+     "titre": "Divine Liturgie du Dimanche - 13/09/2026",
+     "date": "2026-09-13T22:13:09+00:00"
+    },
+    {
+     "id": "OhdlYUGDhdU",
+     "titre": "Divine Liturgie du Dimanche - 06/09/2026",
+     "date": "2026-09-06T20:20:27+00:00"
+    },
+    {
+     "id": "NIUtJuo2a-k",
+     "titre": "Divine Liturgie du Dimanche - 06/09/2026",
+     "date": "2026-09-06T08:42:53+00:00"
+    },
+    {
+     "id": "yHSqh_jxNnE",
+     "titre": "Divine Liturgie du Dimanche - 30/08/2026",
+     "date": "2026-08-30T20:48:26+00:00"
+    }
+   ]
+  },
+  "p2": {
+   "nom": "Notre Dame des Coptes",
+   "handle": "@notredamedescoptes3769",
+   "id": "UC1y9v-py0BV4U0ta_JmUIqA",
+   "videos": [
+    {
+     "id": "sEMpdGhyE40",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              15/11/2026            قداس  اليوم الاحد",
+     "date": "2026-11-08T10:25:35+00:00"
+    },
+    {
+     "id": "X75nousmJ-s",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              08/11/2026            قداس  اليوم الاحد",
+     "date": "2026-11-08T10:41:03+00:00"
+    },
+    {
+     "id": "ZxvwnoyF3ik",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              01/11/2026            قداس  اليوم الاحد",
+     "date": "2026-11-01T23:02:44+00:00"
+    },
+    {
+     "id": "0wamtaBlJ8I",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              31/10/2026            قداس  اليوم السبت",
+     "date": "2026-10-31T23:06:26+00:00"
+    },
+    {
+     "id": "rxliOd8dpec",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              25/10/2026            قداس  اليوم الاحد",
+     "date": "2026-10-25T10:40:37+00:00"
+    },
+    {
+     "id": "A16Sgxzgw6k",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              18/10/2026            قداس  اليوم الاحد",
+     "date": "2026-10-18T09:35:03+00:00"
+    },
+    {
+     "id": "nrn8fjC9uLI",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              11/10/2026            قداس  اليوم الاحد",
+     "date": "2026-10-11T21:30:16+00:00"
+    },
+    {
+     "id": "3BR4MMaDGFg",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              04/10/2026            قداس  اليوم الاحد",
+     "date": "2026-10-04T09:40:30+00:00"
+    },
+    {
+     "id": "KGPOR32iM0Q",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              27/09/2026            قداس  عييد  الصليب  اليوم الاحد",
+     "date": "2026-09-27T09:31:23+00:00"
+    },
+    {
+     "id": "gVwYT6hNcww",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              20/09/2026           قداس اليوم الاحد",
+     "date": "2026-09-20T21:36:13+00:00"
+    },
+    {
+     "id": "GLfUcZoTxNI",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              13/09/2026           قداس اليوم الاحد",
+     "date": "2026-09-13T09:31:07+00:00"
+    },
+    {
+     "id": "T-n95nt3UGE",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              06/09/2026           قداس اليوم الاحد",
+     "date": "2026-09-06T09:45:57+00:00"
+    },
+    {
+     "id": "9RE-QtPwiaI",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              30/08/2026           قداس اليوم الاحد",
+     "date": "2026-08-30T09:35:30+00:00"
+    },
+    {
+     "id": "x-uMoPEsz7I",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              23/08/2026           قداس اليوم الاحد",
+     "date": "2026-08-23T21:08:41+00:00"
+    },
+    {
+     "id": "Fmdahhu9mIA",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              21/08/2026           نهضة امنا العذراء مريم",
+     "date": "2026-08-21T17:16:47+00:00"
+    }
+   ]
+  },
+  "p5": {
+   "nom": "Église Archange Michel et Saint Georges - Villejuif",
+   "handle": "@stmichelstgeorges",
+   "id": "UCGjYDIJBiwcOjqp2JpDZkIA",
+   "videos": [
+    {
+     "id": "M_0lPrtbUY0",
+     "titre": "Divine Liturgie du Dimanche - 15/11/2026",
+     "date": "2026-11-15T06:52:32+00:00"
+    },
+    {
+     "id": "_6XXEwOecUA",
+     "titre": "Divine liturgie du Dimanche - 08/11/2026",
+     "date": "2026-11-08T21:21:58+00:00"
+    },
+    {
+     "id": "fl8NQWMsvbs",
+     "titre": "Divine Liturgie du Samedi -07/11/2026",
+     "date": "2026-11-07T21:38:39+00:00"
+    },
+    {
+     "id": "E5N5LtPDleE",
+     "titre": "Divine Liturgie du Dimanche - 01/11/2026",
+     "date": "2026-11-01T22:19:59+00:00"
+    },
+    {
+     "id": "DWF2wAEJQHQ",
+     "titre": "Fête de la Toussaint - 31/10/2026",
+     "date": "2026-11-01T02:11:32+00:00"
+    },
+    {
+     "id": "hSF9pR7QrPM",
+     "titre": "Divine Liturgie du samedi 31/ octobre",
+     "date": "2026-10-31T23:28:12+00:00"
+    },
+    {
+     "id": "DKoG4EGj0kg",
+     "titre": "Divine liturgie du Dimanche - 25/10/2026",
+     "date": "2026-10-25T21:31:51+00:00"
+    },
+    {
+     "id": "SbT9hm2CRw8",
+     "titre": "Divine liturgie du Samedi - 24/10/2026",
+     "date": "2026-10-24T20:42:55+00:00"
+    },
+    {
+     "id": "sJnnhobuekg",
+     "titre": "Divine Liturgie du Samedi - 17/10/2026",
+     "date": "2026-10-17T20:38:53+00:00"
+    },
+    {
+     "id": "iyRsEA0J89c",
+     "titre": "Divine liturgie du dimanche - 11/10/2026",
+     "date": "2026-10-11T20:18:47+00:00"
+    },
+    {
+     "id": "jUnHR4QVgQ4",
+     "titre": "Divine Liturgie du samedi 0310/2026",
+     "date": "2026-10-10T20:31:18+00:00"
+    },
+    {
+     "id": "lQx1HUWRB18",
+     "titre": "Divine Liturgie du Dimanche - 04/10/2026",
+     "date": "2026-10-04T20:14:22+00:00"
+    },
+    {
+     "id": "efXO04kYOrk",
+     "titre": "Louange de Minuit du Dimanche - 03/10/2026",
+     "date": "2026-10-04T05:03:50+00:00"
+    },
+    {
+     "id": "xvj3dgjutt4",
+     "titre": "Office de l’encens du soir et Louange de minuit du Lundi de la Fête de la Sainte Croix - 27/09/2026",
+     "date": "2026-09-28T05:50:27+00:00"
+    },
+    {
+     "id": "UMKgoFjVxqg",
+     "titre": "Divine liturgie de la Fête de la Croix - 27/09/2026",
+     "date": "2026-09-27T20:51:59+00:00"
+    }
+   ]
+  },
+  "p6": {
+   "nom": "Église Saint Mercure, Saint Mina & Pape Cyrille VI",
+   "handle": "@stminastmercure",
+   "id": "UC_a9dyWxD8bC1ooOgZxSo3Q",
+   "videos": [
+    {
+     "id": "8TC833qM7pk",
+     "titre": "Divine Liturgie du Dimanche - 15/11/2026",
+     "date": "2026-11-15T07:27:46+00:00"
+    },
+    {
+     "id": "ez7M55-VFdU",
+     "titre": "Divine Liturgie du Samedi - 14/11/26",
+     "date": "2026-11-14T21:16:56+00:00"
+    },
+    {
+     "id": "JG2Tb0pYoKE",
+     "titre": "Divine Liturgie du Dimanche - 08/11/2026",
+     "date": "2026-11-08T22:01:42+00:00"
+    },
+    {
+     "id": "EyIdJ-l3SQ0",
+     "titre": "Divine Liturgie du Samedi - 07/11/2026",
+     "date": "2026-11-07T22:54:44+00:00"
+    },
+    {
+     "id": "vQDqx34fA-g",
+     "titre": "Divine Liturgie du Samedi - 31/10/2026",
+     "date": "2026-10-31T23:31:53+00:00"
+    },
+    {
+     "id": "rc5OcZfFWRU",
+     "titre": "Divine Liturgie du Dimanche - 25/10/2026",
+     "date": "2026-10-25T21:55:36+00:00"
+    },
+    {
+     "id": "GalONWNEMLg",
+     "titre": "Divine Liturgie du Samedi - 24/10/2026",
+     "date": "2026-10-24T22:52:27+00:00"
+    },
+    {
+     "id": "sxp75gXu1YE",
+     "titre": "Divine Liturgie du Dimanche - 18/10/2026",
+     "date": "2026-10-18T20:57:37+00:00"
+    },
+    {
+     "id": "zxJ2vdF6UzU",
+     "titre": "Divine Liturgie du Dimanche - 18/10/2026",
+     "date": "2026-10-18T19:41:26+00:00"
+    },
+    {
+     "id": "fKdvpeQIuBg",
+     "titre": "Divine Liturgie du samedi - 17/10/2026",
+     "date": "2026-10-17T20:47:18+00:00"
+    },
+    {
+     "id": "pkfAvwQakrk",
+     "titre": "Divine Liturgie du Dimanche - 11/10/2026",
+     "date": "2026-10-11T21:04:52+00:00"
+    },
+    {
+     "id": "fCPo8H9aCpM",
+     "titre": "Divine Liturgie du samedi - 10/10/2026",
+     "date": "2026-10-10T20:34:14+00:00"
+    },
+    {
+     "id": "G8zRvH6u0VU",
+     "titre": "Réunion du Vendredi présenté par Isabelle de Raynal - 09/10/2026",
+     "date": "2026-10-10T07:18:47+00:00"
+    },
+    {
+     "id": "pl6lUPmlLvg",
+     "titre": "Divine Liturgie du Dimanche - 04/11/2026",
+     "date": "2026-10-04T21:03:43+00:00"
+    },
+    {
+     "id": "SWT9aMf3cd8",
+     "titre": "Divine Liturgie du Samedi - 03/10/2026",
+     "date": "2026-10-03T21:03:22+00:00"
+    }
+   ]
+  },
   "p7": {
    "nom": "Église Saint Moise & Saint Samuel",
    "handle": "@eglisesaintmoisesaintsamue7022",
@@ -91,7 +419,7 @@
     {
      "id": "mLVOod0oouM",
      "titre": "Sermon du Dimanche 15 Novembre 2026",
-     "date": "2026-11-15T09:01:54+00:00"
+     "date": "2026-11-15T09:31:00+00:00"
     },
     {
      "id": "U0VfW5SUTus",
