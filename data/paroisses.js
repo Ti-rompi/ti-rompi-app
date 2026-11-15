@@ -10,13 +10,19 @@ window.PAROISSES=[
   "region": "Île-de-France",
   "nom": "Paroisse Sainte Marie & Saint Marc",
   "adresse": "347 bis Avenue de la Division Leclerc, 92290 Châtenay-Malabry",
-  "saints": "Sainte Marie et Saint Marc"
+  "saints": "Sainte Marie et Saint Marc",
+  "youtube": {
+   "handle": "@stemariestmarc"
+  }
  },
  {
   "region": "Île-de-France",
   "nom": "Paroisse Notre Dame des Coptes",
   "adresse": "22 Rue de l'Est, 75020 Paris",
-  "saints": "Notre-Dame"
+  "saints": "Notre-Dame",
+  "youtube": {
+   "handle": "@notredamedescoptes3769"
+  }
  },
  {
   "region": "Île-de-France",
@@ -34,13 +40,19 @@ window.PAROISSES=[
   "region": "Île-de-France",
   "nom": "Paroisse Archange Michel et Saint Georges",
   "adresse": "138 Boulevard Maxime Gorki, 94800 Villejuif",
-  "saints": "Archange Michel et saint Georges"
+  "saints": "Archange Michel et saint Georges",
+  "youtube": {
+   "handle": "@stmichelstgeorges"
+  }
  },
  {
   "region": "Île-de-France",
   "nom": "Paroisse St. Mina & St. Mercorious",
   "adresse": "40 Bis Rue Jean Jacques Rousseau, 92700 Colombes",
-  "saints": "St. Mina, St. Mercorious et Pape Cyrille VI"
+  "saints": "St. Mina, St. Mercorious et Pape Cyrille VI",
+  "youtube": {
+   "handle": "@stminastmercure"
+  }
  },
  {
   "region": "Île-de-France",
