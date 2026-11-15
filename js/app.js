@@ -182,7 +182,7 @@ function appliquerApparence() {
 
 // ------------------------------------------------------------- en-tête commun des vues
 function entete(titreCopte, titre) {
-  const onglets = ['jour', 'semaine', 'mois', 'annee'].map((v) => `<button class="onglet${S.vue === v ? ' actif' : ''}" data-a="vue" data-v="${v}" ${S.vue === v ? 'aria-current="page"' : ''}>${t(v)}</button>`).join('');
+  const onglets = ['jour', 'semaine', 'mois', 'annee', 'avenir'].map((v) => `<button class="onglet${S.vue === v ? ' actif' : ''}" data-a="vue" data-v="${v}" ${S.vue === v ? 'aria-current="page"' : ''}>${v === 'avenir' ? (AR() ? 'القادم' : 'À venir') : t(v)}</button>`).join('');
   return `<header class="entete">
     <div class="ligne-titre">
       <div class="titres"><span class="surtitre">${esc(titreCopte)}</span><h1 class="titre">${esc(titre)}</h1></div>
@@ -357,6 +357,58 @@ function vueMois() {
       <div class="tuiles"><div><small>${t('copte')}</small><b class="or">${fCopte(S.sel)}</b></div><div><small>${t('gregorien')}</small><b>${n(jdnVersGreg(S.sel).d)} ${nomMoisG(jdnVersGreg(S.sel).m)} ${n(jdnVersGreg(S.sel).y)}</b></div></div>
       <p>${esc(notes.join(' '))}</p>
     </section>
+  </div>${fab()}`;
+}
+
+// ------------------------------------------------------------- vue À venir
+const f_fete = (x) => x.fete;
+function aVenirListe() {
+  const auj = aujCivil(), fin = auj + 365, L = [];
+  const types = T[AR() ? 'ar' : 'fr'].types, reps = t('rep');
+  // 1. Mes événements : prochaine occurrence (les répétitions ne sont montrées qu'une fois)
+  P.evenements.forEach((e) => {
+    const o = occurrences(e, auj, fin)[0]; if (o === undefined) return;
+    const sous = [types[e.type], e.debut ? n(e.debut) : '', e.rep !== 'aucune' ? reps[e.rep] : '', e.lieu >= 0 && PAR[e.lieu] ? PAR[e.lieu].nom.replace(/^Paroisse (de la |de |)/, '') : ''].filter(Boolean).join(' · ');
+    L.push({ j: o, cat: 'moi', titre: e.titre, sous, couleur: 'var(--accent)' });
+  });
+  // 2. Ma paroisse : fêtes patronales
+  if (P.paroisse.idx >= 0) P.paroisse.patrons.forEach((pt) => {
+    const o = prochaineDate(pt, auj); if (o > fin) return;
+    L.push({ j: o, cat: 'paroisse', titre: (AR() ? 'العيد الشفيع: ' : 'Fête patronale : ') + pt.nom, sous: PAR[P.paroisse.idx].nom.replace(/^Paroisse (de la |de |)/, ''), couleur: 'var(--gold)', ic: iconeSaint(pt.nom), cad: cadrageSaint(pt.nom) });
+  });
+  // 3. Église : fêtes, jeûnes, carême (périodes en cours comprises)
+  const an = jdnVersCopte(auj).an, vus = new Set();
+  [...evenementsAnneeCopte(an - 1), ...evenementsAnneeCopte(an), ...evenementsAnneeCopte(an + 1)].forEach((e) => {
+    if (e.type === 'fete-mois' || e.id === 'cinquantaine' || e.fin < auj || e.debut > fin) return;
+    const k = e.id + e.debut; if (vus.has(k)) return; vus.add(k);
+    const jeune = e.type === 'jeune', car = e.type === 'careme' || e.type === 'semaine-sainte';
+    const duree = e.fin > e.debut ? (AR() ? `حتى ${fCopteCourt(e.fin)}` : `jusqu’au ${fGreg(e.fin, false)}`) : '';
+    L.push({ fete: e.type.startsWith('fete'), j: Math.max(e.debut, auj), cat: 'eglise', titre: nomEvt(e.id, e.nom), sous: [e.debut < auj ? (AR() ? 'جارٍ' : 'En cours') : '', duree].filter(Boolean).join(' · '),
+      couleur: car ? 'var(--careme)' : jeune ? 'var(--ochre)' : e.type === 'periode' ? 'var(--dim)' : 'var(--coral)', grande: e.type === 'fete-majeure' });
+  });
+  const jp = new Set(L.filter((x) => x.cat === 'paroisse').map((x) => x.j));
+  return L.filter((x) => !(x.cat === 'eglise' && jp.has(x.j) && f_fete(x))).sort((a, b) => a.j - b.j || (a.cat === 'moi' ? -1 : 1));
+}
+function vueAVenir() {
+  const auj = aujCivil(), f = S.avFiltre || 'tout';
+  const filtres = [['tout', AR() ? 'الكل' : 'Tout'], ['moi', AR() ? 'أحداثي' : 'Mes événements'], ['eglise', AR() ? 'الكنيسة' : 'Fêtes & jeûnes'], ['paroisse', AR() ? 'كنيستي' : 'Ma paroisse']];
+  const liste = aVenirListe().filter((x) => f === 'tout' || x.cat === f);
+  const dans = (d) => d === 0 ? (AR() ? 'اليوم' : 'aujourd’hui') : d === 1 ? (AR() ? 'غدًا' : 'demain') : AR() ? `بعد ${n(d)} يوم` : `dans ${d} j`;
+  let html = '', moisCourant = '';
+  liste.forEach((x) => {
+    const g = jdnVersGreg(x.j), cleM = `${g.y}-${g.m}`;
+    if (cleM !== moisCourant) { moisCourant = cleM; html += `<h2 class="sous-titre av-mois">${maj(nomMoisG(g.m))} ${n(g.y)}</h2>`; }
+    html += `<button class="ligne-av${x.cat === 'moi' ? ' mien' : ''}" data-a="voirJour" data-j="${x.j}">
+      <span class="ls-date"><small>${courtJour(x.j)}</small><b>${n(g.d)}</b></span><i class="ls-bande" style="background:${x.couleur}"></i>
+      ${x.ic ? `<span class="saint-rond av-ic"><img src="${x.ic}" alt="" style="${x.cad}"></span>` : ''}
+      <span class="ls-txt"><span class="ls-haut"><b${x.grande ? ' class="or"' : ''}>${esc(x.titre)}</b></span><span class="ls-bas">${fCopteCourt(x.j)}${x.sous ? ' · ' + esc(x.sous) : ''}</span></span>
+      <span class="av-dans">${dans(x.j - auj)}</span></button>`;
+  });
+  if (!liste.length) html = `<p class="mut vide">${f === 'moi' ? (AR() ? 'لا توجد أحداث. اضغط + لإضافة حدث.' : 'Aucun événement ajouté. Touchez + pour en créer un.') : f === 'paroisse' ? (AR() ? 'اختر كنيستك في الإعدادات.' : 'Choisissez votre paroisse pour voir ses fêtes patronales.') : ''}</p>`;
+  return `${entete(AR() ? 'السنة القادمة' : 'Les 12 prochains mois', AR() ? 'القادم' : 'À venir')}
+  <div class="contenu">
+    <div class="puces defile">${filtres.map(([v, l]) => `<button class="puce${f === v ? ' on' : ''}" data-a="avFiltre" data-v="${v}" aria-pressed="${f === v}">${l}</button>`).join('')}</div>
+    <div class="liste-av">${html}</div>
   </div>${fab()}`;
 }
 
@@ -611,7 +663,7 @@ function exporterCalendrier() {
 }
 
 // ------------------------------------------------------------- rendu et navigation
-const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages };
+const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages };
 let derniereVue = null;
 function rendre(garderFocus) {
   const actif = document.activeElement, idFocus = actif && actif.id, pos = actif && actif.selectionStart;
@@ -622,7 +674,7 @@ function rendre(garderFocus) {
   if (garderFocus && idFocus) { const el = document.getElementById(idFocus); if (el) { el.focus(); try { el.setSelectionRange(pos, pos); } catch (e) {} } }
   try { if (['jour', 'semaine', 'mois', 'annee', 'recherche', 'rites', 'reglages'].includes(S.vue) && location.hash !== '#' + S.vue) history.replaceState(null, '', '#' + S.vue); } catch (e) {}
 }
-function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee'].includes(S.vue)) S.retour = S.vue; S.vue = v; rendre(); }
+function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir'].includes(S.vue)) S.retour = S.vue; S.vue = v; rendre(); }
 
 document.addEventListener('click', (ev) => {
   const b = ev.target.closest('[data-a]');
@@ -630,6 +682,7 @@ document.addEventListener('click', (ev) => {
   const a = b.dataset.a, v = b.dataset.v, j = b.dataset.j ? +b.dataset.j : null, d = b.dataset.d ? +b.dataset.d : 0;
   switch (a) {
     case 'vue': S.vue = v; break;
+    case 'avFiltre': S.avFiltre = v; break;
     case 'aujourdhui': S.sel = aujCivil(); break;
     case 'choisir': S.sel = j; break;
     case 'decaler': S.sel += d; break;
@@ -703,7 +756,7 @@ setInterval(() => {
 // ------------------------------------------------------------- démarrage
 chargerLocal();
 const h0 = location.hash.slice(1);
-if (['jour', 'semaine', 'mois', 'annee', 'recherche', 'rites', 'reglages'].includes(h0)) S.vue = h0;
+if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'recherche', 'rites', 'reglages'].includes(h0)) S.vue = h0;
 appliquerApparence();
 rendre();
 brancherCompte();

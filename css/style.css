@@ -31,7 +31,7 @@ html[dir=rtl] .surtitre{letter-spacing:0}
 .pilule{padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surf);font-size:.85em;font-weight:600}
 .rond{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surf);flex:none}
 .barre-recherche{margin-top:14px;width:100%;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:12px;background:var(--surf);border:1px solid var(--line);color:var(--muted)}
-.onglets{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:3px}
+.onglets{margin-top:12px;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:3px}
 .onglets.deux{grid-template-columns:1fr 1fr;margin:0 0 12px}
 .onglet{padding:8px 0;text-align:center;border-radius:9px;font-size:.88em;font-weight:600;color:var(--muted);transition:background .2s,color .2s}
 .onglet.actif{background:var(--accent);color:var(--onaccent)}
@@ -240,3 +240,14 @@ a.lien{padding:12px 0;margin:-6px 0}
 .icone-rite-grande{width:96px}
 .rite-tete{align-items:center}
 .icone-repere{width:120px;align-self:center;margin:4px 0}
+
+.liste-av{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.av-mois{margin-top:14px}
+.ligne-av{display:flex;align-items:center;gap:10px;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:10px 12px;text-align:start;min-height:56px}
+.ligne-av.mien{border-color:var(--accent)}
+.ligne-av .ls-txt{flex:1;min-width:0}
+.ligne-av .ls-bas{color:var(--muted);font-size:.82em}
+.av-dans{font-size:.78em;color:var(--muted);white-space:nowrap;font-weight:600}
+.saint-rond.av-ic{width:36px;height:36px;border-width:1.5px;box-shadow:none}
+.vide{padding:20px 4px}
+.ligne-av .ls-bande{align-self:stretch}
