@@ -65,8 +65,9 @@ html[dir=rtl] .etiquette{letter-spacing:0;font-size:.8em}
 .grand-mois{font-family:var(--serif);font-size:1.3em;font-weight:600}
 .heros-droite{display:flex;flex-direction:column;gap:6px;min-width:0}
 .date-sec{font-weight:600}
-.puce-jeune,.puce-fete{align-self:flex-start;font-size:.8em;font-weight:700;padding:3px 10px;border-radius:999px}
+.puce-jeune,.puce-fete,.puce-dim{align-self:flex-start;font-size:.8em;font-weight:700;padding:3px 10px;border-radius:999px}
 .puce-jeune{background:var(--ochrebg);color:var(--text);box-shadow:inset 0 0 0 1px var(--ochreline)}
+.puce-dim{background:transparent;color:var(--goldtx);box-shadow:inset 0 0 0 1px var(--gold)}
 .puce-fete{background:transparent;color:var(--coraltx);box-shadow:inset 0 0 0 1px var(--coral)}
 .veille{display:flex;gap:6px;align-items:flex-start;font-size:.82em;color:var(--muted)}
 .veille svg{flex:none;margin-top:2px}

@@ -11,7 +11,7 @@ const DEFAUT = {
 };
 let P = JSON.parse(JSON.stringify(DEFAUT)); // données personnelles, sauvegardées
 const aujCivil = () => { const d = new Date(); return gregVersJdn(d.getFullYear(), d.getMonth() + 1, d.getDate()); };
-const S = { vue: 'jour', sel: aujCivil(), mois: null, annee: null, lundi: null, riteGroupe: 'p', riteSel: null, q: '', retour: 'jour', evt: null, confirmerEffacer: false, sauvegarde: 'aucun' };
+const S = { vue: 'mois', sel: aujCivil(), mois: null, annee: null, lundi: null, riteGroupe: 'p', riteSel: null, q: '', retour: 'mois', evt: null, confirmerEffacer: false, sauvegarde: 'aucun' };
 
 // ------------------------------------------------------------- sauvegarde (compte claude.ai, sinon cet appareil)
 let db = null, docRef = null, timer = null;
@@ -212,6 +212,13 @@ function ritesDuJour(j) {
   return RITES.filter((r) => { const ids = [RITE_EVT[r.id], ...(AUSSI[r.id] || [])].filter(Boolean); return evs.some((e) => ids.some((ev) => ev.endsWith('-') ? e.id.startsWith(ev) : e.id === ev)); });
 }
 // ------------------------------------------------------------- vue Jour
+// Dimanche du mois copte : « 1er dimanche de Hatour »
+const ORD_AR = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس'];
+function dimancheCopte(j) {
+  if (jourSemaine(j) !== 6) return '';
+  const c = jdnVersCopte(j), k = Math.floor((c.jour - 1) / 7) + 1;
+  return AR() ? `الأحد ${ORD_AR[k - 1]} من ${nomMoisC(c.mois)}` : `${k === 1 ? '1er' : k + 'e'} dimanche de ${nomMoisC(c.mois)}`;
+}
 function vueJour() {
   const sel = S.sel, x = jour(sel), c = jdnVersCopte(sel), g = jdnVersGreg(sel), auj = aujCivil();
   const lundi = sel - colonne(sel);
@@ -254,6 +261,7 @@ function vueJour() {
       <div class="heros-droite">
         <span class="etiquette">${grandCopte ? t('gregorien') : t('copte')}</span>
         <span class="date-sec">${grandCopte ? maj(fGreg(sel)) : maj(nomJour(sel)) + ' · ' + fCopte(sel)}</span>
+        ${dimancheCopte(sel) ? `<span class="puce-dim">${esc(dimancheCopte(sel))}</span>` : ''}
         ${x.jeune ? `<span class="puce-jeune">${esc(x.libelleJeune || '')}</span>` : ''}
         ${x.fetes.length ? `<span class="puce-fete">${esc(x.fetes.join(' · '))}</span>` : ''}
         <span class="veille">${icone.lune}${esc(ligneVeille)}</span>
@@ -280,7 +288,7 @@ function vueSemaine() {
     const bande = teinte(x) || (x.couleur === 'mercredi-vendredi' ? 'var(--ochreline)' : 'var(--line)');
     lignes += `<button class="ligne-sem${j === auj ? ' auj' : ''}" data-a="voirJour" data-j="${j}">
       <span class="ls-date"><small>${courtJour(j)}</small><b>${n(jdnVersGreg(j).d)}</b></span><i class="ls-bande" style="background:${bande}"></i>
-      <span class="ls-txt"><span class="ls-haut"><b class="or">${fCopteCourt(j)}</b><em>${esc(x.libelleJeune || '')}</em></span><span class="ls-bas">${esc(texte)}</span></span></button>`;
+      <span class="ls-txt"><span class="ls-haut"><b class="or">${fCopteCourt(j)}</b><em>${esc([dimancheCopte(j), x.libelleJeune].filter(Boolean).join(' · '))}</em></span><span class="ls-bas">${esc(texte)}</span></span></button>`;
   }
   const g1 = jdnVersGreg(lundi), g2 = jdnVersGreg(lundi + 6), c1 = jdnVersCopte(lundi), c2 = jdnVersCopte(lundi + 6);
   const plage = g1.m === g2.m ? `${n(g1.d)} – ${n(g2.d)} ${nomMoisG(g2.m)}` : `${n(g1.d)} ${nomMoisG(g1.m)} – ${n(g2.d)} ${nomMoisG(g2.m)}`;
@@ -315,6 +323,7 @@ function vueMois() {
     }
   }
   const s = jour(S.sel), notes = [];
+  if (dimancheCopte(S.sel)) notes.push(dimancheCopte(S.sel) + '.');
   if (s.fetes.length) notes.push(s.fetes.join(' · ') + '.');
   if (s.jeune) { notes.push(s.libelleJeune + '.'); if (s.niveau) notes.push(s.niveau + '.'); }
   if (!s.jeune && !s.fetes.length) notes.push(s.cinquanteJours ? t('cinquante') : t('pasDeJeune'));
@@ -614,7 +623,7 @@ document.addEventListener('click', (ev) => {
     case 'ouvrirMois': S.sel = j; S.vue = 'mois'; break;
     case 'voirJour': S.sel = j; S.vue = 'jour'; break;
     case 'ouvrir': ouvrir(v); return;
-    case 'fermer': S.vue = S.retour || 'jour'; S.confirmerEffacer = false; break;
+    case 'fermer': S.vue = S.retour || 'mois'; S.confirmerEffacer = false; break;
     case 'ouvrirRite': S.riteSel = v; S.riteGroupe = RITES.find((r) => r.id === v).groupe; ouvrir('rites'); return;
     case 'choisirRite': S.riteSel = v; break;
     case 'allerRepere': { const el = document.getElementById(v); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
