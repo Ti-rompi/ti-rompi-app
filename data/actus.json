@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-15T09:32:17+00:00",
+ "maj": "2026-11-15T17:05:25+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
@@ -173,7 +173,12 @@
     {
      "id": "sEMpdGhyE40",
      "titre": "كنيسة العذراء سيدة الاقباط باريس              15/11/2026            قداس  اليوم الاحد",
-     "date": "2026-11-08T10:25:35+00:00"
+     "date": "2026-11-15T11:53:39+00:00"
+    },
+    {
+     "id": "etzsgyafjug",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              15/11/2026            قداس  اليوم الاحد",
+     "date": "2026-11-15T10:28:06+00:00"
     },
     {
      "id": "X75nousmJ-s",
@@ -239,11 +244,6 @@
      "id": "x-uMoPEsz7I",
      "titre": "كنيسة العذراء سيدة الاقباط باريس              23/08/2026           قداس اليوم الاحد",
      "date": "2026-08-23T21:08:41+00:00"
-    },
-    {
-     "id": "Fmdahhu9mIA",
-     "titre": "كنيسة العذراء سيدة الاقباط باريس              21/08/2026           نهضة امنا العذراء مريم",
-     "date": "2026-08-21T17:16:47+00:00"
     }
    ]
   },
@@ -252,6 +252,11 @@
    "handle": "@stmichelstgeorges",
    "id": "UCGjYDIJBiwcOjqp2JpDZkIA",
    "videos": [
+    {
+     "id": "6x4TnC_HOq8",
+     "titre": "Office de l’Encens du soir à l’occasion de la fête de Saint Georges - 15/11/2026",
+     "date": "2026-11-15T15:19:03+00:00"
+    },
     {
      "id": "M_0lPrtbUY0",
      "titre": "Divine Liturgie du Dimanche - 15/11/2026",
@@ -321,11 +326,6 @@
      "id": "xvj3dgjutt4",
      "titre": "Office de l’encens du soir et Louange de minuit du Lundi de la Fête de la Sainte Croix - 27/09/2026",
      "date": "2026-09-28T05:50:27+00:00"
-    },
-    {
-     "id": "UMKgoFjVxqg",
-     "titre": "Divine liturgie de la Fête de la Croix - 27/09/2026",
-     "date": "2026-09-27T20:51:59+00:00"
     }
    ]
   },
