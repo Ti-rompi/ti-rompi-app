@@ -1,4 +1,169 @@
 {
- "maj": "2026-11-15T09:23:06+00:00",
- "chaines": {}
+ "maj": "2026-11-15T09:25:11+00:00",
+ "chaines": {
+  "diocese": {
+   "nom": "DCO Anba Marc",
+   "handle": "@dcoanbamarc",
+   "id": "UChakWkDk18Ip1iN2qv2bCfQ",
+   "videos": [
+    {
+     "id": "lcKOJ25UL30",
+     "titre": "Louange de minuit du Dimanche - 14/11/2026",
+     "date": "2026-11-15T06:07:07+00:00"
+    },
+    {
+     "id": "ESCA_ECGHLI",
+     "titre": "Divine liturgie du Samedi - 14/11/2026",
+     "date": "2026-11-14T21:33:37+00:00"
+    },
+    {
+     "id": "ZSuOFQO5mm4",
+     "titre": "Louange de minuit du Vendredi - 12/11/2026",
+     "date": "2026-11-14T07:10:19+00:00"
+    },
+    {
+     "id": "q5OYVJYJrBQ",
+     "titre": "Louange de minuit du Vendredi - 12/11/2026",
+     "date": "2026-11-13T07:02:12+00:00"
+    },
+    {
+     "id": "G3XsLJEHXdw",
+     "titre": "Louange de minuit du Jeudi - 11/11/2026",
+     "date": "2026-11-12T07:03:55+00:00"
+    },
+    {
+     "id": "iPWHxzcRbps",
+     "titre": "Louange de minuit du mercredi - 10/11/2026",
+     "date": "2026-11-11T07:07:06+00:00"
+    },
+    {
+     "id": "NW0oEfG9B5g",
+     "titre": "Louange de minuit du mardi - 09/11/2026",
+     "date": "2026-11-10T07:07:57+00:00"
+    },
+    {
+     "id": "D34iMx3ZGBI",
+     "titre": "Divine Liturgie du Dimanche en présence de Monseigneur Anba Marc - 08/11/2026",
+     "date": "2026-11-08T22:15:37+00:00"
+    },
+    {
+     "id": "r8iMm81YvKU",
+     "titre": "Louange de minuit du Dimanche - 07/11/2026",
+     "date": "2026-11-08T06:11:49+00:00"
+    },
+    {
+     "id": "L0jsJB2Uqmc",
+     "titre": "Divine liturgie du Samedi en présence de Mgrs Anba Bessada & Anba Marc - 07/11/2026",
+     "date": "2026-11-07T21:58:14+00:00"
+    },
+    {
+     "id": "48XExzxgR_8",
+     "titre": "Louange de Minuit du Samedi - 06/11/2026",
+     "date": "2026-11-07T07:10:48+00:00"
+    },
+    {
+     "id": "lFPjwk9DFX8",
+     "titre": "Divine Liturgie en présence de Mgrs Anba Bessada & Anba Marc - 06/11/2026",
+     "date": "2026-11-06T20:22:16+00:00"
+    },
+    {
+     "id": "7PXRS-ZXHfo",
+     "titre": "Louange de Minuit du Vendredi - 05/11/2026",
+     "date": "2026-11-06T07:10:36+00:00"
+    },
+    {
+     "id": "2c4qGy1umoo",
+     "titre": "Louange de Minuit du Jeudi - 04/11/2026",
+     "date": "2026-11-05T07:39:19+00:00"
+    },
+    {
+     "id": "M3q_dqX7VTo",
+     "titre": "Louange de minuit du Mercredi - 03/11/2026",
+     "date": "2026-11-04T07:20:07+00:00"
+    }
+   ]
+  },
+  "p7": {
+   "nom": "Église Saint Moise & Saint Samuel",
+   "handle": "@eglisesaintmoisesaintsamue7022",
+   "id": "UCdFBVoz6qLAs_nozGkL2wtQ",
+   "videos": [
+    {
+     "id": "mLVOod0oouM",
+     "titre": "Sermon du Dimanche 15 Novembre 2026",
+     "date": "2026-11-15T09:01:54+00:00"
+    },
+    {
+     "id": "U0VfW5SUTus",
+     "titre": "Messe du Dimanche 08 Novembre 2026",
+     "date": "2026-11-14T08:47:31+00:00"
+    },
+    {
+     "id": "seyFxW_SWlQ",
+     "titre": "Messe du Dimanche 08 Novembre 2026",
+     "date": "2026-11-08T22:46:36+00:00"
+    },
+    {
+     "id": "B_pM7Jz72t8",
+     "titre": "Sermon du 7 novembre 2026",
+     "date": "2026-11-07T08:43:23+00:00"
+    },
+    {
+     "id": "0pRICJzKsIY",
+     "titre": "Messe du Dimanche 1er Novembre 2026",
+     "date": "2026-11-01T22:51:07+00:00"
+    },
+    {
+     "id": "YlOFkjzR2tU",
+     "titre": "Sermon du Samedi 31 Octobre 2026",
+     "date": "2026-10-31T08:32:43+00:00"
+    },
+    {
+     "id": "SygEuFNDWKs",
+     "titre": "Divine Liturgie du dimanche 25 Octobre 2026",
+     "date": "2026-10-25T22:37:09+00:00"
+    },
+    {
+     "id": "R803Pn5Ojo4",
+     "titre": "Sermon du Samedi 24 Octobre 2026",
+     "date": "2026-10-24T07:30:25+00:00"
+    },
+    {
+     "id": "dAkFz2cEf_I",
+     "titre": "Sermon du Samedi 24 Octobre 2026",
+     "date": "2026-10-18T21:16:34+00:00"
+    },
+    {
+     "id": "KVAltg8JvNA",
+     "titre": "Sermon du Dimanche 18 Octobre 2026",
+     "date": "2026-10-18T20:26:48+00:00"
+    },
+    {
+     "id": "vSdi-QqxRpY",
+     "titre": "Sermon du Samedi 17 Octobre 2026",
+     "date": "2026-10-17T07:30:51+00:00"
+    },
+    {
+     "id": "6oy2YUeUi58",
+     "titre": "Sermon du Dimanche 11 Octobre 2026",
+     "date": "2026-10-11T21:43:01+00:00"
+    },
+    {
+     "id": "jEOibZnHIfs",
+     "titre": "Sermon du Samedi 10 Octobre 2026",
+     "date": "2026-10-10T07:40:54+00:00"
+    },
+    {
+     "id": "UgEaIjpFiTU",
+     "titre": "Divine liturgie du dimanche 4 Octobre 2026",
+     "date": "2026-10-04T22:13:47+00:00"
+    },
+    {
+     "id": "9LCBpckNYL4",
+     "titre": "Sermon du Samedi 3 Octobre 2026",
+     "date": "2026-10-03T07:36:07+00:00"
+    }
+   ]
+  }
+ }
 }
