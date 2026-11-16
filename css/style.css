@@ -275,3 +275,19 @@ a.lien{padding:12px 0;margin:-6px 0}
 
 .liste-nouv{margin:8px 0 0;padding-inline-start:20px;display:flex;flex-direction:column;gap:7px;line-height:1.4}
 .marque small.or{color:var(--goldtx);font-weight:600}
+
+.poisson{width:1.15em;height:.7em;vertical-align:-.05em;color:#5FA8D8;flex:none}
+.puce-jeune .poisson{margin-inline:.3em}
+.puce-jeune .poisson:last-child{transform:scaleX(-1)}
+.poissons-case{position:absolute;top:3px;inset-inline-end:3px;display:flex;gap:1px;line-height:0}
+.poissons-case .poisson{width:9px;height:6px;color:#fff;opacity:.9}
+.poissons-case .poisson+.poisson{transform:translateY(3px)}
+.ls-haut .poisson{margin-inline-start:4px}
+.banc{display:flex;gap:10px;margin:6px 0 2px;overflow:hidden}
+.banc .poisson{width:20px;height:12px;opacity:.75;animation:nage 3.2s ease-in-out infinite}
+.banc .poisson:nth-child(2){animation-delay:.4s;opacity:.55;width:14px}
+.banc .poisson:nth-child(3){animation-delay:.9s}
+.banc .poisson:nth-child(4){animation-delay:1.3s;opacity:.5;width:14px}
+.banc .poisson:nth-child(5){animation-delay:1.8s}
+@keyframes nage{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,-2px)}}
+@media (prefers-reduced-motion:reduce){.banc .poisson{animation:none}}

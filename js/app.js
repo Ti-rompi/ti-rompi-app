@@ -155,6 +155,9 @@ function jour(j) {
   const niveau = jeune && x.niveauCle ? (AR() ? NIVEAUX_AR[x.niveauCle] : NIVEAUX[x.niveauCle]) : null;
   return { ...x, couleur, fetes, jeune, libelleJeune, niveau };
 }
+// Jeûne de Ninive (Jonas) : petits poissons
+const POISSON = '<svg class="poisson" viewBox="0 0 24 14" aria-hidden="true"><path d="M2 7c3-5 10-6 15-2l5-4v12l-5-4c-5 4-12 3-15-2z" fill="currentColor"/><circle cx="7" cy="6" r="1.1" fill="var(--bg,#111)"/></svg>';
+const estNinive = (x) => x.periodeJeuneId === 'ninive' && x.jeune;
 const PAR_JEUNE = { ninive: '#3E7CA6', 'nativite-jeune': '#A2803A', apotres: '#3F8A5A', vierge: '#5468B8', 'paramoun-nativite': '#A2803A', 'paramoun-theophanie': '#3E7CA6' };
 function teinte(x) {
   // couleur de remplissage d'une case selon le code couleur
@@ -278,7 +281,8 @@ function vueJour() {
         <span class="etiquette">${grandCopte ? t('gregorien') : t('copte')}</span>
         <span class="date-sec">${grandCopte ? maj(fGreg(sel)) : maj(nomJour(sel)) + ' · ' + fCopte(sel)}</span>
         ${dimancheCopte(sel) ? `<span class="puce-dim">${esc(dimancheCopte(sel))}</span>` : ''}
-        ${x.jeune ? `<span class="puce-jeune">${esc(x.libelleJeune || '')}</span>` : ''}
+        ${x.jeune ? `<span class="puce-jeune">${estNinive(x) ? POISSON : ''}${esc(x.libelleJeune || '')}${estNinive(x) ? POISSON : ''}</span>` : ''}
+        ${estNinive(x) ? `<div class="banc" aria-hidden="true">${POISSON.repeat(5)}</div>` : ''}
         ${x.fetes.length ? `<span class="puce-fete">${esc(x.fetes.join(' · '))}</span>` : ''}
         <span class="veille">${icone.lune}${esc(ligneVeille)}</span>
       </div>
@@ -305,7 +309,7 @@ function vueSemaine() {
     const bande = teinte(x) || (x.couleur === 'mercredi-vendredi' ? 'var(--ochreline)' : 'var(--line)');
     lignes += `<button class="ligne-sem${j === auj ? ' auj' : ''}" data-a="voirJour" data-j="${j}">
       <span class="ls-date"><small>${courtJour(j)}</small><b>${n(CP() ? c.jour : jdnVersGreg(j).d)}</b></span><i class="ls-bande" style="background:${bande}"></i>
-      <span class="ls-txt"><span class="ls-haut"><b class="or">${CP() ? gCourt(j) : fCopteCourt(j)}</b><em>${esc([dimancheCopte(j), x.libelleJeune].filter(Boolean).join(' · '))}</em></span><span class="ls-bas">${esc(texte)}</span></span></button>`;
+      <span class="ls-txt"><span class="ls-haut"><b class="or">${CP() ? gCourt(j) : fCopteCourt(j)}</b><em>${esc([dimancheCopte(j), x.libelleJeune].filter(Boolean).join(' · '))}${estNinive(x) ? POISSON : ''}</em></span><span class="ls-bas">${esc(texte)}</span></span></button>`;
   }
   const g1 = jdnVersGreg(lundi), g2 = jdnVersGreg(lundi + 6), c1 = jdnVersCopte(lundi), c2 = jdnVersCopte(lundi + 6);
   const plage = g1.m === g2.m ? `${n(g1.d)} – ${n(g2.d)} ${nomMoisG(g2.m)}` : `${n(g1.d)} ${nomMoisG(g1.m)} – ${n(g2.d)} ${nomMoisG(g2.m)}`;
@@ -343,7 +347,7 @@ function vueMois() {
       const cls = ['case-mois', j === S.sel ? 'choisi' : '', j === auj ? 'auj' : '', fill ? 'pleine' : '', x.couleur === 'resurrection' ? 'resur' : '', (x.couleur === 'careme' || x.couleur === 'semaine-sainte') ? 'violette' : ''].join(' ');
       grille += `<button class="${cls}" data-a="voirJour" data-j="${j}" ${fill ? `style="--fill:${fill}"` : ''} aria-label="${esc(fGreg(j) + ', ' + fCopteCourt(j) + (x.jeune ? ', ' + t('jeune') : '') + (x.fetes.length ? ', ' + x.fetes.join(', ') : ''))}">
         ${CP() ? `<b>${n(jdnVersCopte(j).jour)}</b><small>${gCourt(j)}</small>` : `<b>${n(jdnVersGreg(j).d)}</b><small>${n(jdnVersCopte(j).jour)} ${AR() ? '' : jdnVersCopte(j).nomMois.slice(0, 3) + '.'}</small>`}
-        ${x.fetes.length && x.couleur !== 'resurrection' ? '<i class="pt-fete"></i>' : ''}${evs ? '<i class="pt-evt"></i>' : ''}${x.couleur === 'mercredi-vendredi' ? '<i class="trait"></i>' : ''}</button>`;
+        ${x.fetes.length && x.couleur !== 'resurrection' ? '<i class="pt-fete"></i>' : ''}${evs ? '<i class="pt-evt"></i>' : ''}${x.couleur === 'mercredi-vendredi' ? '<i class="trait"></i>' : ''}${estNinive(x) ? `<i class="poissons-case">${POISSON}${POISSON}</i>` : ''}</button>`;
     }
   }
   const s = jour(S.sel), notes = [];
