@@ -265,3 +265,9 @@ a.lien{padding:12px 0;margin:-6px 0}
 .pt-src{width:7px;height:7px;border-radius:50%;flex:none;background:var(--gold)}
 .pt-src.paroisse{background:var(--accent)}
 .maj-actus{display:block;text-align:center;margin:14px 0 80px}
+
+@keyframes glisseSuiv{from{transform:translateX(40px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes glissePrec{from{transform:translateX(-40px);opacity:.3}to{transform:none;opacity:1}}
+.contenu.glisse-suiv{animation:glisseSuiv .22s ease-out}
+.contenu.glisse-prec{animation:glissePrec .22s ease-out}
+@media (prefers-reduced-motion:reduce){.contenu.glisse-suiv,.contenu.glisse-prec{animation:none}}

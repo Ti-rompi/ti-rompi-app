@@ -730,6 +730,46 @@ function rendre(garderFocus) {
 }
 function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus'].includes(S.vue)) S.retour = S.vue; S.vue = v; rendre(); }
 
+
+// ------------------------------------------------------------- glisser pour changer de jour / semaine / mois / année
+(function () {
+  const PAS = { jour: ['decaler', 1], semaine: ['decaler', 7], mois: ['moisDecal', 1], annee: ['anneeDecal', 1] };
+  let x0 = 0, y0 = 0, t0 = 0, sens = null, cible = null, actif = false;
+  const ignorer = (el) => el.closest('input, textarea, select, .defile, .barre-bas, .entete, [contenteditable]');
+  $app.addEventListener('touchstart', (e) => {
+    actif = false; sens = null;
+    if (!PAS[S.vue] || e.touches.length !== 1 || ignorer(e.target)) return;
+    actif = true; x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now();
+    cible = $app.querySelector('.contenu');
+  }, { passive: true });
+  $app.addEventListener('touchmove', (e) => {
+    if (!actif) return;
+    const dx = e.touches[0].clientX - x0, dy = e.touches[0].clientY - y0;
+    if (!sens && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) sens = Math.abs(dx) > Math.abs(dy) * 1.2 ? 'h' : 'v';
+    if (sens === 'v') { actif = false; return; }
+    if (sens === 'h') {
+      e.preventDefault();
+      if (cible) { cible.style.transition = 'none'; cible.style.transform = `translateX(${dx * 0.45}px)`; cible.style.opacity = String(1 - Math.min(Math.abs(dx) / 600, 0.35)); }
+    }
+  }, { passive: false });
+  const fin = (e) => {
+    if (!actif || sens !== 'h') { actif = false; return; }
+    actif = false;
+    const dx = (e.changedTouches[0] || {}).clientX - x0, vite = Math.abs(dx) / Math.max(1, Date.now() - t0) > 0.45;
+    const remettre = () => { if (cible) { cible.style.transition = 'transform .2s ease, opacity .2s ease'; cible.style.transform = ''; cible.style.opacity = ''; } };
+    if (Math.abs(dx) < 70 && !vite) { remettre(); return; }
+    // vers la gauche = suivant (inversé en arabe, lecture de droite à gauche)
+    let d = dx < 0 ? 1 : -1; if (AR()) d = -d;
+    const [a, pas] = PAS[S.vue], b = document.createElement('button');
+    b.dataset.a = a; b.dataset.d = String(d * pas); b.hidden = true; $app.appendChild(b); b.click(); b.remove();
+    const c = $app.querySelector('.contenu');
+    if (c) { c.classList.remove('glisse-suiv', 'glisse-prec'); void c.offsetWidth; c.classList.add((dx < 0) ? 'glisse-suiv' : 'glisse-prec'); }
+    try { navigator.vibrate && navigator.vibrate(8); } catch (err) {}
+  };
+  $app.addEventListener('touchend', fin, { passive: true });
+  $app.addEventListener('touchcancel', () => { actif = false; const c = $app.querySelector('.contenu'); if (c) { c.style.transform = ''; c.style.opacity = ''; } }, { passive: true });
+})();
+
 document.addEventListener('click', (ev) => {
   const b = ev.target.closest('[data-a]');
   if (!b) return;
