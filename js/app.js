@@ -428,11 +428,11 @@ function chargerActus() {
   fetch('data/actus.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : Promise.reject()).then((d) => { ACTUS = d; actusEtat = 'ok'; rendre(); })
     .catch(() => { actusEtat = 'erreur'; if (S.vue === 'actus') rendre(); });
 }
-function videosActus() {
+function videosActus(toutes) {
   if (!ACTUS) return [];
-  const cles = ['diocese'], ch = ACTUS.chaines || {};
-  if (P.paroisse.idx >= 0) cles.push('p' + P.paroisse.idx);
-  return cles.filter((k) => ch[k]).flatMap((k) => ch[k].videos.map((v) => ({ ...v, source: k === 'diocese' ? 'diocese' : 'paroisse', chaine: ch[k].nom, t: Date.parse(v.date) })))
+  const ch = ACTUS.chaines || {}, mienne = P.paroisse.idx >= 0 ? 'p' + P.paroisse.idx : '';
+  const cles = toutes ? Object.keys(ch) : ['diocese', mienne].filter(Boolean);
+  return cles.filter((k) => ch[k]).flatMap((k) => ch[k].videos.map((v) => ({ ...v, cle: k, source: k === 'diocese' ? 'dco' : k === mienne ? 'paroisse' : 'autre', chaine: ch[k].nom, t: Date.parse(v.date) })))
     .sort((a, b) => b.t - a.t);
 }
 const actusNouvelles = () => videosActus().filter((v) => v.t > actusVu).length;
@@ -447,15 +447,15 @@ function vueActus() {
   if (actusEtat === 'rien' || actusEtat === 'erreur') chargerActus();
   const f = S.acFiltre || 'tout', vuAvant = actusVu;
   const par = P.paroisse.idx >= 0 ? PAR[P.paroisse.idx] : null;
-  const toutes = videosActus(), liste = toutes.filter((v) => f === 'tout' || v.source === f);
+  const toutes = videosActus(f === 'diocese'), liste = toutes.filter((v) => f === 'tout' || f === 'diocese' || v.source === f);
   // marquer comme vues
-  if (toutes.length) { const max = Math.max(...toutes.map((v) => v.t)); if (max > actusVu) { actusVu = max; try { localStorage.setItem(CLE_VU, String(max)); } catch (e) {} } }
-  const filtres = [['tout', AR() ? 'الكل' : 'Tout'], ['diocese', AR() ? 'الإيبارشية' : 'Diocèse'], ['paroisse', AR() ? 'كنيستي' : 'Ma paroisse']];
+  const miens = videosActus(); if (miens.length) { const max = Math.max(...miens.map((v) => v.t)); if (max > actusVu) { actusVu = max; try { localStorage.setItem(CLE_VU, String(max)); } catch (e) {} } }
+  const filtres = [['tout', AR() ? 'الكل' : 'Tout'], ['dco', 'DCO Anba Marc'], ['diocese', AR() ? 'الإيبارشية' : 'Diocèse'], ['paroisse', AR() ? 'كنيستي' : 'Ma paroisse']];
   let corps;
   if (!ACTUS) corps = `<p class="mut vide">${actusEtat === 'erreur' ? (AR() ? 'تعذر تحميل الأخبار. تحقق من الاتصال.' : 'Impossible de charger les actus. Vérifiez la connexion.') : (AR() ? 'جارٍ التحميل…' : 'Chargement…')}</p>`;
   else if (!liste.length) corps = `<p class="mut vide">${f === 'paroisse' ? (!par ? (AR() ? 'اختر كنيستك أولاً.' : 'Choisissez d’abord votre paroisse.') : (AR() ? 'لا توجد قناة مسجلة لهذه الكنيسة بعد.' : 'Pas encore de chaîne YouTube enregistrée pour votre paroisse.')) : (AR() ? 'لا توجد فيديوهات.' : 'Aucune vidéo pour l’instant.')}</p>`;
   else corps = liste.map((v) => `<a class="carte-video" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">
-      <span class="miniature"><img src="https://i.ytimg.com/vi/${encodeURIComponent(v.id)}/mqdefault.jpg" alt="" loading="lazy">${v.t > vuAvant && vuAvant ? `<b class="nouveau">${AR() ? 'جديد' : 'Nouveau'}</b>` : ''}</span>
+      <span class="miniature"><img src="https://i.ytimg.com/vi/${encodeURIComponent(v.id)}/mqdefault.jpg" alt="" loading="lazy">${(f === 'diocese' && v.source === 'autre' ? Date.now() - v.t < 2 * 864e5 : v.t > vuAvant && vuAvant) ? `<b class="nouveau">${AR() ? 'جديد' : 'Nouveau'}</b>` : ''}</span>
       <span class="video-txt"><b>${esc(v.titre)}</b><small><i class="pt-src ${v.source}"></i>${esc(v.chaine)} · ${ilYa(v.t)}</small></span></a>`).join('');
   return `${entete(AR() ? 'يوتيوب' : 'Vidéos YouTube', AR() ? 'الأخبار' : 'Actus')}
   <div class="contenu">
