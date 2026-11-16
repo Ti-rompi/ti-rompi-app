@@ -1,11 +1,16 @@
 {
- "maj": "2026-11-16T16:15:02+00:00",
+ "maj": "2026-11-16T18:29:26+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
    "handle": "@dcoanbamarc",
    "id": "UChakWkDk18Ip1iN2qv2bCfQ",
    "videos": [
+    {
+     "id": "SDf9X2fQRdU",
+     "titre": "Louange de minuit du Mardi - 16/11/2026",
+     "date": "2026-11-16T17:58:43+00:00"
+    },
     {
      "id": "lcKOJ25UL30",
      "titre": "Louange de minuit du Dimanche - 14/11/2026",
@@ -75,11 +80,6 @@
      "id": "2c4qGy1umoo",
      "titre": "Louange de Minuit du Jeudi - 04/11/2026",
      "date": "2026-11-05T07:39:19+00:00"
-    },
-    {
-     "id": "M3q_dqX7VTo",
-     "titre": "Louange de minuit du Mercredi - 03/11/2026",
-     "date": "2026-11-04T07:20:07+00:00"
     }
    ]
   },
