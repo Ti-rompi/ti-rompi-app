@@ -745,11 +745,14 @@ function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus']
 // ------------------------------------------------------------- glisser pour changer de jour / semaine / mois / année
 (function () {
   const PAS = { jour: ['decaler', 1], semaine: ['decaler', 7], mois: ['moisDecal', 1], annee: ['anneeDecal', 1] };
-  let x0 = 0, y0 = 0, t0 = 0, sens = null, cible = null, actif = false;
+  let x0 = 0, y0 = 0, t0 = 0, sens = null, cible = null, actif = false, retour = null;
+  // pages secondaires (Réglages, Rites, Paroisse, Nouveautés…) : glisser vers la droite = bouton retour
+  const boutonRetour = () => $app.querySelector('header.entete.simple > .rond[data-a]');
   const ignorer = (el) => el.closest('input, textarea, select, .defile, .barre-bas, .entete, [contenteditable]');
   $app.addEventListener('touchstart', (e) => {
     actif = false; sens = null;
-    if (!PAS[S.vue] || e.touches.length !== 1 || ignorer(e.target)) return;
+    retour = PAS[S.vue] ? null : boutonRetour();
+    if ((!PAS[S.vue] && !retour) || e.touches.length !== 1 || ignorer(e.target)) return;
     actif = true; x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now();
     cible = $app.querySelector('.contenu');
   }, { passive: true });
@@ -760,7 +763,9 @@ function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus']
     if (sens === 'v') { actif = false; return; }
     if (sens === 'h') {
       e.preventDefault();
-      if (cible) { cible.style.transition = 'none'; cible.style.transform = `translateX(${dx * 0.45}px)`; cible.style.opacity = String(1 - Math.min(Math.abs(dx) / 600, 0.35)); }
+      const vers = AR() ? -dx : dx;
+      if (retour && vers < 0) return; // retour : seulement vers la droite (gauche en arabe)
+      if (cible) { cible.style.transition = 'none'; cible.style.transform = `translateX(${retour ? dx * 0.8 : dx * 0.45}px)`; cible.style.opacity = String(1 - Math.min(Math.abs(dx) / 600, 0.35)); }
     }
   }, { passive: false });
   const fin = (e) => {
@@ -769,6 +774,12 @@ function ouvrir(v) { if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus']
     const dx = (e.changedTouches[0] || {}).clientX - x0, vite = Math.abs(dx) / Math.max(1, Date.now() - t0) > 0.45;
     const remettre = () => { if (cible) { cible.style.transition = 'transform .2s ease, opacity .2s ease'; cible.style.transform = ''; cible.style.opacity = ''; } };
     if (Math.abs(dx) < 70 && !vite) { remettre(); return; }
+    if (retour) {
+      if ((AR() ? -dx : dx) <= 0) { remettre(); return; }
+      retour.click();
+      const c = $app.querySelector('.contenu'); if (c) { c.classList.add('glisse-prec'); }
+      return;
+    }
     // vers la gauche = suivant (inversé en arabe, lecture de droite à gauche)
     let d = dx < 0 ? 1 : -1; if (AR()) d = -d;
     const [a, pas] = PAS[S.vue], b = document.createElement('button');
