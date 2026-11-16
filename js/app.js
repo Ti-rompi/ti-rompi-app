@@ -663,6 +663,8 @@ function vueReglages() {
       ${segment('couleurs', r.couleurs, [['simples', o.simples], ['parJeune', o.parJeune]], L.couleurs, L.couleursSub)}
       <div class="ligne-reglage"><span><b>${L.ville}</b><small>${L.villeSub}</small></span><select class="petit-select" data-c="ville" aria-label="${L.ville}">${villes.map(([k, v]) => `<option value="${k}"${r.ville === k ? ' selected' : ''}>${v}</option>`).join('')}</select></div>
     </div>
+    <h3 class="sous-titre">${g.paroisse}</h3><div class="groupe">
+      <button class="ligne-reglage lien-ligne" data-a="ouvrir" data-v="paroisse"><span><b>${L.paroisse}</b><small>${ch ? esc(ch.nom.replace(/^Paroisse (de la |de |)/, '')) : t('choisirParoisse')}</small></span>${fleche('next')}</button></div>
     <h3 class="sous-titre">${g.calques}</h3><div class="groupe">
       ${interrupteur('cal-jeunes', r.calques.jeunes, L.jeunes, L.jeunesSub)}${interrupteur('cal-careme', r.calques.careme, L.careme, L.caremeSub)}
       ${interrupteur('cal-mv', r.calques.mv, L.mv)}${interrupteur('cal-fetes', r.calques.fetes, L.fetes)}
@@ -672,8 +674,6 @@ function vueReglages() {
       ${interrupteur('rap-veille', r.rappels.veille, L.rVeille, '20:00')}${interrupteur('rap-fete', r.rappels.fete, L.rFete, '08:00')}${interrupteur('rap-matin', r.rappels.matin, L.rMatin)}
       <p class="note">${L.rappelsNote}</p>
       <button class="ligne-reglage lien-ligne" data-a="exporter"><span><b>${L.exporter}</b><small>${L.exporterSub}</small></span>${fleche('next')}</button></div>
-    <h3 class="sous-titre">${g.paroisse}</h3><div class="groupe">
-      <button class="ligne-reglage lien-ligne" data-a="ouvrir" data-v="paroisse"><span><b>${L.paroisse}</b><small>${ch ? esc(ch.nom.replace(/^Paroisse (de la |de |)/, '')) : t('choisirParoisse')}</small></span>${fleche('next')}</button></div>
     <h3 class="sous-titre">${g.confid}</h3><div class="groupe">
       <div class="ligne-reglage"><span><b>${L.aucuneDonnee}</b><small>${L.aucuneDonneeSub}</small></span></div>
       <div class="ligne-reglage"><span><b>${L.sauvegarde}</b><small>${S.sauvegarde === 'compte' ? t('sauveCompte') : S.sauvegarde === 'local' ? t('sauveLocal') : t('sauveAucun')}</small></span></div>
