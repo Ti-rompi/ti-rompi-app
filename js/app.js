@@ -301,15 +301,16 @@ function vueSemaine() {
     const texte = [...x.fetes, ...evs.map((e) => `${n(e.debut)} ${e.titre}`)].join(' · ') || syn || (x.cinquanteJours ? (AR() ? 'الخماسين المقدسة' : 'Cinquante jours après Pâques') : '');
     const bande = teinte(x) || (x.couleur === 'mercredi-vendredi' ? 'var(--ochreline)' : 'var(--line)');
     lignes += `<button class="ligne-sem${j === auj ? ' auj' : ''}" data-a="voirJour" data-j="${j}">
-      <span class="ls-date"><small>${courtJour(j)}</small><b>${n(jdnVersGreg(j).d)}</b></span><i class="ls-bande" style="background:${bande}"></i>
-      <span class="ls-txt"><span class="ls-haut"><b class="or">${fCopteCourt(j)}</b><em>${esc([dimancheCopte(j), x.libelleJeune].filter(Boolean).join(' · '))}</em></span><span class="ls-bas">${esc(texte)}</span></span></button>`;
+      <span class="ls-date"><small>${courtJour(j)}</small><b>${n(CP() ? c.jour : jdnVersGreg(j).d)}</b></span><i class="ls-bande" style="background:${bande}"></i>
+      <span class="ls-txt"><span class="ls-haut"><b class="or">${CP() ? gCourt(j) : fCopteCourt(j)}</b><em>${esc([dimancheCopte(j), x.libelleJeune].filter(Boolean).join(' · '))}</em></span><span class="ls-bas">${esc(texte)}</span></span></button>`;
   }
   const g1 = jdnVersGreg(lundi), g2 = jdnVersGreg(lundi + 6), c1 = jdnVersCopte(lundi), c2 = jdnVersCopte(lundi + 6);
   const plage = g1.m === g2.m ? `${n(g1.d)} – ${n(g2.d)} ${nomMoisG(g2.m)}` : `${n(g1.d)} ${nomMoisG(g1.m)} – ${n(g2.d)} ${nomMoisG(g2.m)}`;
-  return `${entete(c1.mois === c2.mois ? `${nomMoisC(c1.mois)} ${n(c2.an)}` : `${nomMoisC(c1.mois)} – ${nomMoisC(c2.mois)} ${n(c2.an)}`, R().wk ? t('semaineN')(semaineIso(lundi)) : `${maj(nomMoisG(g2.m))} ${n(g2.y)}`)}
+  const tC = c1.mois === c2.mois ? `${nomMoisC(c1.mois)} ${n(c2.an)}` : `${nomMoisC(c1.mois)} – ${nomMoisC(c2.mois)} ${n(c2.an)}`, tG = `${maj(nomMoisG(g2.m))} ${n(g2.y)}`;
+  return `${CP() ? entete(R().wk ? `${tG} · ${t('semaineN')(semaineIso(lundi))}` : tG, tC) : entete(tC, R().wk ? t('semaineN')(semaineIso(lundi)) : tG)}
   <div class="contenu">
     <div class="nav"><button class="fl" data-a="decaler" data-d="-7" aria-label="${t('precedent')}">${fleche('prev')}</button>
-    <span class="nav-txt"><b>${plage}</b><small>${n(c1.jour)} ${nomMoisC(c1.mois)} – ${n(c2.jour)} ${nomMoisC(c2.mois)} · ${n(g2.y)}</small></span>
+    <span class="nav-txt">${CP() ? `<b>${n(c1.jour)} ${c1.mois === c2.mois ? '' : nomMoisC(c1.mois) + ' '}– ${n(c2.jour)} ${nomMoisC(c2.mois)}</b><small>${plage} ${n(g2.y)}</small>` : `<b>${plage}</b><small>${n(c1.jour)} ${nomMoisC(c1.mois)} – ${n(c2.jour)} ${nomMoisC(c2.mois)} · ${n(g2.y)}</small>`}</span>
     <button class="fl" data-a="decaler" data-d="7" aria-label="${t('suivant')}">${fleche('next')}</button></div>
     <div class="liste-sem">${lignes}</div>
   </div>${fab()}`;
@@ -317,9 +318,15 @@ function vueSemaine() {
 function semaineIso(j) { const jeudi = j - jourSemaine(j) + 3, an = jdnVersGreg(jeudi).y; return Math.floor((jeudi - gregVersJdn(an, 1, 1)) / 7) + 1; }
 
 // ------------------------------------------------------------- vue Mois
+const CP = () => R().main === 'copte';
+const finMoisC = (an, mois) => (mois === 13 ? copteVersJdn(an + 1, 1, 1) : copteVersJdn(an, mois + 1, 1)) - 1;
+const ABR_G = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+const gCourt = (j) => { const g = jdnVersGreg(j); return `${n(g.d)} ${AR() ? nomMoisG(g.m) : ABR_G[g.m - 1]}`; };
 function vueMois() {
-  const g = jdnVersGreg(S.sel), y = g.y, m = g.m, auj = aujCivil();
-  const premier = gregVersJdn(y, m, 1), dernier = gregVersJdn(m === 12 ? y + 1 : y, m === 12 ? 1 : m + 1, 1) - 1;
+  const g = jdnVersGreg(S.sel), y = g.y, m = g.m, auj = aujCivil(), cs = jdnVersCopte(S.sel);
+  const premier = CP() ? copteVersJdn(cs.an, cs.mois, 1) : gregVersJdn(y, m, 1), dernier = CP() ? finMoisC(cs.an, cs.mois) : gregVersJdn(m === 12 ? y + 1 : y, m === 12 ? 1 : m + 1, 1) - 1;
+  const gp = jdnVersGreg(premier), gd = jdnVersGreg(dernier);
+  const titreG = gp.y === gd.y ? (gp.m === gd.m ? `${maj(nomMoisG(gp.m))} ${n(gp.y)}` : `${maj(nomMoisG(gp.m))} – ${nomMoisG(gd.m)} ${n(gd.y)}`) : `${maj(nomMoisG(gp.m))} ${n(gp.y)} – ${nomMoisG(gd.m)} ${n(gd.y)}`;
   const c1 = jdnVersCopte(premier), c2 = jdnVersCopte(dernier);
   const titreC = c1.an === c2.an ? (c1.mois === c2.mois ? `${nomMoisC(c1.mois)} ${n(c1.an)}` : `${nomMoisC(c1.mois)} – ${nomMoisC(c2.mois)} ${n(c2.an)}`) : `${nomMoisC(c1.mois)} ${n(c1.an)} – ${nomMoisC(c2.mois)} ${n(c2.an)}`;
   const tetes = Array.from({ length: 7 }, (_, k) => { const j = premier - colonne(premier) + k; return `<span>${courtJour(j)}</span>`; }).join('');
@@ -332,7 +339,7 @@ function vueMois() {
       const x = jour(j), fill = teinte(x), evs = evenementsDu(j).length;
       const cls = ['case-mois', j === S.sel ? 'choisi' : '', j === auj ? 'auj' : '', fill ? 'pleine' : '', x.couleur === 'resurrection' ? 'resur' : '', (x.couleur === 'careme' || x.couleur === 'semaine-sainte') ? 'violette' : ''].join(' ');
       grille += `<button class="${cls}" data-a="voirJour" data-j="${j}" ${fill ? `style="--fill:${fill}"` : ''} aria-label="${esc(fGreg(j) + ', ' + fCopteCourt(j) + (x.jeune ? ', ' + t('jeune') : '') + (x.fetes.length ? ', ' + x.fetes.join(', ') : ''))}">
-        <b>${n(jdnVersGreg(j).d)}</b><small>${n(jdnVersCopte(j).jour)} ${AR() ? '' : jdnVersCopte(j).nomMois.slice(0, 3) + '.'}</small>
+        ${CP() ? `<b>${n(jdnVersCopte(j).jour)}</b><small>${gCourt(j)}</small>` : `<b>${n(jdnVersGreg(j).d)}</b><small>${n(jdnVersCopte(j).jour)} ${AR() ? '' : jdnVersCopte(j).nomMois.slice(0, 3) + '.'}</small>`}
         ${x.fetes.length && x.couleur !== 'resurrection' ? '<i class="pt-fete"></i>' : ''}${evs ? '<i class="pt-evt"></i>' : ''}${x.couleur === 'mercredi-vendredi' ? '<i class="trait"></i>' : ''}</button>`;
     }
   }
@@ -345,10 +352,10 @@ function vueMois() {
   evenementsDu(S.sel).forEach((e) => notes.push(`${n(e.debut)} · ${e.titre}.`));
   const legende = [`<i class="sw" style="background:var(--careme)"></i>${t('legCareme')}`, `<i class="sw" style="background:var(--ochrebg);box-shadow:inset 0 0 0 1px var(--ochreline)"></i>${t('legJeune')}`,
     `<i class="trait-l"></i>${t('legMV')}`, `<i class="pt" style="background:var(--coral)"></i>${t('legFete')}`, `<i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--gold)"></i>${t('legAuj')}`].map((l) => `<span>${l}</span>`).join('');
-  return `${entete(titreC, `${maj(nomMoisG(m))} ${n(y)}`)}
+  return `${CP() ? entete(titreG, `${nomMoisC(cs.mois)} ${n(cs.an)}`) : entete(titreC, `${maj(nomMoisG(m))} ${n(y)}`)}
   <div class="contenu">
     <div class="nav"><button class="fl" data-a="moisDecal" data-d="-1" aria-label="${t('precedent')}">${fleche('prev')}</button>
-    <span class="nav-txt"><small>${AR() ? `١ ${nomMoisG(m)} = ${n(c1.jour)} ${nomMoisC(c1.mois)} · ${n(jdnVersGreg(dernier).d)} ${nomMoisG(m)} = ${n(c2.jour)} ${nomMoisC(c2.mois)}` : `1er ${nomMoisG(m)} = ${c1.jour} ${c1.nomMois} · ${jdnVersGreg(dernier).d} ${nomMoisG(m)} = ${c2.jour} ${c2.nomMois}`}</small></span>
+    <span class="nav-txt"><small>${CP() ? (AR() ? `١ ${nomMoisC(cs.mois)} = ${fGreg(premier, false)} · ${n(jdnVersCopte(dernier).jour)} ${nomMoisC(cs.mois)} = ${fGreg(dernier, false)}` : `1er ${nomMoisC(cs.mois)} = ${gp.d} ${nomMoisG(gp.m)} · ${jdnVersCopte(dernier).jour} ${nomMoisC(cs.mois)} = ${gd.d} ${nomMoisG(gd.m)}`) : AR() ? `١ ${nomMoisG(m)} = ${n(c1.jour)} ${nomMoisC(c1.mois)} · ${n(jdnVersGreg(dernier).d)} ${nomMoisG(m)} = ${n(c2.jour)} ${nomMoisC(c2.mois)}` : `1er ${nomMoisG(m)} = ${c1.jour} ${c1.nomMois} · ${jdnVersGreg(dernier).d} ${nomMoisG(m)} = ${c2.jour} ${c2.nomMois}`}</small></span>
     <button class="fl" data-a="moisDecal" data-d="1" aria-label="${t('suivant')}">${fleche('next')}</button></div>
     <div class="grille-mois${R().wk ? ' avec-sem' : ''}"><span class="num-sem">${R().wk ? (AR() ? 'أ' : 'S.') : ''}</span>${tetes}${grille}</div>
     <div class="legende">${legende}</div>
@@ -460,27 +467,28 @@ function vueActus() {
 
 // ------------------------------------------------------------- vue Année
 function vueAnnee() {
-  const y = jdnVersGreg(S.sel).y, auj = aujCivil();
+  const y = jdnVersGreg(S.sel).y, auj = aujCivil(), anC = jdnVersCopte(S.sel).an;
   let mois = '';
-  for (let m = 1; m <= 12; m++) {
-    const premier = gregVersJdn(y, m, 1), dernier = gregVersJdn(m === 12 ? y + 1 : y, m === 12 ? 1 : m + 1, 1) - 1;
+  for (let m = 1; m <= (CP() ? 13 : 12); m++) {
+    const premier = CP() ? copteVersJdn(anC, m, 1) : gregVersJdn(y, m, 1), dernier = CP() ? finMoisC(anC, m) : gregVersJdn(m === 12 ? y + 1 : y, m === 12 ? 1 : m + 1, 1) - 1;
     const c1 = jdnVersCopte(premier), c2 = jdnVersCopte(dernier);
     let cases = '<span></span>'.repeat(colonne(premier));
     for (let j = premier; j <= dernier; j++) {
       const x = jour(j), fill = teinte(x), fe = x.fetesIds.some((f) => !f.startsWith('29-')) && R().calques.fetes;
       const cls = ['mc', j === auj ? 'auj' : '', fill ? 'pleine' : '', x.couleur === 'resurrection' ? 'resur' : '', fe ? 'fete' : '', (x.couleur === 'careme' || x.couleur === 'semaine-sainte') ? 'violette' : ''].join(' ');
-      cases += `<span class="${cls}" ${fill ? `style="--fill:${fill}"` : ''}>${n(jdnVersGreg(j).d)}</span>`;
+      cases += `<span class="${cls}" ${fill ? `style="--fill:${fill}"` : ''}>${n(CP() ? jdnVersCopte(j).jour : jdnVersGreg(j).d)}</span>`;
     }
-    const cur = jdnVersGreg(auj).y === y && jdnVersGreg(auj).m === m;
-    mois += `<button class="mini-mois${cur ? ' cur' : ''}" data-a="ouvrirMois" data-j="${premier}"><b>${maj(nomMoisG(m))}</b><small>${c1.mois === c2.mois ? nomMoisC(c1.mois) : nomMoisC(c1.mois) + ' · ' + nomMoisC(c2.mois)}</small><span class="mini-grille">${cases}</span></button>`;
+    const cur = auj >= premier && auj <= dernier, g1 = jdnVersGreg(premier), g2 = jdnVersGreg(dernier);
+    mois += `<button class="mini-mois${cur ? ' cur' : ''}" data-a="ouvrirMois" data-j="${cur ? auj : premier}"><b>${CP() ? nomMoisC(m) : maj(nomMoisG(m))}</b><small>${CP() ? (g1.m === g2.m ? maj(nomMoisG(g1.m)) : maj(nomMoisG(g1.m)) + ' · ' + nomMoisG(g2.m)) : c1.mois === c2.mois ? nomMoisC(c1.mois) : nomMoisC(c1.mois) + ' · ' + nomMoisC(c2.mois)}</small><span class="mini-grille">${cases}</span></button>`;
   }
   const a1 = jdnVersCopte(gregVersJdn(y, 1, 1)).an;
   const legende = [`<i class="sw" style="background:var(--careme)"></i>${t('legCareme')}`, `<i class="sw" style="background:var(--careme2)"></i>${t('legSS')}`, `<i class="sw" style="background:var(--jeunefill)"></i>${t('legJeune')}`,
     `<b style="color:var(--coraltx)">${n(12)}</b>${t('legFete')}`, `<i class="sw" style="background:var(--resur)"></i>${t('legRes')}`].map((l) => `<span>${l}</span>`).join('');
-  return `${entete(AR() ? `${n(a1)} – ${n(a1 + 1)} للشهداء` : `${a1} – ${a1 + 1} des Martyrs`, n(y))}
+  const yP = CP() ? jdnVersGreg(copteVersJdn(anC, 8, 1)).y : y;
+  return `${CP() ? entete(`${n(jdnVersGreg(copteVersJdn(anC, 1, 1)).y)} – ${n(jdnVersGreg(finMoisC(anC, 13)).y)}`, AR() ? `${n(anC)} للشهداء` : `${anC} des Martyrs`) : entete(AR() ? `${n(a1)} – ${n(a1 + 1)} للشهداء` : `${a1} – ${a1 + 1} des Martyrs`, n(y))}
   <div class="contenu">
     <div class="nav"><button class="fl" data-a="anneeDecal" data-d="-1" aria-label="${t('precedent')}">${fleche('prev')}</button>
-    <span class="nav-txt"><small>${t('paquesLe')(fGreg(paques(y), false))}</small></span>
+    <span class="nav-txt"><small>${t('paquesLe')(fGreg(paques(yP), false))}</small></span>
     <button class="fl" data-a="anneeDecal" data-d="1" aria-label="${t('suivant')}">${fleche('next')}</button></div>
     <div class="grille-annee">${mois}</div>
     <div class="legende">${legende}</div>
@@ -733,8 +741,8 @@ document.addEventListener('click', (ev) => {
     case 'aujourdhui': S.sel = aujCivil(); break;
     case 'choisir': S.sel = j; break;
     case 'decaler': S.sel += d; break;
-    case 'moisDecal': { const g = jdnVersGreg(S.sel); let m = g.m + d, y = g.y; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } const auj = jdnVersGreg(aujCivil()); S.sel = auj.y === y && auj.m === m ? aujCivil() : gregVersJdn(y, m, 1); break; }
-    case 'anneeDecal': { const g = jdnVersGreg(S.sel); S.sel = gregVersJdn(g.y + d, Math.min(g.m, 12), 1); break; }
+    case 'moisDecal': { if (CP()) { const c = jdnVersCopte(S.sel); let mo = c.mois + d, an = c.an; if (mo < 1) { mo = 13; an--; } if (mo > 13) { mo = 1; an++; } const a = jdnVersCopte(aujCivil()); S.sel = a.an === an && a.mois === mo ? aujCivil() : copteVersJdn(an, mo, 1); break; } const g = jdnVersGreg(S.sel); let m = g.m + d, y = g.y; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } const auj = jdnVersGreg(aujCivil()); S.sel = auj.y === y && auj.m === m ? aujCivil() : gregVersJdn(y, m, 1); break; }
+    case 'anneeDecal': { if (CP()) { const c = jdnVersCopte(S.sel); S.sel = copteVersJdn(c.an + d, Math.min(c.mois, 12), 1); break; } const g = jdnVersGreg(S.sel); S.sel = gregVersJdn(g.y + d, Math.min(g.m, 12), 1); break; }
     case 'ouvrirMois': S.sel = j; S.vue = 'mois'; break;
     case 'voirJour': S.sel = j; S.vue = 'jour'; break;
     case 'ouvrir': ouvrir(v); return;
