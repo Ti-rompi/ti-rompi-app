@@ -271,3 +271,6 @@ a.lien{padding:12px 0;margin:-6px 0}
 .contenu.glisse-suiv{animation:glisseSuiv .22s ease-out}
 .contenu.glisse-prec{animation:glissePrec .22s ease-out}
 @media (prefers-reduced-motion:reduce){.contenu.glisse-suiv,.contenu.glisse-prec{animation:none}}
+
+.liste-nouv{margin:8px 0 0;padding-inline-start:20px;display:flex;flex-direction:column;gap:7px;line-height:1.4}
+.marque small.or{color:var(--goldtx);font-weight:600}

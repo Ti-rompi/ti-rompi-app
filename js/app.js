@@ -680,7 +680,7 @@ function vueReglages() {
       ${S.confirmerEffacer ? `<div class="ligne-reglage"><span><b>${L.effacer} ?</b></span><span class="seg"><button data-a="effacerTout" class="danger">${L.confirmerEffacer}</button><button data-a="annulerEffacer">${L.annulerEffacer}</button></span></div>`
         : `<button class="ligne-reglage lien-ligne" data-a="demanderEffacer"><span><b>${L.effacer}</b><small>${L.effacerSub}</small></span>${fleche('next')}</button>`}
     </div>
-    <h3 class="sous-titre">${g.apropos}</h3><div class="groupe"><div class="ligne-reglage marque"><img src="${window.LOGO || ''}" alt="" width="48" height="48"><span><b class="copte-titre" lang="cop">}rompi</b><small>Ti rompi · ${L.version} · ${L.versionSub}</small></span></div></div>
+    <h3 class="sous-titre">${g.apropos}</h3><div class="groupe"><button class="ligne-reglage lien-ligne marque" data-a="ouvrir" data-v="nouveautes"><img src="${window.LOGO || ''}" alt="" width="48" height="48"><span><b class="copte-titre" lang="cop">}rompi</b><small>Ti rompi · ${AR() ? 'الإصدار' : 'Version'} ${n(VER.version)}${VER.maj ? ' · ' + (AR() ? 'حُدّث في ' : 'mise à jour le ') + VER.maj : ''}</small><small class="or">${AR() ? 'ما الجديد' : 'Voir les nouveautés'}</small></span>${fleche('next')}</button></div>
   </div>`;
 }
 
@@ -716,14 +716,25 @@ function exporterCalendrier() {
   document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
 }
 
+// ------------------------------------------------------------- Nouveautés (historique des versions)
+const VER = window.TI_VERSION || { version: '0.5', maj: '', nouveautes: [] };
+function vueNouveautes() {
+  return `<header class="entete simple"><button class="rond" data-a="ouvrir" data-v="reglages" aria-label="${t('retour')}">${fleche('prev')}</button><h1 class="titre">${AR() ? 'ما الجديد' : 'Nouveautés'}</h1></header>
+  <div class="contenu">
+    ${VER.nouveautes.map((x, i) => `<section class="carte"><div class="carte-tete"><h2 class="serif">${AR() ? 'الإصدار' : 'Version'} ${n(x.v)}</h2><span class="tag">${i === 0 ? (AR() ? 'الحالية' : 'actuelle') : esc(x.date)}</span></div>
+      ${i === 0 && x.date ? `<small class="mut">${esc(x.date)}</small>` : ''}<ul class="liste-nouv">${x.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul></section>`).join('')}
+  </div>`;
+}
+
 // ------------------------------------------------------------- rendu et navigation
-const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, actus: vueActus, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages };
+const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, actus: vueActus, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages, nouveautes: vueNouveautes };
 let derniereVue = null;
 function rendre(garderFocus) {
   const actif = document.activeElement, idFocus = actif && actif.id, pos = actif && actif.selectionStart;
   const defile = $app.querySelector('.contenu') ? $app.querySelector('.contenu').scrollTop : 0;
   $app.innerHTML = `<div class="ecran${derniereVue !== S.vue ? ' entree' : ''}">${VUES[S.vue]()}</div>`;
   if (derniereVue === S.vue && $app.querySelector('.contenu')) $app.querySelector('.contenu').scrollTop = defile;
+  if (derniereVue !== S.vue) { try { window.scrollTo(0, 0); } catch (e) {} }
   derniereVue = S.vue;
   if (garderFocus && idFocus) { const el = document.getElementById(idFocus); if (el) { el.focus(); try { el.setSelectionRange(pos, pos); } catch (e) {} } }
   try { if (['jour', 'semaine', 'mois', 'annee', 'recherche', 'rites', 'reglages'].includes(S.vue) && location.hash !== '#' + S.vue) history.replaceState(null, '', '#' + S.vue); } catch (e) {}
