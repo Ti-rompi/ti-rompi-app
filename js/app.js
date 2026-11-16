@@ -202,7 +202,7 @@ const fab = () => {
   const saints = p.idx >= 0 ? p.patrons.map((pt, i) => {
     const ic = iconeSaint(pt.nom), j = prochaineDate(pt, auj);
     const label = `${t('fetePatronale')} : ${pt.nom}, ${fGreg(j)}`;
-    return `<button class="saint-rond${ic ? '' : ' sans-icone'}" data-a="allerPatron" data-i="${i}" aria-label="${esc(label)}" title="${esc(pt.nom)}">${ic ? `<img src="${ic}" alt="" style="${cadrageSaint(pt.nom)}">` : `<span aria-hidden="true">${esc((pt.nom.replace(/^(Saints?|Sainte|Archange|Anba|Pape)\s+/i, '')[0] || '✝').toUpperCase())}</span>`}</button>`;
+    return `<button class="saint-rond${ic ? '' : ' sans-icone'}" data-a="allerPatron" data-i="${i}" aria-label="${esc(label)}" title="${esc(pt.nom)}">${ic ? `<img src="${ic}" alt="">` : `<span aria-hidden="true">${esc((pt.nom.replace(/^(Saints?|Sainte|Archange|Anba|Pape)\s+/i, '')[0] || '✝').toUpperCase())}</span>`}</button>`;
   }).join('') : '';
   return `<div class="barre-bas">${saints}<button class="fab" data-a="nouvelEvt" aria-label="${t('ajouter')}">${icone.plus}</button></div>`;
 };
@@ -410,7 +410,7 @@ function vueAVenir() {
     if (cleM !== moisCourant) { moisCourant = cleM; html += `<h2 class="sous-titre av-mois">${maj(nomMoisG(g.m))} ${n(g.y)}</h2>`; }
     html += `<button class="ligne-av${x.cat === 'moi' ? ' mien' : ''}" data-a="voirJour" data-j="${x.j}">
       <span class="ls-date"><small>${courtJour(x.j)}</small><b>${n(g.d)}</b></span><i class="ls-bande" style="background:${x.couleur}"></i>
-      ${x.ic ? `<span class="saint-rond av-ic"><img src="${x.ic}" alt="" style="${x.cad}"></span>` : ''}
+      ${x.ic ? `<span class="saint-rond av-ic"><img src="${x.ic}" alt=""></span>` : ''}
       <span class="ls-txt"><span class="ls-haut"><b${x.grande ? ' class="or"' : ''}>${esc(x.titre)}</b></span><span class="ls-bas">${fCopteCourt(x.j)}${x.sous ? ' · ' + esc(x.sous) : ''}</span></span>
       <span class="av-dans">${dans(x.j - auj)}</span></button>`;
   });
