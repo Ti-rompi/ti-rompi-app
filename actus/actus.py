@@ -3,7 +3,7 @@ Lancé par GitHub Actions (voir .github/workflows/actus.yml). Bibliothèque stan
 import json, re, urllib.request, xml.etree.ElementTree as ET, datetime, os, sys
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCES = json.load(open(os.path.join(RACINE, 'actus', 'sources.json'), encoding='utf-8'))
-UA = {'User-Agent': 'Mozilla/5.0 (Ti rompi; +https://github.com/jessicasidhom06-cyber/ti-rompi-app)', 'Accept-Language': 'fr'}
+UA = {'User-Agent': 'Mozilla/5.0 (Ti rompi; +https://ti-rompi.github.io)', 'Accept-Language': 'fr'}
 NS = {'a': 'http://www.w3.org/2005/Atom', 'yt': 'http://www.youtube.com/xml/schemas/2015', 'media': 'http://search.yahoo.com/mrss/'}
 
 def lire(url):
