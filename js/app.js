@@ -33,6 +33,9 @@ const FETES_SAINTS = [
   [/pierre/i, 'Saints Pierre et Paul', 5, 11], [/paul/i, 'Saint Paul l’Ermite', 2, 6], [/bichoy/i, 'Saint Bichoy', 8, 11],
   [/kar[a]?s/i, 'Anba Karas l’Anachorète', 8, 11], [/cyril/i, 'Pape Cyrille VI', 30, 6], [/jean/i, 'Saint Jean l’Évangéliste', 4, 5], [/marc\b/i, 'Saint Marc', 30, 8],
 ];
+// Fête fixe (synaxaire) d'un saint connu : sa date ne se modifie pas
+const feteFixe = (nom) => FETES_SAINTS.find(([re]) => re.test(nom || ''));
+function fixerDatesPatrons() { (P.paroisse.patrons || []).forEach((pt) => { const f = feteFixe(pt.nom); if (f) { pt.jour = f[2]; pt.mois = f[3]; } }); }
 function patronsDe(idx) {
   const p = PAR[idx]; if (!p) return [];
   const morceaux = p.saints.split(/\s+et\s+|\s*&\s*|,\s*/i).filter(Boolean);
@@ -599,6 +602,7 @@ function vueRites() {
 
 // ------------------------------------------------------------- Paroisse
 function vueParoisse() {
+  fixerDatesPatrons();
   const p = P.paroisse, auj = aujCivil();
   const regions = [...new Set(PAR.map((x) => x.region))];
   const options = regions.map((rg) => `<optgroup label="${esc(rg)}">${PAR.map((x, i) => x.region === rg ? `<option value="${i}"${p.idx === i ? ' selected' : ''}>${esc(x.nom.replace(/^Paroisse (de la |de |)/, '') + ' — ' + x.adresse.replace(/^.*\d{5} /, ''))}</option>` : '').join('')}</optgroup>`).join('');
@@ -607,10 +611,10 @@ function vueParoisse() {
   <div class="contenu formulaire">
     <label><span class="etiquette">${t('paroisse')}</span><select data-c="par-idx"><option value="-1">${t('choisirParoisse')}</option>${options}</select>${ch ? `<small class="mut">${esc(ch.adresse)}</small>` : ''}</label>
     ${ch ? `<span class="etiquette">${t('saintsPatrons')} · ${n(p.patrons.length)}</span>
-    ${p.patrons.map((pt, i) => { const j = prochaineDate(pt, auj), ic = iconeSaint(pt.nom); return `<section class="carte patron">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}">` : ''}<div class="patron-corps">
-      <div class="carte-tete"><input class="nom-patron" data-c="pat-nom" data-i="${i}" value="${esc(pt.nom)}" aria-label="${t('saintsPatrons')} ${i + 1}">${p.patrons.length > 1 ? `<button class="mini" data-a="supprPatron" data-i="${i}" aria-label="${t('supprimer')} ${esc(pt.nom)}">${icone.croix}</button>` : ''}</div>
-      <div class="deux-col"><label><small class="mut">${t('jourLabel')}</small><select data-c="pat-jour" data-i="${i}">${Array.from({ length: pt.mois === 13 ? 6 : 30 }, (_, k) => `<option value="${k + 1}"${pt.jour === k + 1 ? ' selected' : ''}>${n(k + 1)}</option>`).join('')}</select></label>
-      <label><small class="mut">${t('moisCopteLabel')}</small><select data-c="pat-mois" data-i="${i}">${MOIS_COPTES.map((m, k) => `<option value="${k + 1}"${pt.mois === k + 1 ? ' selected' : ''}>${nomMoisC(k + 1)}</option>`).join('')}</select></label></div>
+    ${p.patrons.map((pt, i) => { const j = prochaineDate(pt, auj), ic = iconeSaint(pt.nom), fixe = feteFixe(pt.nom); return `<section class="carte patron">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}">` : ''}<div class="patron-corps">
+      <div class="carte-tete">${fixe ? `<b class="nom-patron serif">${esc(pt.nom)}</b>` : `<input class="nom-patron" data-c="pat-nom" data-i="${i}" value="${esc(pt.nom)}" aria-label="${t('saintsPatrons')} ${i + 1}">`}${p.patrons.length > 1 ? `<button class="mini" data-a="supprPatron" data-i="${i}" aria-label="${t('supprimer')} ${esc(pt.nom)}">${icone.croix}</button>` : ''}</div>
+      ${fixe ? '' : `<div class="deux-col"><label><small class="mut">${t('jourLabel')}</small><select data-c="pat-jour" data-i="${i}">${Array.from({ length: pt.mois === 13 ? 6 : 30 }, (_, k) => `<option value="${k + 1}"${pt.jour === k + 1 ? ' selected' : ''}>${n(k + 1)}</option>`).join('')}</select></label>
+      <label><small class="mut">${t('moisCopteLabel')}</small><select data-c="pat-mois" data-i="${i}">${MOIS_COPTES.map((m, k) => `<option value="${k + 1}"${pt.mois === k + 1 ? ' selected' : ''}>${nomMoisC(k + 1)}</option>`).join('')}</select></label></div>`}
       <span class="or">${t('fetePatronale')} · ${maj(fGreg(j))}</span><small class="mut">${n(pt.jour)} ${nomMoisC(pt.mois)} · ${t('dans')(j - auj)}</small></div></section>`; }).join('')}
     <button class="texte-btn" data-a="ajoutPatron">+ ${t('ajouterPatron')}</button>
     <p class="aide">${t('patronsAide')}</p>` : `<p class="aide">${t('paroisseAChoisir')}</p>`}
@@ -875,6 +879,7 @@ chargerLocal();
 const h0 = location.hash.slice(1);
 if (['jour', 'semaine', 'mois', 'annee', 'avenir', 'actus', 'recherche', 'rites', 'reglages'].includes(h0)) S.vue = h0;
 appliquerApparence();
+fixerDatesPatrons();
 rendre();
 chargerActus();
 brancherCompte();
