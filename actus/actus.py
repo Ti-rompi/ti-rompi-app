@@ -90,7 +90,7 @@ if age > 12 * 3600 or os.environ.get('FORCER_SAINTS'):
                 try:
                     for v in chercher(src['handle'], mot):
                         t = re.sub(r'(e|é)glise[^-|/:(]*', ' ', sans_accents(v['titre']))
-                        if re.search(r'mariage|bapteme|funerailles|fiancailles', t): continue
+                        if re.search(r'mariage|bapteme|funerailles|fiancailles|chorale|nouvel an', t): continue
                         if v['id'] in vus or not any(sans_accents(w) in t for w in mots): continue
                         vus.add(v['id']); trouves.append(v)
                 except Exception as e: print('saint', cle, sk, mot, e, file=sys.stderr)

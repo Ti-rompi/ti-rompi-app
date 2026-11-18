@@ -408,12 +408,11 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/martyrdom-of-saint-mercurius/",
   "mots": [
-   "mercure",
-   "mercurius",
+   "saint mercure",
    "philopatir",
    "abu seifein",
-   "abou sefein",
-   "merkourios"
+   "mercurius",
+   "st mercure"
   ],
   "resume": [
    "Mercure était un officier romain auquel un ange remit une épée pour combattre au nom du Seigneur, d’où son surnom d’« Abou Seifein », l’homme aux deux épées.",
@@ -515,7 +514,9 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/departure-of-saint-samuel-the-confessor/",
   "mots": [
-   "samuel"
+   "saint samuel",
+   "samuel le confesseur",
+   "st samuel"
   ],
   "resume": [
    "Moine de Scété au VIIe siècle, Samuel refusa publiquement le tome de Léon imposé par les autorités byzantines. Il fut frappé si durement qu’il perdit un œil, d’où son nom de « confesseur ».",
