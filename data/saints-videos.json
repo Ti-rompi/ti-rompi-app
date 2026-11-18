@@ -1,0 +1,184 @@
+{
+ "maj": "2026-11-18T13:08:34+00:00",
+ "paroisses": {
+  "p1": {
+   "vierge": [
+    {
+     "id": "3kpmUGXnnD8",
+     "titre": "Glorification de la Vierge Marie - 21/08/2026",
+     "date": "2026-08-21T12:00:00+00:00"
+    },
+    {
+     "id": "5PDHnApJH5Q",
+     "titre": "Glorification de la Vierge Marie - 17/08/2026",
+     "date": "2026-08-17T12:00:00+00:00"
+    },
+    {
+     "id": "2RnDhk3bB0c",
+     "titre": "Glorification de la Vierge - 08/08/2026",
+     "date": "2026-08-08T12:00:00+00:00"
+    }
+   ],
+   "marc": [
+    {
+     "id": "fUt_kqhXZGk",
+     "titre": "Office de l’encens du soir à l’occasion de la fête de Saint Marc - 07/05/2026",
+     "date": "2026-05-07T12:00:00+00:00"
+    },
+    {
+     "id": "A37oBfUW3tI",
+     "titre": "Divine Liturgie de la fête de St Marc - Samedi 8 Mai 2021",
+     "date": "2021-05-08T12:00:00+00:00"
+    }
+   ]
+  },
+  "p2": {
+   "vierge": [
+    {
+     "id": "X75nousmJ-s",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              08/11/2026            قداس  اليوم الاحد",
+     "date": "2026-11-08T12:00:00+00:00"
+    },
+    {
+     "id": "gVwYT6hNcww",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس              20/09/2026           قداس اليوم الاحد",
+     "date": "2026-09-20T12:00:00+00:00"
+    },
+    {
+     "id": "BJFfGMIX16c",
+     "titre": "كنيسة العذراء سيدة الاقباط باريس        19/08/2026                نهضة امنا العذراء مريم",
+     "date": "2026-08-19T12:00:00+00:00"
+    }
+   ]
+  },
+  "p5": {
+   "michel": [
+    {
+     "id": "DVJzgvM1LFE",
+     "titre": "Vêpres de la fête de l’Archange Michel- 18/06/2026",
+     "date": "2026-06-18T12:00:00+00:00"
+    },
+    {
+     "id": "IU_Eeo5-0n8",
+     "titre": "Divine liturgie en l'honneur de l'Archange Michel /عيد رئيس المﻻئكة ميخائيل",
+     "date": null
+    }
+   ],
+   "georges": [
+    {
+     "id": "6x4TnC_HOq8",
+     "titre": "Office de l’Encens du soir à l’occasion de la fête de Saint Georges - 15/11/2026",
+     "date": "2026-11-15T12:00:00+00:00"
+    },
+    {
+     "id": "w61ZP8Rv1Jw",
+     "titre": "Divine Liturgie de la Fête de Saint Georges -01/05/2026",
+     "date": "2026-05-01T12:00:00+00:00"
+    },
+    {
+     "id": "erR66vVLSbs",
+     "titre": "Veillée de la fête de Saint Georges - 30/04/2026",
+     "date": "2026-04-30T12:00:00+00:00"
+    }
+   ]
+  },
+  "p6": {
+   "mina": [
+    {
+     "id": "SyS0Cu6IrdM",
+     "titre": "Office de l’encens du Soir de Saint Mina - 23/11/2025",
+     "date": "2025-11-23T12:00:00+00:00"
+    },
+    {
+     "id": "gWvVgqgh8CI",
+     "titre": "Divine Liturgie du dimanche - Fête de Saint Mina - 24/11/2024",
+     "date": "2024-11-24T12:00:00+00:00"
+    },
+    {
+     "id": "Cbwg0Z18dQk",
+     "titre": "Office de L'encens du soir - Fête du Martyr de Saint Mina -23/11/2022",
+     "date": "2022-11-23T12:00:00+00:00"
+    }
+   ],
+   "mercure": [
+    {
+     "id": "PsEiJFPMALo",
+     "titre": "Office de L'encens du soir - Fête du Martyr de Saint Mercure -03/12/2021",
+     "date": "2021-12-03T12:00:00+00:00"
+    },
+    {
+     "id": "8y2WyGXncj0",
+     "titre": "Office de l'encens du soir de la fête de Saint Mercure aux deux épées",
+     "date": null
+    }
+   ],
+   "kyrillos": [
+    {
+     "id": "DqkkHgeG_NE",
+     "titre": "Office de L'encens du soir Fête Du Saint Pape Cyrille VI  -08/03/2023",
+     "date": "2023-03-08T12:00:00+00:00"
+    },
+    {
+     "id": "gtI22X1jOBM",
+     "titre": "Office de L'encens du soir Fête Du Saint Pape Cyrille VI -08/03/2022-",
+     "date": "2022-03-08T12:00:00+00:00"
+    },
+    {
+     "id": "ildFserho6w",
+     "titre": "Divine Liturgie de la fête du Pape Cyrille VI - 09/03/24",
+     "date": null
+    }
+   ]
+  },
+  "p7": {
+   "moise": [
+    {
+     "id": "fCI9t4sL4fg",
+     "titre": "Divine Liturgie du Puissant Saint Moïse en présence de son Eminence Anba Marc - 01/07/2026",
+     "date": "2026-07-01T12:00:00+00:00"
+    },
+    {
+     "id": "to6BdCCYTHo",
+     "titre": "Vêpres du Puissant Saint Moise le Noir en présence de son éminence Anba Marc - 30/06/2026",
+     "date": "2026-06-30T18:00:00+00:00"
+    },
+    {
+     "id": "7PhRrgvMPO4",
+     "titre": "Louange de Minuit en présence de son Eminence Anba Marc - 30/06/2026",
+     "date": "2026-06-30T12:00:00+00:00"
+    }
+   ],
+   "samuel": [
+    {
+     "id": "bFZqoc2U5yo",
+     "titre": "Messe de la Fête de Saint Samuel Le Confesseur, En présence de son Éminence Anba Marc, 17/12/2024",
+     "date": "2024-12-17T12:00:00+00:00"
+    },
+    {
+     "id": "yhzNCv50mV0",
+     "titre": "Tasbeha veille de la fête de Saint Samuel le Confesseur - Lundi 16 Décembre 2024",
+     "date": "2024-12-16T12:00:00+00:00"
+    },
+    {
+     "id": "h7ndQIc3HGw",
+     "titre": "Sermon d'Anba Marc à l'occasion des Vêpres de la Fête de Saint Samuel  (17 Décembre 2023)",
+     "date": "2023-12-17T12:00:00+00:00"
+    }
+   ]
+  },
+  "p15": {
+   "vierge": [
+    {
+     "id": "tCUtMAkVckk",
+     "titre": "La louange de la vierge Marie",
+     "date": null
+    },
+    {
+     "id": "O0sLUhQK_Xo",
+     "titre": "Vêpres et louanges fête de la ste Vierge Marie",
+     "date": null
+    }
+   ]
+  }
+ }
+}
