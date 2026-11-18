@@ -86,12 +86,12 @@ if age > 12 * 3600 or os.environ.get('FORCER_SAINTS'):
             mots = SAINTS.get(sk, {}).get('mots', [])
             vus, trouves = set(), []
             for v in src.get('manuel', {}).get(sk, []): vus.add(v['id']); trouves.append(v)
-            for mot in mots[:2]:
+            for mot in mots[:3]:
                 try:
                     for v in chercher(src['handle'], mot):
                         t = re.sub(r'(e|é)glise[^-|/:(]*', ' ', sans_accents(v['titre']))
                         if re.search(r'mariage|bapteme|funerailles|fiancailles|chorale|nouvel an', t): continue
-                        if v['id'] in vus or not any(sans_accents(w) in t for w in mots): continue
+                        if v['id'] in vus or not any(re.search(r'(?<!abouna )(?<!pere )(?<!father )' + re.escape(sans_accents(w)), t) for w in mots): continue
                         vus.add(v['id']); trouves.append(v)
                 except Exception as e: print('saint', cle, sk, mot, e, file=sys.stderr)
             trouves.sort(key=lambda v: v.get('date') or '', reverse=True)

@@ -759,10 +759,10 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/departure-of-saint-bishoy/",
   "mots": [
+   "bishoy",
    "bichoy",
    "pishoy",
-   "bishoy",
-   "pichoï"
+   "anba bishoy"
   ],
   "resume": [
    "Moine de Scété, disciple de saint Pambo, Bichoy était connu pour son amour ardent du Christ. La tradition rapporte qu’il attachait ses cheveux au plafond pour ne pas s’endormir pendant la prière.",
@@ -845,9 +845,9 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/departure-of-saint-john-the-evangelist/",
   "mots": [
-   "jean",
-   "john",
-   "yohanna"
+   "saint jean",
+   "st jean",
+   "jean l’évangéliste"
   ],
   "resume": [
    "Fils de Zébédée et frère de Jacques, Jean fut appelé par le Christ alors qu’il était pêcheur. Il est le disciple que Jésus aimait, à qui le Seigneur confia sa mère au pied de la croix.",
