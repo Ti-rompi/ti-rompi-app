@@ -49,6 +49,9 @@ def date_video(titre, relatif):
     if m:
         try: return datetime.datetime(int(m.group(3)), int(m.group(2)), int(m.group(1)), 12, tzinfo=datetime.timezone.utc).isoformat()
         except ValueError: pass
+    MOIS = ['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre']
+    m = re.search(r'(\d{1,2})\s+(' + '|'.join(MOIS) + r')\s+(20\d\d)', sans_accents(titre))
+    if m: return datetime.datetime(int(m.group(3)), MOIS.index(m.group(2)) + 1, int(m.group(1)), 12, tzinfo=datetime.timezone.utc).isoformat()
     m = re.search(r'(\d+)\s+(second|minute|hour|day|week|month|year)', relatif or '')
     if m: return datetime.datetime.fromtimestamp(time.time() - int(m.group(1)) * UNITES[m.group(2)], datetime.timezone.utc).isoformat()
     return None
@@ -63,7 +66,8 @@ def chercher(handle, mot):
             v = o.get('videoRenderer')
             if v and v.get('videoId'):
                 titre = ''.join(r.get('text', '') for r in v.get('title', {}).get('runs', []))
-                rel = (v.get('publishedTimeText') or {}).get('simpleText', '')
+                pt = v.get('publishedTimeText') or {}
+                rel = pt.get('simpleText') or ''.join(r.get('text', '') for r in pt.get('runs', [])) or json.dumps(v.get('accessibility') or v.get('title', {}).get('accessibility') or {})
                 out.append({'id': v['videoId'], 'titre': titre, 'date': date_video(titre, rel)})
             for x in o.values(): parcourir(x)
         elif isinstance(o, list):
