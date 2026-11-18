@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-18T13:08:31+00:00",
+ "maj": "2026-11-18T13:53:24+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
@@ -80,6 +80,88 @@
      "id": "7PXRS-ZXHfo",
      "titre": "Louange de Minuit du Vendredi - 05/11/2026",
      "date": "2026-11-06T07:10:36+00:00"
+    }
+   ]
+  },
+  "p0": {
+   "nom": "Cathédrale Copte Sainte Marie & Archange Raphaël",
+   "handle": "@cathedralecopte",
+   "id": "UC6uOe0Y0m_-HfebKQVvvO6g",
+   "videos": [
+    {
+     "id": "sXK3rIs3rDc",
+     "titre": "Théâtre Sainte Barbara - Carnaval 2026",
+     "date": "2026-11-16T18:39:10+00:00"
+    },
+    {
+     "id": "qfj2qB0NPEw",
+     "titre": "Théâtre des marionnettes du martyr Abanoub - Carnaval 2026",
+     "date": "2026-11-16T18:30:28+00:00"
+    },
+    {
+     "id": "7oKmY-lKIjo",
+     "titre": "Théâtre des ombres - Carnaval 2026",
+     "date": "2026-11-16T18:29:40+00:00"
+    },
+    {
+     "id": "trYWcS5tlzI",
+     "titre": "Théâtre noir de Saint Moïse - Carnaval 2026",
+     "date": "2026-11-16T18:29:14+00:00"
+    },
+    {
+     "id": "ZMgzx8UuU_A",
+     "titre": "Divine Liturgie du dimanche en présence de Anba Luka - 13/09/26",
+     "date": "2026-09-13T21:17:57+00:00"
+    },
+    {
+     "id": "rND0gRoTi1I",
+     "titre": "Divine Liturgie de la Pentecôte - 31/05/26",
+     "date": "2026-05-31T20:48:22+00:00"
+    },
+    {
+     "id": "_YmsAdeet18",
+     "titre": "Paskha de la Veille du Vendredi Saint - 09/04/2026",
+     "date": "2026-04-10T06:23:27+00:00"
+    },
+    {
+     "id": "HmABVhhRxgA",
+     "titre": "Paskha de la Veille du Jeudi Saint - 08/04/2026",
+     "date": "2026-04-09T05:44:13+00:00"
+    },
+    {
+     "id": "9vElwngXkXg",
+     "titre": "Paskha du Mercredi Saint - 08/04/2026",
+     "date": "2026-04-08T23:33:26+00:00"
+    },
+    {
+     "id": "uZcew5Rfk_c",
+     "titre": "Paskha du Mercredi Saint - 08/04/2026",
+     "date": "2026-04-08T17:17:22+00:00"
+    },
+    {
+     "id": "pNNPq-p-kn0",
+     "titre": "Paskha du Mercredi Saint - 08/04/2026",
+     "date": "2026-04-08T16:20:50+00:00"
+    },
+    {
+     "id": "8yFgPEmfPko",
+     "titre": "Paskha de la Veille du Mercredi Saint - 07/04/2026",
+     "date": "2026-04-08T07:17:39+00:00"
+    },
+    {
+     "id": "I6a89SNDDSU",
+     "titre": "Paskha du Mardi Saint - 07/04/2026",
+     "date": "2026-04-07T23:43:40+00:00"
+    },
+    {
+     "id": "BUOaDCXu8pA",
+     "titre": "Paskha du Mardi Saint - 07/04/2026",
+     "date": "2026-04-07T17:23:30+00:00"
+    },
+    {
+     "id": "l-MnHujCq24",
+     "titre": "Paskha de la veille du Mardi Saint - 06/04/2026",
+     "date": "2026-04-07T06:10:21+00:00"
     }
    ]
   },
@@ -244,6 +326,88 @@
      "id": "x-uMoPEsz7I",
      "titre": "كنيسة العذراء سيدة الاقباط باريس              23/08/2026           قداس اليوم الاحد",
      "date": "2026-08-23T21:08:41+00:00"
+    }
+   ]
+  },
+  "p4": {
+   "nom": "Eglise Copte Orthodoxe Ste Marie, St Jean",
+   "handle": "@eglisecopteorthodoxestemar1091",
+   "id": "UCCIhR15axI8kKk4wijlbcMA",
+   "videos": [
+    {
+     "id": "headt8jX0Ns",
+     "titre": "Glorification de la Sainte Vierge Marie - 20/08/2026",
+     "date": "2026-08-21T05:35:25+00:00"
+    },
+    {
+     "id": "0xYepTgLhis",
+     "titre": "Glorification de la Vierge Marie - 19/08/2026",
+     "date": "2026-08-20T05:33:48+00:00"
+    },
+    {
+     "id": "OCrdUUBDh-s",
+     "titre": "Glorification de la Sainte Vierge Marie - 19/08/2026",
+     "date": "2026-08-19T15:59:06+00:00"
+    },
+    {
+     "id": "O9sSDBc4-v4",
+     "titre": "Divine Liturgie du samedi en présence de Mgrs Anba Theododios et Anba Marc - 25/07/2026",
+     "date": "2026-07-25T22:18:26+00:00"
+    },
+    {
+     "id": "Ar-1cElKS-4",
+     "titre": "Lundi Saint - 06/04/2026",
+     "date": "2026-04-06T21:53:12+00:00"
+    },
+    {
+     "id": "ZA1ut2C9a0g",
+     "titre": "Funérailles Générales - 05/04/2026",
+     "date": "2026-04-05T19:13:12+00:00"
+    },
+    {
+     "id": "QzgPW8mYdmE",
+     "titre": "Funérailles Générales - 05/04/2026",
+     "date": "2026-04-05T19:11:07+00:00"
+    },
+    {
+     "id": "-CkOkSDD4hM",
+     "titre": "Dimanche des Rameaux - 05/04/2026",
+     "date": "2026-04-05T18:54:52+00:00"
+    },
+    {
+     "id": "ZSthNBmuIII",
+     "titre": "Dimanche des Rameaux - 05/04/2026",
+     "date": "2026-04-05T15:49:29+00:00"
+    },
+    {
+     "id": "kvBBfsEcSyk",
+     "titre": "Divine Liturgie du 31/12/2025 accompagné de Abouna Yohanna et de Abouna Elisha",
+     "date": "2026-01-01T11:28:30+00:00"
+    },
+    {
+     "id": "KasLzw9qtNo",
+     "titre": "Louange de Minuit de Kiahk et Divine Liturgie du 31/12/2025",
+     "date": "2026-01-01T11:12:46+00:00"
+    },
+    {
+     "id": "bGqVP7M7m4M",
+     "titre": "Divine Liturgie du 27/12/2025 accompagné de Anba Marc et de Abouna Yohanna et Abouna Abraham",
+     "date": "2025-12-27T21:42:31+00:00"
+    },
+    {
+     "id": "Xkd8hFuLuF0",
+     "titre": "Nuit pascale 2015",
+     "date": "2017-07-24T21:07:46+00:00"
+    },
+    {
+     "id": "hqe2-k8jJAo",
+     "titre": "Nuit Apocalypse 2015",
+     "date": "2017-07-24T14:24:38+00:00"
+    },
+    {
+     "id": "unhqs9TSL90",
+     "titre": "Anniversaire Père Youeel 01/06/2016",
+     "date": "2016-06-01T20:48:30+00:00"
     }
    ]
   },
@@ -490,6 +654,170 @@
      "id": "9LCBpckNYL4",
      "titre": "Sermon du Samedi 3 Octobre 2026",
      "date": "2026-10-03T07:36:07+00:00"
+    }
+   ]
+  },
+  "p9": {
+   "nom": "Église Saint Bishoy - Créteil ",
+   "handle": "@eglisesaintbishoy-creteil",
+   "id": "UCmc6YcWtMYG-GTBN9CQ7l2Q",
+   "videos": [
+    {
+     "id": "hNJACJdKAuo",
+     "titre": "Fête de la  Résurrection - 11/04/2026",
+     "date": "2026-04-12T07:31:51+00:00"
+    },
+    {
+     "id": "_q3u5EQP2ag",
+     "titre": "Fête de la  Résurrection - 11/04/2026",
+     "date": "2026-04-12T06:38:10+00:00"
+    },
+    {
+     "id": "kEWNkARbNWo",
+     "titre": "Fête de la Résurrection - 11/04/2026",
+     "date": "2026-04-12T05:48:29+00:00"
+    },
+    {
+     "id": "NiUW7SKAA9A",
+     "titre": "Fête de la Résurrection - 11/04/2026",
+     "date": "2026-04-12T04:24:07+00:00"
+    },
+    {
+     "id": "Bqp3p77OJOE",
+     "titre": "12e heure du Vendredi Saint - 10/04/2026",
+     "date": "2026-04-11T03:18:17+00:00"
+    },
+    {
+     "id": "vGIitNoiD4s",
+     "titre": "12e heure du Vendredi Saint - 10/04/2026",
+     "date": "2026-04-11T02:48:42+00:00"
+    },
+    {
+     "id": "9t5p-mz74-U",
+     "titre": "Paskha du Vendredi Saint - 10/04/2026",
+     "date": "2026-04-10T13:01:40+00:00"
+    },
+    {
+     "id": "ZKP28wDfon8",
+     "titre": "Paskha de la veille du Vendredi Saint - 09/04/2026",
+     "date": "2026-04-10T06:56:31+00:00"
+    },
+    {
+     "id": "ZBhqv_1xGDQ",
+     "titre": "Paskha, Lakkan, Divine Liturgie du Jeudi Saint - 09/04/2026",
+     "date": "2026-04-09T11:47:56+00:00"
+    },
+    {
+     "id": "UO6b3zNmVEA",
+     "titre": "Paskha de la veille du Jeudi Saint en présence de Mgr Anba Marc - 08/04/2026",
+     "date": "2026-04-09T05:42:20+00:00"
+    },
+    {
+     "id": "nb9j8YWYAfo",
+     "titre": "Paskha de la veille du Jeudi Saint en présence de Mgr Anba Marc - 08/04/2026",
+     "date": "2026-04-09T04:28:40+00:00"
+    },
+    {
+     "id": "FuPOWJ1fUAE",
+     "titre": "Paskha du Mercredi Saint - 08/04/2026",
+     "date": "2026-04-08T21:32:58+00:00"
+    },
+    {
+     "id": "fkzQaDJaHlE",
+     "titre": "Paskha de la Veille du Mercredi Saint - 07/04/2026",
+     "date": "2026-04-08T06:23:03+00:00"
+    },
+    {
+     "id": "qh1c4BWbywE",
+     "titre": "Paskha de la Veille du Mercredi Saint - 07/04/2026",
+     "date": "2026-04-08T03:24:14+00:00"
+    },
+    {
+     "id": "pJbEKT7mZfk",
+     "titre": "Paskha du Mardi Saint - 07/04/2026",
+     "date": "2026-04-07T22:37:35+00:00"
+    }
+   ]
+  },
+  "p12": {
+   "nom": "Paroisse St Pierre & Paul Coptes Orthodoxes - Reims",
+   "handle": "@paroissestpierrepaulcoptes2717",
+   "id": "UCEtQNbXQeUDmOgJISEHFZSA",
+   "videos": [
+    {
+     "id": "Z_aMzl4cohk",
+     "titre": "十 Divine Liturgie du Samedi 03 Octobre 2026 十Père Joseph Stefanos",
+     "date": "2026-10-11T16:52:59+00:00"
+    },
+    {
+     "id": "WjCY2zCXapo",
+     "titre": "Divine Liturgie du Samedi 30/05/2026 en présence de Mgr Anba Marc.",
+     "date": "2026-05-30T18:53:05+00:00"
+    },
+    {
+     "id": "Z8J-87xW01U",
+     "titre": "10-04-2026 prière de la Sainte Paskha du Vendredi Saint - P1",
+     "date": "2026-04-15T21:30:46+00:00"
+    },
+    {
+     "id": "vsZoqjJM8qQ",
+     "titre": "10-04-2026 prière de la Sainte Paskha du Vendredi Saint - P2",
+     "date": "2026-04-15T20:54:13+00:00"
+    },
+    {
+     "id": "rK1yJjjCtNQ",
+     "titre": "11-04-2026 Divine Liturgie Pascale en présence d’Abouna Bakhoum Gab Allah.",
+     "date": "2026-04-15T20:07:08+00:00"
+    },
+    {
+     "id": "YEXAaj6hpqA",
+     "titre": "Église Copte Saint Pierre et Saint Paul - Reims",
+     "date": "2026-03-31T06:54:31+00:00"
+    },
+    {
+     "id": "29a-HrYXNhk",
+     "titre": "Louange de Minuit du Dimanche de Kiahk - 13/12/2025. en présence Père Moussa Wahib",
+     "date": "2025-12-14T22:17:00+00:00"
+    },
+    {
+     "id": "LkE7hibnvEI",
+     "titre": "十 Divine Liturgie du dimanche  14 décembre 2025 十Père Moussa Wahib",
+     "date": "2025-12-14T22:12:13+00:00"
+    },
+    {
+     "id": "XzYRSSnyNjc",
+     "titre": "CAMMUNION 14-12-2025",
+     "date": "2025-12-14T22:08:43+00:00"
+    },
+    {
+     "id": "pGu90RFJf-c",
+     "titre": "十 Divine Liturgie du Samedi 13 décembre 2025 十Père Moussa Wahib",
+     "date": "2025-12-14T21:59:42+00:00"
+    },
+    {
+     "id": "5wgQy96u_JY",
+     "titre": "CAMMUNION 13-12-2025",
+     "date": "2025-12-14T21:57:17+00:00"
+    },
+    {
+     "id": "gQ4TmwP5ilw",
+     "titre": "14 décembre 2025",
+     "date": "2025-12-14T04:16:11+00:00"
+    },
+    {
+     "id": "qmLn8NY9zGc",
+     "titre": "十 Divine Liturgie du Samedi 22 novembre 2025 十 le Père Biktor - Anba Bishoy.",
+     "date": "2025-11-22T17:44:58+00:00"
+    },
+    {
+     "id": "sHKXQuccZ-E",
+     "titre": "十 Divine Liturgie du Samedi 18/10/2025 十",
+     "date": "2025-10-19T08:38:10+00:00"
+    },
+    {
+     "id": "XIhggsodbWA",
+     "titre": "12-07-2025 - FETE DES APOTRES",
+     "date": "2025-07-13T15:53:04+00:00"
     }
    ]
   },
