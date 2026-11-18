@@ -138,7 +138,10 @@ window.SAINTS={
   "resume": [
    "Marie, fille de Joachim et d’Anne, fut choisie pour devenir la Mère du Verbe incarné. L’Église copte la vénère comme la Théotokos, la Mère de Dieu, et lui consacre de nombreuses fêtes au long de l’année, ainsi que le mois de Kiahk.",
    "Le 16 Misra, l’Église célèbre l’assomption de son corps au ciel, à la fin du jeûne de la Vierge."
-  ]
+  ],
+  "axios": "Axia ]agia Maria ]par;enoc",
+  "axiosFr": "Digne est sainte Marie la Vierge",
+  "axiosAr": "مستحقة القديسة مريم العذراء"
  },
  "michel": {
   "dox": [
@@ -187,7 +190,10 @@ window.SAINTS={
   "resume": [
    "Michel est le chef des armées célestes, celui qui se tient devant le trône de Dieu et intercède pour le genre humain. Il est fêté chaque 12 du mois copte.",
    "Le 12 Hatour commémore sa grande fête, rappelant son rôle de protecteur du peuple de Dieu et de vainqueur du dragon."
-  ]
+  ],
+  "axios": "Axioc Mi,ayl pinis] `nar,iaggeloc",
+  "axiosFr": "Digne est Michel le grand archange",
+  "axiosAr": "مستحق ميخائيل رئيس الملائكة الجليل"
  },
  "raphael": {
   "dox": [
@@ -246,7 +252,10 @@ window.SAINTS={
   "resume": [
    "Raphaël, dont le nom signifie « Dieu guérit », est l’un des sept archanges qui se tiennent devant Dieu. Le livre de Tobie raconte comment il accompagna le jeune Tobie, guérit son père Tobit de sa cécité et délivra Sarra.",
    "Le 3 Nasie, l’Église commémore la consécration de sa première église."
-  ]
+  ],
+  "axios": "Axioc Ravayl `pounof `nhyt",
+  "axiosFr": "Digne est Raphaël, la joie des cœurs",
+  "axiosAr": "مستحق رافائيل مفرح القلوب"
  },
  "georges": {
   "dox": [
@@ -341,7 +350,10 @@ window.SAINTS={
   "resume": [
    "Né en Cappadoce, Georges était un officier de l’armée romaine. Sous Dioclétien, il refusa de sacrifier aux idoles et confessa publiquement le Christ.",
    "Il supporta pendant sept ans de nombreuses tortures dont Dieu le délivra à chaque fois, convertissant beaucoup de témoins, avant d’être décapité. Il est appelé le prince des martyrs."
-  ]
+  ],
+  "axios": "Axioc pa[oic `pouro Gewrgioc",
+  "axiosFr": "Digne est mon seigneur le prince Georges",
+  "axiosAr": "مستحق سيدي الملك جاورجيوس"
  },
  "mina": {
   "dox": [
@@ -426,7 +438,10 @@ window.SAINTS={
   "resume": [
    "Né en Égypte de parents pieux, Mina fut soldat dans l’armée romaine. Lorsque l’édit de persécution fut proclamé, il quitta l’armée pour vivre en ermite au désert, puis se présenta de lui-même pour confesser sa foi.",
    "Martyrisé vers 309, son corps fut ramené à Mariout, près d’Alexandrie, où d’innombrables miracles firent de son sanctuaire un grand lieu de pèlerinage. On l’appelle le thaumaturge."
-  ]
+  ],
+  "axios": "Axioc apa Myna `nte niVaiat",
+  "axiosFr": "Digne est abba Mina de Phayat",
+  "axiosAr": "مستحق أبا مينا البياضي"
  },
  "mercure": {
   "dox": [
@@ -488,7 +503,10 @@ window.SAINTS={
   "resume": [
    "Mercure était un officier romain auquel un ange remit une épée pour combattre au nom du Seigneur, d’où son surnom d’« Abou Seifein », l’homme aux deux épées.",
    "Il mena l’armée à la victoire, mais refusa ensuite de sacrifier aux idoles sous l’empereur Dèce. Après de nombreuses tortures, il fut décapité, encore jeune, vers 250."
-  ]
+  ],
+  "axios": "Axioc Vilopatyr Merkourioc",
+  "axiosFr": "Digne est Philopatir Mercure",
+  "axiosAr": "مستحق فيلوباتير مرقوريوس"
  },
  "moise": {
   "dox": [
@@ -545,12 +563,12 @@ window.SAINTS={
    "moses"
   ],
   "axios": "Axioc pijwri e;ouab abba Mwcy",
-  "axiosFr": "Digne est le saint fort, abba Moïse",
+  "axiosFr": "Digne est le saint fort abba Moïse",
   "resume": [
    "Né en Éthiopie vers 332, Moïse fut d’abord esclave, puis chef redouté d’une bande de brigands. Cherchant le vrai Dieu, il se rendit au désert de Scété, où saint Isidore le conduisit à saint Macaire le Grand, qui l’instruisit et le baptisa.",
    "Devenu moine, il se distingua par son humilité et son service : il remplissait la nuit les cruches de ses frères. Père spirituel de centaines de moines et ordonné prêtre, il resta au monastère lors de l’attaque des barbares en 407 et reçut avec sept frères la couronne du martyre."
   ],
-  "axiosAr": "مستحق القديس القوي أنبا موسى"
+  "axiosAr": "مستحق القوي القديس الأنبا موسى"
  },
  "samuel": {
   "dox": [
@@ -607,7 +625,10 @@ window.SAINTS={
   "resume": [
    "Moine de Scété au VIIe siècle, Samuel refusa publiquement le tome de Léon imposé par les autorités byzantines. Il fut frappé si durement qu’il perdit un œil, d’où son nom de « confesseur ».",
    "Il fonda ensuite le monastère de Qalamoun, au Fayoum. Capturé par des tribus berbères, il resta ferme dans la foi et guida de nombreux moines jusqu’à son départ en paix."
-  ]
+  ],
+  "axios": "Axioc abba Camouyl pi`omologityc",
+  "axiosFr": "Digne est abba Samuel le confesseur",
+  "axiosAr": "مستحق الأنبا صموئيل المعترف"
  },
  "antoine": {
   "dox": [
@@ -666,7 +687,10 @@ window.SAINTS={
   "resume": [
    "Né en Haute-Égypte vers 251, Antoine entendit à l’église la parole « Va, vends ce que tu as et donne-le aux pauvres » et la mit aussitôt en pratique.",
    "Retiré au désert, il affronta les tentations du démon et devint le père des moines : de nombreux disciples vinrent vivre auprès de lui. Il s’endormit en paix à plus de cent ans, vers 356."
-  ]
+  ],
+  "axios": "Axioc abba Antwnioc piqybc `nte ]metmona,oc",
+  "axiosFr": "Digne est abba Antoine, la lumière du monachisme",
+  "axiosAr": "مستحق أنبا أنطونيوس مصباح الرهبنة"
  },
  "paul": {
   "dox": [
@@ -717,7 +741,10 @@ window.SAINTS={
   "resume": [
    "Jeune Alexandrin fortuné, Paul s’enfuit au désert pour échapper à la persécution et à un procès d’héritage. Il y vécut seul près de quatre-vingts ans, nourri par un corbeau qui lui apportait chaque jour du pain.",
    "Saint Antoine, guidé par Dieu, le découvrit peu avant sa mort et l’ensevelit enveloppé dans le manteau reçu de saint Athanase. Il est appelé le premier des ermites."
-  ]
+  ],
+  "axios": "Axioc abba Paule pi`ana,writyc",
+  "axiosFr": "Digne est abba Paul l’anachorète",
+  "axiosAr": "مستحق الأنبا بولا السائح"
  },
  "bichoy": {
   "dox": [
@@ -779,7 +806,10 @@ window.SAINTS={
   "resume": [
    "Frère de l’empereur Théodose, Karas renonça à la cour pour vivre au désert dans une solitude totale pendant de longues années.",
    "Peu avant sa mort, Dieu permit à l’abba Pambo de le rencontrer et de recueillir le récit de sa vie, avant de l’ensevelir."
-  ]
+  ],
+  "axios": "Axioc abba Karoc pi`ana,writyc",
+  "axiosFr": "Digne est abba Karas l’anachorète",
+  "axiosAr": "مستحق الأنبا كاروس السائح"
  },
  "kyrillos": {
   "dox": [],
@@ -793,7 +823,10 @@ window.SAINTS={
   "resume": [
    "Né en 1902 à Damanhour, Azer Youssef Atta devint moine sous le nom de Mina au monastère d’el-Baramous et mena une vie d’ermite et de prière, notamment dans un moulin à vent du Vieux-Caire.",
    "Élu 116e patriarche en 1959 sous le nom de Cyrille VI, il célébrait la liturgie chaque jour, fonda le monastère Saint-Mina de Mariout et fut connu pour ses nombreux miracles. Il s’endormit en paix en 1971."
-  ]
+  ],
+  "axios": "Axioc papa abba Kurilloc pimahcoou",
+  "axiosFr": "Digne est le pape abba Cyrille le sixième",
+  "axiosAr": "مستحق البابا الأنبا كيرلس السادس"
  },
  "jean": {
   "dox": [
@@ -852,7 +885,10 @@ window.SAINTS={
   "resume": [
    "Fils de Zébédée et frère de Jacques, Jean fut appelé par le Christ alors qu’il était pêcheur. Il est le disciple que Jésus aimait, à qui le Seigneur confia sa mère au pied de la croix.",
    "Auteur d’un Évangile, de trois épîtres et de l’Apocalypse, il fut exilé à Patmos puis vécut à Éphèse, où il s’endormit en paix à un âge très avancé."
-  ]
+  ],
+  "axios": "Axioc Iwannyc pieuaggelictyc",
+  "axiosFr": "Digne est Jean l’évangéliste",
+  "axiosAr": "مستحق يوحنا الإنجيلي"
  },
  "marc": {
   "dox": [
@@ -936,7 +972,10 @@ window.SAINTS={
   "resume": [
    "Marc, l’un des soixante-dix disciples et auteur du deuxième Évangile, porta la foi en Égypte. À Alexandrie, il guérit le cordonnier Anianos, qui devint son successeur, et fonda l’Église copte, dont il est le premier patriarche.",
    "En 68, le jour de Pâques, des païens le traînèrent dans les rues de la ville jusqu’à sa mort. L’Église copte l’honore comme son apôtre."
-  ]
+  ],
+  "axios": "Axioc abba Markoc pi`apoctoloc",
+  "axiosFr": "Digne est abba Marc l’apôtre",
+  "axiosAr": "مستحق أبا مرقس الرسول"
  },
  "pierrepaul": {
   "dox": [
@@ -1007,6 +1046,9 @@ window.SAINTS={
   "resume": [
    "Pierre, le pêcheur de Galilée devenu chef des apôtres, et Paul, le persécuteur converti sur le chemin de Damas devenu l’apôtre des nations, furent tous deux martyrisés à Rome sous Néron.",
    "Pierre fut crucifié la tête en bas, et Paul, citoyen romain, fut décapité. Leur fête du 5 Abib conclut le jeûne des Apôtres."
-  ]
+  ],
+  "axios": "Axioc peniwt Petroc nem pencaq Pauloc",
+  "axiosFr": "Dignes sont notre père Pierre et notre maître Paul",
+  "axiosAr": "مستحقان أبونا بطرس ومعلمنا بولس"
  }
 };
