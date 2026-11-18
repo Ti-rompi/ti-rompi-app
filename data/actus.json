@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-18T07:22:07+00:00",
+ "maj": "2026-11-18T07:44:52+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
@@ -490,6 +490,88 @@
      "id": "9LCBpckNYL4",
      "titre": "Sermon du Samedi 3 Octobre 2026",
      "date": "2026-10-03T07:36:07+00:00"
+    }
+   ]
+  },
+  "p15": {
+   "nom": "Ste Marie Copte Genève",
+   "handle": "@stemariecoptegeneve",
+   "id": "UC8xFvVNh36k8e4rfV5NCYhA",
+   "videos": [
+    {
+     "id": "16zUGOwWkk8",
+     "titre": "Messe du dimanche",
+     "date": "2026-11-15T22:27:45+00:00"
+    },
+    {
+     "id": "ZnDKTksVF3g",
+     "titre": "Lorsque Dieu arrive au bon moment !",
+     "date": "2026-11-09T12:17:05+00:00"
+    },
+    {
+     "id": "XFoZE9QAVto",
+     "titre": "Messe du dimanche",
+     "date": "2026-11-08T22:32:40+00:00"
+    },
+    {
+     "id": "_YdyujQSqLQ",
+     "titre": "Messe du dimanche",
+     "date": "2026-11-01T22:25:52+00:00"
+    },
+    {
+     "id": "OqqjmDXrfDA",
+     "titre": "Messe du dimanche",
+     "date": "2026-10-26T00:11:53+00:00"
+    },
+    {
+     "id": "vsBplU1cmoQ",
+     "titre": "Messe du dimanche",
+     "date": "2026-10-23T07:34:15+00:00"
+    },
+    {
+     "id": "W6LezJ6_rJ4",
+     "titre": "Messe du dimanche",
+     "date": "2026-10-18T21:57:48+00:00"
+    },
+    {
+     "id": "pjtn3yh-JuE",
+     "titre": "Messe du dimanche",
+     "date": "2026-10-11T20:51:13+00:00"
+    },
+    {
+     "id": "lcbeoi4z3uk",
+     "titre": "La repentance, revenir à Dieu de tout son coeur",
+     "date": "2026-10-08T06:37:00+00:00"
+    },
+    {
+     "id": "2dRvDw47me8",
+     "titre": "Messe du dimanche",
+     "date": "2026-10-04T21:26:51+00:00"
+    },
+    {
+     "id": "nxJhP-tQSnM",
+     "titre": "Messe à l’abbaye de Saint Maurice",
+     "date": "2026-10-03T21:39:31+00:00"
+    },
+    {
+     "id": "UIbmvE5C1v4",
+     "titre": "Messe du dimanche",
+     "date": "2026-09-27T10:18:07+00:00"
+    },
+    {
+     "id": "8SDK4aSVnxU",
+     "titre": "Mettez en pratique la Parole !",
+     "date": "2026-09-24T16:02:55+00:00"
+    },
+    {
+     "id": "gi0xFLNo3LM",
+     "titre": "Messe du dimanche",
+     "date": "2026-09-20T22:22:21+00:00"
+    },
+    {
+     "id": "pM9CPcafMIA",
+     "titre": "A qui comparer cette génération ?",
+     "date": "2026-09-17T19:49:51+00:00"
     }
    ]
   }
