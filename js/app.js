@@ -35,7 +35,7 @@ const FETES_SAINTS = [
 ];
 // Fête fixe (synaxaire) d'un saint connu : sa date ne se modifie pas
 const feteFixe = (nom) => FETES_SAINTS.find(([re]) => re.test(nom || ''));
-function fixerDatesPatrons() { (P.paroisse.patrons || []).forEach((pt) => { const f = feteFixe(pt.nom); if (f) { pt.jour = f[2]; pt.mois = f[3]; } }); }
+function fixerDatesPatrons() { if (P.paroisse.idx >= 0) P.paroisse.patrons = patronsDe(P.paroisse.idx); }
 function patronsDe(idx) {
   const p = PAR[idx]; if (!p) return [];
   const morceaux = p.saints.split(/\s+et\s+|\s*&\s*|,\s*/i).filter(Boolean);
@@ -618,12 +618,11 @@ function vueParoisse() {
     <label><span class="etiquette">${t('paroisse')}</span><select data-c="par-idx"><option value="-1">${t('choisirParoisse')}</option>${options}</select>${ch ? `<small class="mut">${esc(ch.adresse)}</small>` : ''}</label>
     ${ch ? `<span class="etiquette">${t('saintsPatrons')} · ${n(p.patrons.length)}</span>
     ${p.patrons.map((pt, i) => { const j = prochaineDate(pt, auj), ic = iconeSaint(pt.nom), fixe = feteFixe(pt.nom); return `<section class="carte patron">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}">` : ''}<div class="patron-corps">
-      <div class="carte-tete">${fixe ? `<b class="nom-patron serif">${esc(pt.nom)}</b>` : `<input class="nom-patron" data-c="pat-nom" data-i="${i}" value="${esc(pt.nom)}" aria-label="${t('saintsPatrons')} ${i + 1}">`}${p.patrons.length > 1 ? `<button class="mini" data-a="supprPatron" data-i="${i}" aria-label="${t('supprimer')} ${esc(pt.nom)}">${icone.croix}</button>` : ''}</div>
+      <div class="carte-tete">${fixe ? `<b class="nom-patron serif">${esc(pt.nom)}</b>` : `<input class="nom-patron" data-c="pat-nom" data-i="${i}" value="${esc(pt.nom)}" aria-label="${t('saintsPatrons')} ${i + 1}">`}</div>
       ${fixe ? '' : `<div class="deux-col"><label><small class="mut">${t('jourLabel')}</small><select data-c="pat-jour" data-i="${i}">${Array.from({ length: pt.mois === 13 ? 6 : 30 }, (_, k) => `<option value="${k + 1}"${pt.jour === k + 1 ? ' selected' : ''}>${n(k + 1)}</option>`).join('')}</select></label>
       <label><small class="mut">${t('moisCopteLabel')}</small><select data-c="pat-mois" data-i="${i}">${MOIS_COPTES.map((m, k) => `<option value="${k + 1}"${pt.mois === k + 1 ? ' selected' : ''}>${nomMoisC(k + 1)}</option>`).join('')}</select></label></div>`}
       <span class="or">${t('fetePatronale')} · ${maj(fGreg(j))}</span><small class="mut">${n(pt.jour)} ${nomMoisC(pt.mois)} · ${t('dans')(j - auj)}</small></div></section>`; }).join('')}
-    <button class="texte-btn" data-a="ajoutPatron">+ ${t('ajouterPatron')}</button>
-    <p class="aide">${t('patronsAide')}</p>` : `<p class="aide">${t('paroisseAChoisir')}</p>`}
+    <p class="aide">${AR() ? 'لكل شفيع عيده الخاص، بتاريخ ثابت حسب السنكسار.' : 'Chaque saint patron a sa propre fête, à date fixe selon le synaxaire.'}</p>` : `<p class="aide">${t('paroisseAChoisir')}</p>`}
     <div class="groupe">${interrupteur('par-cal', p.cal, t('afficherCal'), t('afficherCalSub'))}${interrupteur('par-rappel', p.rappel, t('rappelVeille'), t('rappelVeilleSub'))}</div>
   </div>`;
 }
