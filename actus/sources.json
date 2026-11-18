@@ -4,22 +4,64 @@
   "id": "UChakWkDk18Ip1iN2qv2bCfQ"
  },
  "p1": {
-  "handle": "@stemariestmarc"
+  "handle": "@stemariestmarc",
+  "saints": [
+   "vierge",
+   "marc"
+  ]
  },
  "p2": {
-  "handle": "@notredamedescoptes3769"
+  "handle": "@notredamedescoptes3769",
+  "saints": [
+   "vierge"
+  ]
  },
  "p5": {
-  "handle": "@stmichelstgeorges"
+  "handle": "@stmichelstgeorges",
+  "saints": [
+   "michel",
+   "georges"
+  ]
  },
  "p6": {
-  "handle": "@stminastmercure"
+  "handle": "@stminastmercure",
+  "saints": [
+   "mina",
+   "mercure",
+   "kyrillos"
+  ]
  },
  "p7": {
   "handle": "@eglisesaintmoisesaintsamue7022",
-  "id": "UCdFBVoz6qLAs_nozGkL2wtQ"
+  "id": "UCdFBVoz6qLAs_nozGkL2wtQ",
+  "saints": [
+   "moise",
+   "samuel"
+  ],
+  "manuel": {
+   "moise": [
+    {
+     "id": "fCI9t4sL4fg",
+     "titre": "Divine Liturgie du Puissant Saint Moïse en présence de son Eminence Anba Marc - 01/07/2026",
+     "date": "2026-07-01T12:00:00+00:00"
+    },
+    {
+     "id": "to6BdCCYTHo",
+     "titre": "Vêpres du Puissant Saint Moise le Noir en présence de son éminence Anba Marc - 30/06/2026",
+     "date": "2026-06-30T18:00:00+00:00"
+    },
+    {
+     "id": "7PhRrgvMPO4",
+     "titre": "Louange de Minuit en présence de son Eminence Anba Marc - 30/06/2026",
+     "date": "2026-06-30T12:00:00+00:00"
+    }
+   ]
+  }
  },
  "p15": {
-  "handle": "@stemariecoptegeneve"
+  "handle": "@stemariecoptegeneve",
+  "saints": [
+   "vierge"
+  ]
  }
 }

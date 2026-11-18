@@ -136,7 +136,7 @@ function fetePatronaleDu(j) {
   if (p.idx < 0 || !p.cal) return null;
   const c = jdnVersCopte(j);
   const l = p.patrons.filter((pt) => pt.mois === c.mois && pt.jour === c.jour);
-  return l.length ? `${t('fetePatronale')} · ${l.map((pt) => pt.nom).join(', ')}` : null;
+  return l.length ? `${t('fetePatronale')} · ${l.map((pt) => pt.nom).join(', ')}${enSemaineSainte(j) ? ' — ' + NON_CELEBRE() : ''}` : null;
 }
 
 // Informations d'un jour, filtrées par les réglages
@@ -258,7 +258,8 @@ function vueJour() {
   if (R().calques.saints) {
     const lignes = SYNAXAIRE[synKey] && !AR() ? SYNAXAIRE[synKey] : null;
     syn = `<section class="carte"><div class="carte-tete"><h2>${t('synaxaire')}</h2><span class="mut">${fCopteCourt(sel)}</span></div>
-      ${(lignes || [t('synAbsent')]).map((l) => `<p class="ligne-syn">${esc(l.replace(/\.$/, ''))}</p>`).join('')}
+      ${lignes && enSemaineSainte(sel) ? `<p class="avis-hs">${AR() ? 'لا يُقرأ السنكسار في أسبوع الآلام.' : 'Non célébré : pendant la Semaine sainte, le synaxaire n’est pas lu et les fêtes des saints ne sont pas célébrées.'}</p>` : ''}
+      ${(lignes || [t('synAbsent')]).map((l) => `<p class="ligne-syn${lignes && enSemaineSainte(sel) ? ' barre' : ''}">${esc(l.replace(/\.$/, ''))}</p>`).join('')}
       ${lignes ? `<small class="mut">${t('sourceKat')}</small>` : ''}
       ${R().calques.lectures ? `<a class="lien" href="https://katameros.app/fr/">${t('lectures')} ${AR() ? '←' : '→'}</a>` : ''}</section>`;
   }
@@ -304,7 +305,7 @@ function vueSemaine() {
   for (let k = 0; k < 7; k++) {
     const j = lundi + k, x = jour(j), c = jdnVersCopte(j);
     const evs = evenementsDu(j);
-    const syn = R().calques.saints && !AR() && SYNAXAIRE[`${c.mois}-${c.jour}`] ? SYNAXAIRE[`${c.mois}-${c.jour}`][0].replace(/\.$/, '') : '';
+    const syn = R().calques.saints && !AR() && SYNAXAIRE[`${c.mois}-${c.jour}`] ? (enSemaineSainte(j) ? 'Synaxaire non lu (Semaine sainte)' : SYNAXAIRE[`${c.mois}-${c.jour}`][0].replace(/\.$/, '')) : '';
     const texte = [...x.fetes, ...evs.map((e) => `${n(e.debut)} ${e.titre}`)].join(' · ') || syn || (x.cinquanteJours ? (AR() ? 'الخماسين المقدسة' : 'Cinquante jours après Pâques') : '');
     const bande = teinte(x) || (x.couleur === 'mercredi-vendredi' ? 'var(--ochreline)' : 'var(--line)');
     lignes += `<button class="ligne-sem${j === auj ? ' auj' : ''}" data-a="voirJour" data-j="${j}">
@@ -388,7 +389,7 @@ function aVenirListe() {
   // 2. Ma paroisse : fêtes patronales
   if (P.paroisse.idx >= 0) P.paroisse.patrons.forEach((pt) => {
     const o = prochaineDate(pt, auj); if (o > fin) return;
-    L.push({ j: o, cat: 'paroisse', titre: (AR() ? 'العيد الشفيع: ' : 'Fête patronale : ') + pt.nom, sous: PAR[P.paroisse.idx].nom.replace(/^Paroisse (de la |de |)/, ''), couleur: 'var(--gold)', ic: iconeSaint(pt.nom), cad: cadrageSaint(pt.nom) });
+    L.push({ j: o, cat: 'paroisse', titre: (AR() ? 'العيد الشفيع: ' : 'Fête patronale : ') + pt.nom, sous: [PAR[P.paroisse.idx].nom.replace(/^Paroisse (de la |de |)/, ''), enSemaineSainte(o) ? NON_CELEBRE() : ''].filter(Boolean).join(' · '), couleur: 'var(--gold)', ic: iconeSaint(pt.nom), cad: cadrageSaint(pt.nom) });
   });
   // 3. Église : fêtes, jeûnes, carême (périodes en cours comprises)
   const an = jdnVersCopte(auj).an, vus = new Set();
@@ -735,8 +736,54 @@ function vueNouveautes() {
   </div>`;
 }
 
+// ------------------------------------------------------------- Semaine sainte : pas de synaxaire ni de fête de saint
+const _ss = {};
+function enSemaineSainte(j) {
+  const an = jdnVersCopte(j).an;
+  for (const a of [an - 1, an]) {
+    if (!(a in _ss)) { const e = evenementsAnneeCopte(a).find((x) => x.id === 'semaine-sainte'); _ss[a] = e ? [e.debut, e.fin] : null; }
+    if (_ss[a] && j >= _ss[a][0] && j <= _ss[a][1]) return true;
+  }
+  return false;
+}
+const NON_CELEBRE = () => AR() ? 'لا يُحتفل به (أسبوع الآلام)' : 'Non célébrée (Semaine sainte)';
+// ------------------------------------------------------------- Page d'un saint patron
+const CLES_SAINTS = [[/vierge|marie|notre/i, 'vierge'], [/rapha/i, 'raphael'], [/michel/i, 'michel'], [/georges/i, 'georges'], [/mina/i, 'mina'], [/merc|marcur|philopat/i, 'mercure'], [/mo[iï]se/i, 'moise'], [/samuel/i, 'samuel'], [/antoine/i, 'antoine'], [/pierre/i, 'pierrepaul'], [/paul/i, 'paul'], [/bichoy/i, 'bichoy'], [/kar[a]?s/i, 'karas'], [/cyril|kyril/i, 'kyrillos'], [/jean/i, 'jean'], [/marc\b/i, 'marc']];
+const cleSaint = (nom) => (CLES_SAINTS.find(([re]) => re.test(nom || '')) || [])[1];
+let SV = null, svEtat = 'rien';
+function chargerSV() { if (svEtat !== 'rien') return; svEtat = 'chargement'; fetch('data/saints-videos.json', { cache: 'no-cache' }).then((r) => r.ok ? r.json() : Promise.reject()).then((d) => { SV = d; svEtat = 'ok'; if (S.vue === 'saint') rendre(); }).catch(() => { svEtat = 'erreur'; }); }
+function videosSaint(cle) {
+  const pk = 'p' + P.paroisse.idx, par = PAR[P.paroisse.idx] || {};
+  let l = (SV && SV.paroisses && SV.paroisses[pk] && SV.paroisses[pk][cle]) || [];
+  if (!l.length && par.videos_manuelles && par.videos_manuelles[cle]) l = par.videos_manuelles[cle];
+  return l.slice(0, 3);
+}
+function vueSaint() {
+  chargerSV();
+  const pt = P.paroisse.patrons[S.saint] || P.paroisse.patrons[0]; if (!pt) return vueParoisse();
+  const cle = cleSaint(pt.nom), D = (window.SAINTS || {})[cle] || {}, auj = aujCivil(), j = prochaineDate(pt, auj), g = jdnVersGreg(j);
+  const ic = iconeSaint(pt.nom), hs = enSemaineSainte(j), dans = j - auj;
+  const secs = [D.axios ? ['axios', 'Axios'] : null, D.dox && D.dox.length ? ['dox', AR() ? 'الذكصولوجية' : 'Doxologie'] : null, D.resume ? ['hist', AR() ? 'السيرة' : 'Histoire'] : null, ['vid', AR() ? 'فيديوهات' : 'Vidéos']].filter(Boolean);
+  const strophes = (l) => l.map((x) => `<div class="str"><p class="copte" lang="cop">${esc(x.c).replace(/@/g, '@<br>')}</p><p class="fr">${esc(x.f)}</p></div>`).join('');
+  const dox = (D.dox || []).map((d, i) => `<details class="carte dox"${i === 0 ? ' open' : ''}><summary><b>${esc(D.dox.length > 1 ? d.titre.replace(/^Saint\w* |^L[ae]s? |^L’/i, '').replace(/^./, (c) => c.toUpperCase()) : (AR() ? 'الذكصولوجية' : 'Doxologie'))}</b><small class="mut">${n(d.strophes.length)} ${AR() ? 'مقاطع' : 'strophes'}</small></summary>${strophes(d.strophes)}<small class="mut src">${AR() ? 'الإبصلمودية السنوية' : 'Psalmodie annuelle'}</small></details>`).join('');
+  const vids = videosSaint(cle);
+  const vidsHtml = vids.length ? vids.map((v) => `<a class="carte-video" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener"><span class="miniature"><img src="https://i.ytimg.com/vi/${encodeURIComponent(v.id)}/mqdefault.jpg" alt="" loading="lazy"></span><span class="video-txt"><b>${esc(v.titre)}</b>${v.date ? `<small><i class="pt-src paroisse"></i>${ilYa(Date.parse(v.date))}</small>` : ''}</span></a>`).join('')
+    : `<p class="mut vide">${svEtat === 'chargement' ? (AR() ? 'جارٍ التحميل…' : 'Chargement…') : (AR() ? 'لا توجد فيديوهات بعد.' : 'Pas encore de vidéo trouvée sur la chaîne de la paroisse.')}</p>`;
+  return `<header class="entete simple"><button class="rond" data-a="fermer" aria-label="${t('retour')}">${fleche('prev')}</button><h1 class="titre">${esc(pt.nom)}</h1></header>
+  <div class="contenu page-saint">
+    <div class="saint-hero">${ic ? `<span class="arche-grande"><img src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}"></span>` : ''}
+      <button class="fete-saint" data-a="voirJour" data-j="${j}"><small>${t('fetePatronale')}</small><b class="serif">${n(pt.jour)} ${nomMoisC(pt.mois)}</b><span>${maj(nomJour(j))} ${n(g.d)} ${nomMoisG(g.m)} ${n(g.y)}</span>
+      ${hs ? `<span class="chip-hs">${NON_CELEBRE()}</span>` : `<span class="chip">${dans === 0 ? (AR() ? 'اليوم' : 'aujourd’hui') : AR() ? `بعد ${n(dans)} يوم` : `dans ${dans} jour${dans > 1 ? 's' : ''}`}</span>`}</button></div>
+    ${secs.length > 1 ? `<nav class="puces defile saut">${secs.map(([id, l]) => `<a class="puce" href="#s-${id}" data-a="saut" data-v="s-${id}">${l}</a>`).join('')}</nav>` : ''}
+    ${D.axios ? `<section id="s-axios"><h2 class="sous-titre">Axios</h2><div class="carte axios"><p class="copte" lang="cop">${esc(D.axios)}</p>${D.axiosFr ? `<p class="mut">${esc(D.axiosFr)}</p>` : ''}</div></section>` : ''}
+    ${dox ? `<section id="s-dox"><h2 class="sous-titre">${AR() ? 'الذكصولوجية' : 'Doxologie'}</h2>${dox}</section>` : ''}
+    ${D.resume ? `<section id="s-hist"><h2 class="sous-titre">${AR() ? 'السيرة' : 'Histoire'}</h2><div class="carte hist">${D.resume.map((p) => `<p>${esc(p)}</p>`).join('')}${D.lien ? `<a class="lien" href="${D.lien}" target="_blank" rel="noopener">${AR() ? 'السيرة الكاملة على كاتاميروس' : 'Lire l’histoire complète sur Katameros'} ${AR() ? '←' : '→'}</a>` : ''}</div></section>` : ''}
+    <section id="s-vid"><h2 class="sous-titre">${AR() ? 'فيديوهات' : 'Vidéos'}</h2><div class="liste-video">${vidsHtml}</div></section>
+  </div>${fab()}`;
+}
+
 // ------------------------------------------------------------- rendu et navigation
-const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, actus: vueActus, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages, nouveautes: vueNouveautes };
+const VUES = { jour: vueJour, semaine: vueSemaine, mois: vueMois, annee: vueAnnee, avenir: vueAVenir, actus: vueActus, recherche: vueRecherche, rites: vueRites, paroisse: vueParoisse, evenement: vueEvenement, reglages: vueReglages, nouveautes: vueNouveautes, saint: vueSaint };
 let derniereVue = null;
 function rendre(garderFocus) {
   const actif = document.activeElement, idFocus = actif && actif.id, pos = actif && actif.selectionStart;
@@ -830,7 +877,8 @@ document.addEventListener('click', (ev) => {
     case 'supprEvt': P.evenements = P.evenements.filter((e) => e.id !== b.dataset.id); sauver(); break;
     case 'bascule': basculer(b.dataset.c); break;
     case 'segment': { const c = b.dataset.c; R()[c] = c === 'taille' ? +v : v; sauver(); appliquerApparence(); break; }
-    case 'allerPatron': { const pt = P.paroisse.patrons[+b.dataset.i]; if (pt) { S.sel = prochaineDate(pt, aujCivil()); S.vue = 'jour'; } break; }
+    case 'allerPatron': { if (P.paroisse.patrons[+b.dataset.i]) { S.saint = +b.dataset.i; if (S.vue !== 'saint') S.retour = S.vue; S.vue = 'saint'; } break; }
+    case 'saut': { const el = document.getElementById(b.dataset.v); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
     case 'supprPatron': P.paroisse.patrons.splice(+b.dataset.i, 1); sauver(); break;
     case 'ajoutPatron': P.paroisse.patrons.push({ nom: '', jour: 1, mois: 1 }); sauver(); break;
     case 'exporter': exporterCalendrier(); return;
