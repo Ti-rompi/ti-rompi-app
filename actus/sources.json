@@ -3,6 +3,13 @@
   "handle": "@dcoanbamarc",
   "id": "UChakWkDk18Ip1iN2qv2bCfQ"
  },
+ "p0": {
+  "handle": "@cathedralecopte",
+  "saints": [
+   "vierge",
+   "raphael"
+  ]
+ },
  "p1": {
   "handle": "@stemariestmarc",
   "saints": [
@@ -14,6 +21,13 @@
   "handle": "@notredamedescoptes3769",
   "saints": [
    "vierge"
+  ]
+ },
+ "p4": {
+  "handle": "@eglisecopteorthodoxestemar1091",
+  "saints": [
+   "vierge",
+   "jean"
   ]
  },
  "p5": {
@@ -57,6 +71,18 @@
     }
    ]
   }
+ },
+ "p9": {
+  "handle": "@eglisesaintbishoy-creteil",
+  "saints": [
+   "bichoy"
+  ]
+ },
+ "p12": {
+  "handle": "@paroissestpierrepaulcoptes2717",
+  "saints": [
+   "pierrepaul"
+  ]
  },
  "p15": {
   "handle": "@stemariecoptegeneve",

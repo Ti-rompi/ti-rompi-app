@@ -8,7 +8,10 @@ window.PAROISSES=[
   "saints_cles": [
    "vierge",
    "raphael"
-  ]
+  ],
+  "youtube": {
+   "handle": "@cathedralecopte"
+  }
  },
  {
   "region": "Île-de-France",
@@ -52,7 +55,10 @@ window.PAROISSES=[
   "saints_cles": [
    "vierge",
    "jean"
-  ]
+  ],
+  "youtube": {
+   "handle": "@eglisecopteorthodoxestemar1091"
+  }
  },
  {
   "region": "Île-de-France",
@@ -131,7 +137,10 @@ window.PAROISSES=[
   "saints": "Saint Bichoy",
   "saints_cles": [
    "bichoy"
-  ]
+  ],
+  "youtube": {
+   "handle": "@eglisesaintbishoy-creteil"
+  }
  },
  {
   "region": "Île-de-France",
@@ -159,7 +168,10 @@ window.PAROISSES=[
   "saints": "Saint Pierre et saint Paul",
   "saints_cles": [
    "pierrepaul"
-  ]
+  ],
+  "youtube": {
+   "handle": "@paroissestpierrepaulcoptes2717"
+  }
  },
  {
   "region": "Pays de la Loire",
