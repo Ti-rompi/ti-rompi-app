@@ -438,7 +438,9 @@ function chargerActus() {
 function videosActus(toutes) {
   if (!ACTUS) return [];
   const ch = ACTUS.chaines || {}, mienne = P.paroisse.idx >= 0 ? 'p' + P.paroisse.idx : '';
-  const cles = toutes ? Object.keys(ch) : ['diocese', mienne].filter(Boolean);
+  // les paroisses hors diocèse (ex. Genève) n'apparaissent que si on les a choisies
+  const hors = (k) => /^p\d+$/.test(k) && PAR[+k.slice(1)] && PAR[+k.slice(1)].horsDiocese && k !== mienne;
+  const cles = (toutes ? Object.keys(ch) : ['diocese', mienne].filter(Boolean)).filter((k) => !hors(k));
   return cles.filter((k) => ch[k]).flatMap((k) => ch[k].videos.map((v) => ({ ...v, cle: k, source: k === 'diocese' ? 'dco' : k === mienne ? 'paroisse' : 'autre', chaine: ch[k].nom, t: Date.parse(v.date) })))
     .sort((a, b) => b.t - a.t);
 }

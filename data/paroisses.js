@@ -105,5 +105,15 @@ window.PAROISSES=[
   "nom": "Monastère de la Vierge Sainte Marie et de l'Archange Michel",
   "adresse": "89170 Ronchères",
   "saints": "Vierge Sainte Marie et Archange Michel"
+ },
+ {
+  "region": "Suisse (hors diocèse)",
+  "nom": "Église copte orthodoxe de la Vierge Marie",
+  "adresse": "35 rue Virginio-Malnati, 1217 Meyrin (Genève)",
+  "saints": "Vierge Marie",
+  "horsDiocese": true,
+  "youtube": {
+   "handle": "@stemariecoptegeneve"
+  }
  }
 ];
