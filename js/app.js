@@ -118,7 +118,7 @@ function occurrences(e, j1, j2) {
 }
 const evenementsDu = (j) => P.evenements.filter((e) => occurrences(e, j, j).length).sort((a, b) => a.debut.localeCompare(b.debut));
 // Icônes des saints patrons (fournies par la paroisse), reconnues d'après le nom du saint
-const ICONES_SAINTS = [[/mo[iï]se/i, 'moise'], [/samuel/i, 'samuel'], [/merc|marcur|seifein|philopat/i, 'mercure'], [/\bmina\b|m[eé]nas/i, 'mina'], [/cyril|kyril/i, 'kyrillos'], [/\bmarc\b/i, 'marc'], [/georges|guirguis/i, 'georges'], [/antoine/i, 'antoine'], [/rapha/i, 'raphael'], [/jean/i, 'jean'], [/vierge|marie|notre/i, 'vierge'], [/michel/i, 'michel']];
+const ICONES_SAINTS = [[/pierre/i, 'pierrepaul'], [/bichoy/i, 'bichoy'], [/kar[a]?s/i, 'karas'], [/paul/i, 'paul'], [/mo[iï]se/i, 'moise'], [/samuel/i, 'samuel'], [/merc|marcur|seifein|philopat/i, 'mercure'], [/\bmina\b|m[eé]nas/i, 'mina'], [/cyril|kyril/i, 'kyrillos'], [/\bmarc\b/i, 'marc'], [/georges|guirguis/i, 'georges'], [/antoine/i, 'antoine'], [/rapha/i, 'raphael'], [/jean/i, 'jean'], [/vierge|marie|notre/i, 'vierge'], [/michel/i, 'michel']];
 // Icônes des jours de la Semaine sainte et des rites
 const RITE_ICONE = { jeudi: 'judas', vendredi: 'crucifixion', lakkan: 'lakkan', rameaux: 'rameaux' };
 const iconeRite = (id) => RITE_ICONE[id] && window.ICONES ? window.ICONES[RITE_ICONE[id]] : null;
