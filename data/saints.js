@@ -108,10 +108,9 @@ window.SAINTS={
   "lien": "https://katameros.app/fr/synaxarium/assumption-of-virgin-mary/",
   "mots": [
    "vierge",
-   "marie",
    "sainte marie",
    "theotokos",
-   "assomption"
+   "العذراء"
   ],
   "resume": [
    "Marie, fille de Joachim et d’Anne, fut choisie pour devenir la Mère du Verbe incarné. L’Église copte la vénère comme la Théotokos, la Mère de Dieu, et lui consacre de nombreuses fêtes au long de l’année, ainsi que le mois de Kiahk.",
@@ -152,9 +151,9 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/commemoration-of-archangel-michael-12-hatour/",
   "mots": [
-   "michel",
-   "archange",
-   "mikhail"
+   "archange michel",
+   "saint michel",
+   "ميخائيل"
   ],
   "resume": [
    "Michel est le chef des armées célestes, celui qui se tient devant le trône de Dieu et intercède pour le genre humain. Il est fêté chaque 12 du mois copte.",
@@ -203,9 +202,9 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/consecration-of-the-church-of-archangel-raphael/",
   "mots": [
-   "raphael",
    "raphaël",
-   "archange"
+   "raphael",
+   "روفائيل"
   ],
   "resume": [
    "Raphaël, dont le nom signifie « Dieu guérit », est l’un des sept archanges qui se tiennent devant Dieu. Le livre de Tobie raconte comment il accompagna le jeune Tobie, guérit son père Tobit de sa cécité et délivra Sarra.",
@@ -283,10 +282,11 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/martyrdom-of-saint-george/",
   "mots": [
-   "georges",
-   "george",
+   "saint georges",
+   "st georges",
    "guirguis",
-   "girgis"
+   "جرجس",
+   "georges"
   ],
   "resume": [
    "Né en Cappadoce, Georges était un officier de l’armée romaine. Sous Dioclétien, il refusa de sacrifier aux idoles et confessa publiquement le Christ.",
@@ -608,10 +608,8 @@ window.SAINTS={
   "lien": "https://katameros.app/fr/synaxarium/departure-of-saint-paul-the-first-hermit/",
   "mots": [
    "paul l’ermite",
-   "paul l'ermite",
    "anba paula",
-   "paul the hermit",
-   "ermite"
+   "saint paul"
   ],
   "resume": [
    "Jeune Alexandrin fortuné, Paul s’enfuit au désert pour échapper à la persécution et à un procès d’héritage. Il y vécut seul près de quatre-vingts ans, nourri par un corbeau qui lui apportait chaque jour du pain.",
@@ -730,8 +728,9 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/departure-of-saint-john-the-evangelist/",
   "mots": [
-   "jean",
-   "john",
+   "saint jean",
+   "st jean",
+   "jean l’évangéliste",
    "yohanna"
   ],
   "resume": [
@@ -802,9 +801,11 @@ window.SAINTS={
   ],
   "lien": "https://katameros.app/fr/synaxarium/martyrdom-of-saint-mark-the-evangelist/",
   "mots": [
-   "marc",
-   "mark",
-   "markos"
+   "saint marc",
+   "st marc",
+   "saint-marc",
+   "mar morcos",
+   "marc l’évangéliste"
   ],
   "resume": [
    "Marc, l’un des soixante-dix disciples et auteur du deuxième Évangile, porta la foi en Égypte. À Alexandrie, il guérit le cordonnier Anianos, qui devint son successeur, et fonda l’Église copte, dont il est le premier patriarche.",
@@ -862,8 +863,6 @@ window.SAINTS={
   "lien": "https://katameros.app/fr/synaxarium/martyrdom-of-saints-peter-and-paul/",
   "mots": [
    "pierre et paul",
-   "pierre",
-   "paul",
    "apôtres",
    "apotres"
   ],
