@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-18T13:55:30+00:00",
+ "maj": "2026-11-19T10:16:20+00:00",
  "paroisses": {
   "p0": {
    "vierge": [
@@ -203,8 +203,8 @@
      "date": null
     },
     {
-     "id": "Y0DjG9BnCSI",
-     "titre": "Divine Liturgie de la fête de Saint Samuel Le Confesseur avec son éminence Anba Marc",
+     "id": "w_oElpaz_vE",
+     "titre": "Prières des vêpres de la fête de Saint Samuel le Confesseur",
      "date": null
     }
    ]
@@ -222,19 +222,19 @@
   "p15": {
    "vierge": [
     {
+     "id": "01CIsHnGFUY",
+     "titre": "Glorification de la vierge du lundi 15/08/2022",
+     "date": "2022-08-15T12:00:00+00:00"
+    },
+    {
      "id": "_kaniWkYG4I",
      "titre": "Glorification de la Vierge du mardi 9/08/2022",
      "date": "2022-08-09T12:00:00+00:00"
     },
     {
-     "id": "e3tpqUNYYw0",
-     "titre": "Vêpres et glorification de la vierge Marie - 17.08.2020",
-     "date": "2020-08-17T12:00:00+00:00"
-    },
-    {
-     "id": "tCUtMAkVckk",
-     "titre": "La louange de la vierge Marie",
-     "date": null
+     "id": "TTI3k5VUAng",
+     "titre": "Glorification de la Vierge du lundi 8/08/2022",
+     "date": "2022-08-08T12:00:00+00:00"
     }
    ]
   }
