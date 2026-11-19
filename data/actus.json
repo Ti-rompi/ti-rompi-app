@@ -1,11 +1,16 @@
 {
- "maj": "2026-11-19T10:16:12+00:00",
+ "maj": "2026-11-19T18:59:59+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
    "handle": "@dcoanbamarc",
    "id": "UChakWkDk18Ip1iN2qv2bCfQ",
    "videos": [
+    {
+     "id": "pk0Rk_N8-VI",
+     "titre": "Louange de Minuit du Vendredi - 19/11/2026",
+     "date": "2026-11-19T18:01:58+00:00"
+    },
     {
      "id": "vWXUk9SsGjk",
      "titre": "Louange de Minuit du Jeudi - 18/11/2026",
@@ -75,11 +80,6 @@
      "id": "48XExzxgR_8",
      "titre": "Louange de Minuit du Samedi - 06/11/2026",
      "date": "2026-11-07T07:10:48+00:00"
-    },
-    {
-     "id": "lFPjwk9DFX8",
-     "titre": "Divine Liturgie en présence de Mgrs Anba Bessada & Anba Marc - 06/11/2026",
-     "date": "2026-11-06T20:22:16+00:00"
     }
    ]
   },
@@ -827,6 +827,11 @@
    "id": "UC8xFvVNh36k8e4rfV5NCYhA",
    "videos": [
     {
+     "id": "TMlkC4GgK-U",
+     "titre": "Pourquoi ne savons-nous plus attendre ?",
+     "date": "2026-11-19T11:48:29+00:00"
+    },
+    {
      "id": "16zUGOwWkk8",
      "titre": "Messe du dimanche",
      "date": "2026-11-15T22:27:45+00:00"
@@ -895,11 +900,6 @@
      "id": "gi0xFLNo3LM",
      "titre": "Messe du dimanche",
      "date": "2026-09-20T22:22:21+00:00"
-    },
-    {
-     "id": "pM9CPcafMIA",
-     "titre": "A qui comparer cette génération ?",
-     "date": "2026-09-17T19:49:51+00:00"
     }
    ]
   }
