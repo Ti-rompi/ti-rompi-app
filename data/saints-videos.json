@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-20T01:46:15+00:00",
+ "maj": "2026-11-20T18:35:57+00:00",
  "paroisses": {
   "p0": {
    "vierge": [
@@ -40,11 +40,6 @@
    ],
    "marc": [
     {
-     "id": "rEFw0hmm0lI",
-     "titre": "Divine Liturgie du Vendredi à l’occasion de la fête de Saint Marc - 08/05/2026",
-     "date": "2026-05-08T12:00:00+00:00"
-    },
-    {
      "id": "fUt_kqhXZGk",
      "titre": "Office de l’encens du soir à l’occasion de la fête de Saint Marc - 07/05/2026",
      "date": "2026-05-07T12:00:00+00:00"
@@ -53,6 +48,11 @@
      "id": "HpQwPAwQLrQ",
      "titre": "Divine liturgie du samedi en présence de Mgr Anba Yolios et Mgr Anba Marc - 18/04/2024",
      "date": "2024-04-18T12:00:00+00:00"
+    },
+    {
+     "id": "A37oBfUW3tI",
+     "titre": "Divine Liturgie de la fête de St Marc - Samedi 8 Mai 2021",
+     "date": "2021-05-08T12:00:00+00:00"
     }
    ]
   },
@@ -100,6 +100,11 @@
      "id": "DVJzgvM1LFE",
      "titre": "Vêpres de la fête de l’Archange Michel- 18/06/2026",
      "date": "2026-06-18T12:00:00+00:00"
+    },
+    {
+     "id": "PmVRnrIdiCw",
+     "titre": "Office de l’encens du soir à l’occasion de la fête de l’Archange Michel - 20/11/26",
+     "date": null
     }
    ],
    "georges": [
@@ -203,8 +208,8 @@
      "date": null
     },
     {
-     "id": "Y0DjG9BnCSI",
-     "titre": "Divine Liturgie de la fête de Saint Samuel Le Confesseur avec son éminence Anba Marc",
+     "id": "w_oElpaz_vE",
+     "titre": "Prières des vêpres de la fête de Saint Samuel le Confesseur",
      "date": null
     }
    ]
@@ -222,9 +227,9 @@
   "p15": {
    "vierge": [
     {
-     "id": "GqyNsmb8lw4",
-     "titre": "Vêpres et Glorification de la Vierge Marie 21.08.2021",
-     "date": "2021-08-21T12:00:00+00:00"
+     "id": "w_WQ6FyPLTw",
+     "titre": "Vêpres et glorification de la vierge Marie 12.08.2023",
+     "date": "2023-08-12T12:00:00+00:00"
     },
     {
      "id": "cwCpuqd0Ijo",
