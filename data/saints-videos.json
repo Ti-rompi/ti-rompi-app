@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-19T10:16:20+00:00",
+ "maj": "2026-11-20T01:46:15+00:00",
  "paroisses": {
   "p0": {
    "vierge": [
@@ -45,14 +45,14 @@
      "date": "2026-05-08T12:00:00+00:00"
     },
     {
+     "id": "fUt_kqhXZGk",
+     "titre": "Office de l’encens du soir à l’occasion de la fête de Saint Marc - 07/05/2026",
+     "date": "2026-05-07T12:00:00+00:00"
+    },
+    {
      "id": "HpQwPAwQLrQ",
      "titre": "Divine liturgie du samedi en présence de Mgr Anba Yolios et Mgr Anba Marc - 18/04/2024",
      "date": "2024-04-18T12:00:00+00:00"
-    },
-    {
-     "id": "-j8WgvCFdCk",
-     "titre": "Liturgie de la Nativité célébrée par Anba Marc (6 janvier 2016)",
-     "date": "2016-01-06T12:00:00+00:00"
     }
    ]
   },
@@ -145,13 +145,13 @@
      "date": null
     },
     {
-     "id": "JiDJ3jOVB8I",
-     "titre": "Divine liturgie du Dimanche 15 août paroisse St Mina St Mercure",
+     "id": "MAqHZrVckhI",
+     "titre": "Messe de la fête de Saint Mercure en présence de son Éminence Anba Marc",
      "date": null
     },
     {
-     "id": "MAqHZrVckhI",
-     "titre": "Messe de la fête de Saint Mercure en présence de son Éminence Anba Marc",
+     "id": "JiDJ3jOVB8I",
+     "titre": "Divine liturgie du Dimanche 15 août paroisse St Mina St Mercure",
      "date": null
     }
    ],
@@ -203,8 +203,8 @@
      "date": null
     },
     {
-     "id": "w_oElpaz_vE",
-     "titre": "Prières des vêpres de la fête de Saint Samuel le Confesseur",
+     "id": "Y0DjG9BnCSI",
+     "titre": "Divine Liturgie de la fête de Saint Samuel Le Confesseur avec son éminence Anba Marc",
      "date": null
     }
    ]
@@ -222,19 +222,19 @@
   "p15": {
    "vierge": [
     {
-     "id": "01CIsHnGFUY",
-     "titre": "Glorification de la vierge du lundi 15/08/2022",
-     "date": "2022-08-15T12:00:00+00:00"
+     "id": "GqyNsmb8lw4",
+     "titre": "Vêpres et Glorification de la Vierge Marie 21.08.2021",
+     "date": "2021-08-21T12:00:00+00:00"
     },
     {
-     "id": "_kaniWkYG4I",
-     "titre": "Glorification de la Vierge du mardi 9/08/2022",
-     "date": "2022-08-09T12:00:00+00:00"
+     "id": "cwCpuqd0Ijo",
+     "titre": "Vêpres et Glorification de la Vierge Marie 12.08.2021",
+     "date": "2021-08-12T12:00:00+00:00"
     },
     {
-     "id": "TTI3k5VUAng",
-     "titre": "Glorification de la Vierge du lundi 8/08/2022",
-     "date": "2022-08-08T12:00:00+00:00"
+     "id": "e3tpqUNYYw0",
+     "titre": "Vêpres et glorification de la vierge Marie - 17.08.2020",
+     "date": "2020-08-17T12:00:00+00:00"
     }
    ]
   }
