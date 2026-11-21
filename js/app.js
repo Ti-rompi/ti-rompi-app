@@ -236,7 +236,7 @@ const ICO_COMMEMO = { 'Archange Michel': 'michel', 'Vierge Marie': 'vierge', 'ر
 
 function carteChant(D) {
   const ch = D && D.chant; if (!ch) return '';
-  return `<section class="carte axios chant"><small class="etiquette">${AR() ? ch.titreAr : ch.titre}</small><p class="copte titre-chant" lang="cop" dir="ltr">}\`ctoly</p>${ch.strophes.map((x) => `<div class="str"><p class="copte" lang="cop" dir="ltr">${esc(x.c).replace(/@/g, '@<br>')}</p>${AR() ? `<p class="fr ar" dir="rtl" lang="ar">${esc(x.a)}</p>` : `<p class="fr">${esc(x.f)}</p>`}</div>`).join('')}<small class="mut src">${AR() ? 'كتاب خدمة الشماس' : ch.source}</small></section>`;
+  return `<section class="carte axios chant"><small class="etiquette">${AR() ? ch.titreAr : ch.titre}</small><p class="copte titre-chant" lang="cop" dir="ltr">}\`ctoly</p>${ch.strophes.map((x) => `<div class="str"><p class="copte" lang="cop" dir="ltr">${esc(x.c).replace(/@/g, '@<br>')}</p>${AR() ? `<p class="fr ar" dir="rtl" lang="ar">${esc(x.a)}</p>` : `<p class="fr">${esc(x.f)}</p>`}</div>`).join('')}<small class="mut src">${AR() ? (ch.sourceAr || ch.source) : ch.source}</small></section>`;
 }
 function carteCommemo(j) {
   const nom = commemoMensuelle(j); if (!nom) return '';

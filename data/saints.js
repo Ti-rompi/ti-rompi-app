@@ -195,36 +195,17 @@ window.SAINTS={
   "axiosFr": "Digne est Michel le grand archange",
   "axiosAr": "مستحق ميخائيل رئيس الملائكة الجليل",
   "chant": {
-   "titre": "Chant pour l’archange Michel",
+   "titre": "Hymne de l’archange Michel",
    "titreAr": "لحن رئيس الملائكة ميخائيل",
-   "source": "Livre du service du diacre",
+   "source": "Rite du sacrement du mariage (avec Michel à la place de l’époux)",
    "strophes": [
     {
-     "c": "Va nitenh `nhat etvwrs@ `ebol va ]`ctoly `nerman `nnoub@ va piqwk `mmargarityc@ Mi,ayl piar,yaggeloc.",
-     "f": "Celui qui a des ailes d’argent, celui à qui appartient la couronne d’or, celui qui possède quelques joyaux, c’est Michel l’archange",
-     "a": "صاحب الأجنحة الفضة المبسوطة صاحب الحلة ذات الرمانات الذهب صاحب المنطقة الجوهرية ميخائيل رئيس الملائكة"
-    },
-    {
-     "c": "`N;of afhwl sa Babulwn@ sa pisomt `n`alou `n`agioc@ afnahmou `ebolqen ]`hrw `n,rwm@ `nte Nabou,odonocor `pouro.",
-     "f": "Il partit pour Babylone et sauva les trois jeunes saints de la fournaise ardente du roi Nabuchodonosor.",
-     "a": "هو مضى إلى بابل وخلّص الثلاثة فتية القديسين من أتون النار الذي لنبوخذنصر الملك."
-    },
-    {
-     "c": "A`pcatanac [isipi `mvoou@ nem nefctrati`a `mponyron@ qen `ptaho `eratf `mMi,ayl@ pinis] `nar,yaggeloc.",
-     "f": "Satan fut humilié aujourd’hui avec ses légions infâmes par Michel le grand archange.",
-     "a": "افتضح اليوم الشيطان وعساكره الشريرة بإقامة ميخائيل رئيس الملائكة العظيم."
-    },
-    {
-     "c": "`AMi,ayl piar,yaggeloc@ ]`nouse `ntenh `mpidi`aboloc@ afberbwrf capecyt `e`vnoun@ sa `pjwk `ebol `nni`eneh.",
-     "f": "Michel l’archange a battu les ailes du diable et l’a jeté au plus fond des profondeurs pour la fin des siècles.",
-     "a": "ميخائيل رئيس الملائكة ضرب أجنحة إبليس وألقاه إلى أسفل العمق إلى كمال الدهور."
-    },
-    {
-     "c": "`Piar,yaggeloc =e=;=u Mi,ayl@ afswpi nem ni`apoctoloc@ sa `ntoutac;o `n]oikoumeny@ `eqoun `e`pouen ]me;myi.",
-     "f": "L’archange saint Michel était avec les apôtres jusqu’à ce qu’ils aient ramené l’univers à la connaissance de la vérité.",
-     "a": "رئيس الملائكة المقدس ميخائيل كان مع الرسل حتى ردّوا المسكونة إلى معرفة الحق."
+     "c": "}`ctoly `m`pneumatikon@ au]hiwtf `mMi,ayl@ ouoh piqwk `mmargarityc@ aumyr `mMi,ayl `mmof.",
+     "f": "Le vêtement spirituel dont Michel est revêtu, et la ceinture de perles, Michel s’en est ceint.",
+     "a": "الحلة الروحانية الملتحف بها ميخائيل، والمنطقة الجوهرية تمنطق بها ميخائيل."
     }
-   ]
+   ],
+   "sourceAr": "طقس سر الزيجة (ميخائيل بدل العريس)"
   }
  },
  "raphael": {
