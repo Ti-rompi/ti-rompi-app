@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-20T18:35:51+00:00",
+ "maj": "2026-11-21T09:44:00+00:00",
  "chaines": {
   "diocese": {
    "nom": "DCO Anba Marc",
@@ -7,9 +7,14 @@
    "id": "UChakWkDk18Ip1iN2qv2bCfQ",
    "videos": [
     {
+     "id": "-G7m3yGqEUs",
+     "titre": "Divine liturgie du Samedi - 21/11/2026",
+     "date": "2026-11-21T07:36:09+00:00"
+    },
+    {
      "id": "YocZEgzAyo8",
      "titre": "Louange de Minuit du Samedi - 20/11/2026",
-     "date": "2026-11-20T17:59:32+00:00"
+     "date": "2026-11-21T07:01:35+00:00"
     },
     {
      "id": "pk0Rk_N8-VI",
@@ -75,11 +80,6 @@
      "id": "r8iMm81YvKU",
      "titre": "Louange de minuit du Dimanche - 07/11/2026",
      "date": "2026-11-08T06:11:49+00:00"
-    },
-    {
-     "id": "L0jsJB2Uqmc",
-     "titre": "Divine liturgie du Samedi en présence de Mgrs Anba Bessada & Anba Marc - 07/11/2026",
-     "date": "2026-11-07T21:58:14+00:00"
     }
    ]
   },
@@ -417,9 +417,14 @@
    "id": "UCGjYDIJBiwcOjqp2JpDZkIA",
    "videos": [
     {
+     "id": "LpIz_QV5PNs",
+     "titre": "Divine liturgie du Samedi - 21/11/2026",
+     "date": "2026-11-21T08:15:59+00:00"
+    },
+    {
      "id": "PmVRnrIdiCw",
      "titre": "Office de l’encens du soir à l’occasion de la fête de l’Archange Michel - 20/11/26",
-     "date": "2026-11-20T16:59:56+00:00"
+     "date": "2026-11-21T06:18:08+00:00"
     },
     {
      "id": "6x4TnC_HOq8",
@@ -485,11 +490,6 @@
      "id": "lQx1HUWRB18",
      "titre": "Divine Liturgie du Dimanche - 04/10/2026",
      "date": "2026-10-04T20:14:22+00:00"
-    },
-    {
-     "id": "efXO04kYOrk",
-     "titre": "Louange de Minuit du Dimanche - 03/10/2026",
-     "date": "2026-10-04T05:03:50+00:00"
     }
    ]
   },
@@ -498,6 +498,11 @@
    "handle": "@stminastmercure",
    "id": "UC_a9dyWxD8bC1ooOgZxSo3Q",
    "videos": [
+    {
+     "id": "loXrsYRF-Vc",
+     "titre": "Divine Liturgie du Samedi - 21/11/2026",
+     "date": "2026-11-21T07:32:56+00:00"
+    },
     {
      "id": "8TC833qM7pk",
      "titre": "Divine Liturgie du Dimanche - 15/11/2026",
@@ -567,11 +572,6 @@
      "id": "pl6lUPmlLvg",
      "titre": "Divine Liturgie du Dimanche - 04/11/2026",
      "date": "2026-10-04T21:03:43+00:00"
-    },
-    {
-     "id": "SWT9aMf3cd8",
-     "titre": "Divine Liturgie du Samedi - 03/10/2026",
-     "date": "2026-10-03T21:03:22+00:00"
     }
    ]
   },
@@ -580,6 +580,11 @@
    "handle": "@eglisesaintmoisesaintsamue7022",
    "id": "UCdFBVoz6qLAs_nozGkL2wtQ",
    "videos": [
+    {
+     "id": "bcruWXcVHH0",
+     "titre": "Sermon du Samedi 21 Novembre 2026",
+     "date": "2026-11-21T07:14:09+00:00"
+    },
     {
      "id": "mLVOod0oouM",
      "titre": "Sermon du Dimanche 15 Novembre 2026",
@@ -649,11 +654,6 @@
      "id": "UgEaIjpFiTU",
      "titre": "Divine liturgie du dimanche 4 Octobre 2026",
      "date": "2026-10-04T22:13:47+00:00"
-    },
-    {
-     "id": "9LCBpckNYL4",
-     "titre": "Sermon du Samedi 3 Octobre 2026",
-     "date": "2026-10-03T07:36:07+00:00"
     }
    ]
   },
