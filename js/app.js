@@ -233,6 +233,11 @@ function commemoMensuelle(j) {
   return null;
 }
 const ICO_COMMEMO = { 'Archange Michel': 'michel', 'Vierge Marie': 'vierge', 'رئيس الملائكة ميخائيل': 'michel', 'السيدة العذراء مريم': 'vierge' };
+
+function carteChant(D) {
+  const ch = D && D.chant; if (!ch) return '';
+  return `<section class="carte axios chant"><small class="etiquette">${AR() ? ch.titreAr : ch.titre}</small><p class="copte titre-chant" lang="cop" dir="ltr">}\`ctoly</p>${ch.strophes.map((x) => `<div class="str"><p class="copte" lang="cop" dir="ltr">${esc(x.c).replace(/@/g, '@<br>')}</p>${AR() ? `<p class="fr ar" dir="rtl" lang="ar">${esc(x.a)}</p>` : `<p class="fr">${esc(x.f)}</p>`}</div>`).join('')}<small class="mut src">${AR() ? 'كتاب خدمة الشماس' : ch.source}</small></section>`;
+}
 function carteCommemo(j) {
   const nom = commemoMensuelle(j); if (!nom) return '';
   const cle = ICO_COMMEMO[nom], ic = window.ICONES && window.ICONES[cle], c = jdnVersCopte(j);
@@ -242,6 +247,7 @@ function carteCommemo(j) {
   const strophes = dox ? dox.strophes.map((x) => `<div class="str"><p class="copte" lang="cop" dir="ltr">${esc(x.c).replace(/@/g, '@<br>')}</p>${AR() && x.a ? `<p class="fr ar" dir="rtl" lang="ar">${esc(x.a)}</p>` : `<p class="fr">${esc(x.f)}</p>`}</div>`).join('') : '';
   return `<section class="carte carte-patron carte-commemo">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(nom)}">` : ''}<span><small class="etiquette">${grande ? (AR() ? 'العيد' : 'Fête') : AR() ? 'تذكار شهري' : 'Commémoration mensuelle'}</small><b class="serif">${esc(grande ? (AR() ? 'عيد رئيس الملائكة ميخائيل' : 'Fête de l’archange Michel') : nom)}</b><small class="mut">${grande ? `12 ${nomMoisC(3)}` : AR() ? 'كل شهر قبطي' : 'Chaque ' + c.jour + ' du mois copte'}</small></span></section>
   ${D.axios ? `<section class="carte axios commemo-axios"><p class="copte" lang="cop" dir="ltr">${esc(D.axios)}</p><p class="mut"${AR() ? ' dir="rtl"' : ''}>${esc(AR() ? D.axiosAr : D.axiosFr)}</p></section>` : ''}
+  ${carteChant(D)}
   ${dox ? `<details class="carte dox commemo-dox"><summary><b>${AR() ? 'ذكصولوجية رئيس الملائكة ميخائيل' : 'Doxologie de l’archange Michel'}</b><small class="mut">${n(dox.strophes.length)} ${AR() ? 'مقاطع' : 'strophes'}</small></summary>${strophes}<small class="mut src">${AR() ? 'الإبصلمودية السنوية' : 'Psalmodie annuelle'}</small></details>` : ''}`;
 }
 
@@ -805,6 +811,7 @@ function vueSaint() {
       ${hs ? `<span class="chip-hs">${NON_CELEBRE()}</span>` : `<span class="chip">${dans === 0 ? (AR() ? 'اليوم' : 'aujourd’hui') : AR() ? `بعد ${n(dans)} يوم` : `dans ${dans} jour${dans > 1 ? 's' : ''}`}</span>`}</button></div>
     ${secs.length > 1 ? `<nav class="puces defile saut">${secs.map(([id, l]) => `<a class="puce" href="#s-${id}" data-a="saut" data-v="s-${id}">${l}</a>`).join('')}</nav>` : ''}
     ${D.axios ? `<section id="s-axios"><h2 class="sous-titre">Axios</h2><div class="carte axios"><p class="copte" lang="cop" dir="ltr">${esc(D.axios)}</p>${(AR() ? D.axiosAr : D.axiosFr) ? `<p class="mut"${AR() ? ' dir="rtl"' : ''}>${esc(AR() ? D.axiosAr : D.axiosFr)}</p>` : ''}</div></section>` : ''}
+    ${D.chant ? `<section id="s-chant"><h2 class="sous-titre">${AR() ? 'لحن' : 'Chant'}</h2>${carteChant(D)}</section>` : ''}
     ${dox ? `<section id="s-dox"><h2 class="sous-titre">${AR() ? 'الذكصولوجية' : 'Doxologie'}</h2>${dox}</section>` : ''}
     ${D.resume ? `<section id="s-hist"><h2 class="sous-titre">${AR() ? 'السيرة' : 'Histoire'}</h2><div class="carte hist">${D.resume.map((p) => `<p>${esc(p)}</p>`).join('')}${D.lien ? `<a class="lien" href="${D.lien}" target="_blank" rel="noopener">${AR() ? 'السيرة الكاملة على كاتاميروس' : 'Lire l’histoire complète sur Katameros'} ${AR() ? '←' : '→'}</a>` : ''}</div></section>` : ''}
     <section id="s-vid"><h2 class="sous-titre">${AR() ? 'فيديوهات' : 'Vidéos'}</h2><div class="liste-video">${vidsHtml}</div></section>

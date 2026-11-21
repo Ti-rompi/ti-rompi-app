@@ -328,3 +328,9 @@ details.dox summary::-webkit-details-marker{display:none}
 
 .commemo-axios .copte{font-size:1.25em}
 .commemo-dox{margin-top:0}
+
+.carte.chant{text-align:start}
+.carte.chant .etiquette{display:block;text-align:center}
+.carte.chant .titre-chant{text-align:center!important;font-size:1.6em;margin:2px 0 4px}
+.carte.chant .str .copte{color:var(--goldtx);font-size:1.12em}
+.carte.chant .str{border-top-color:#E2B65733}
