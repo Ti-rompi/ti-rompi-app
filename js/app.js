@@ -238,6 +238,22 @@ function carteCommemo(j) {
   const ic = window.ICONES && window.ICONES[ICO_COMMEMO[nom]];
   return `<section class="carte carte-patron carte-commemo">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(nom)}">` : ''}<span><small class="etiquette">${AR() ? 'تذكار شهري' : 'Commémoration mensuelle'}</small><b class="serif">${esc(nom)}</b><small class="mut">${AR() ? 'كل شهر قبطي' : 'Chaque ' + jdnVersCopte(j).jour + ' du mois copte'}</small></span></section>`;
 }
+
+// ------------------------------------------------------------- Offices annoncés par les paroisses
+const isoJ = (j) => { const g = jdnVersGreg(j); return `${g.y}-${String(g.m).padStart(2, '0')}-${String(g.d).padStart(2, '0')}`; };
+const nomCourtPar = (p) => p.nom.replace(/^Paroisse (de la |de |)/, '');
+function officesDu(j) {
+  const d = isoJ(j), out = [];
+  PAR.forEach((p, i) => (p.offices || []).forEach((o) => { if (o.date === d && (i === P.paroisse.idx || o.diocese)) out.push({ ...o, idx: i, mienne: i === P.paroisse.idx }); }));
+  return out.sort((x, y) => (y.mienne - x.mienne) || x.debut.localeCompare(y.debut));
+}
+function carteOffices(j) {
+  const l = officesDu(j); if (!l.length) return '';
+  const miens = l.filter((o) => o.mienne), autres = l.filter((o) => !o.mienne);
+  const ligne = (o) => `<li><b>${o.debut} – ${o.fin}</b> <span>${esc(AR() && o.titreAr ? o.titreAr : o.titre)}</span>${o.fete ? `<small class="mut">${esc(o.fete)}</small>` : ''}</li>`;
+  return `${miens.length ? `<section class="carte carte-offices"><small class="etiquette">${AR() ? 'في كنيستي' : 'À ma paroisse'}</small><ul>${miens.map(ligne).join('')}</ul></section>` : ''}
+  ${autres.length ? `<section class="carte carte-offices autres"><small class="etiquette">${AR() ? 'في الإيبارشية' : 'Dans le diocèse'}</small><ul>${autres.map((o) => ligne(o).replace('</span>', ` · ${esc(nomCourtPar(PAR[o.idx]))}</span>`)).join('')}</ul></section>` : ''}`;
+}
 function vueJour() {
   const sel = S.sel, x = jour(sel), c = jdnVersCopte(sel), g = jdnVersGreg(sel), auj = aujCivil();
   const lundi = sel - colonne(sel);
@@ -288,6 +304,7 @@ function vueJour() {
         <span class="veille">${icone.lune}${esc(ligneVeille)}</span>
       </div>
     </section>
+    ${carteOffices(sel)}
     ${carteCommemo(sel)}
     ${patronsDu(sel).map((pt) => { const ic = iconeSaint(pt.nom), ch = PAR[P.paroisse.idx]; return `<section class="carte carte-patron">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(pt.nom)}">` : ''}<span><small class="etiquette">${t('fetePatronale')}</small><b class="serif">${esc(pt.nom)}</b><small class="mut">${esc(ch.nom.replace(/^Paroisse (de la |de |)/, ''))}</small></span></section>`; }).join('')}
     ${ritesDuJour(sel).map((r) => `<button class="carte carte-rite" data-a="ouvrirRite" data-v="${r.id}">${iconeRite(r.id) ? `<img class="icone-saint icone-rite" src="${iconeRite(r.id)}" alt="">` : `<i class="barre" style="background:${r.color}"></i>`}<span><small class="etiquette">${t('riteDuJour')} · ${t('serviceDiacre')}</small><b class="serif">${esc(AR() ? (nomAr(RITE_EVT[r.id]) || r.nom) : r.nom)}</b><span class="lien">${t('lireRite')} ${fleche('next')}</span></span></button>`).join('')}
@@ -348,11 +365,12 @@ function vueMois() {
       const cls = ['case-mois', j === S.sel ? 'choisi' : '', j === auj ? 'auj' : '', fill ? 'pleine' : '', x.couleur === 'resurrection' ? 'resur' : '', (x.couleur === 'careme' || x.couleur === 'semaine-sainte') ? 'violette' : ''].join(' ');
       grille += `<button class="${cls}" data-a="voirJour" data-j="${j}" ${fill ? `style="--fill:${fill}"` : ''} aria-label="${esc(fGreg(j) + ', ' + fCopteCourt(j) + (x.jeune ? ', ' + t('jeune') : '') + (x.fetes.length ? ', ' + x.fetes.join(', ') : ''))}">
         ${CP() ? `<b>${n(jdnVersCopte(j).jour)}</b><small>${gCourt(j)}</small>` : `<b>${n(jdnVersGreg(j).d)}</b><small>${n(jdnVersCopte(j).jour)} ${AR() ? '' : jdnVersCopte(j).nomMois.slice(0, 3) + '.'}</small>`}
-        ${x.fetes.length && x.couleur !== 'resurrection' ? '<i class="pt-fete"></i>' : ''}${evs ? '<i class="pt-evt"></i>' : ''}${x.couleur === 'mercredi-vendredi' ? '<i class="trait"></i>' : ''}${estNinive(x) ? `<i class="poissons-case">${POISSON}${POISSON}</i>` : ''}</button>`;
+        ${x.fetes.length && x.couleur !== 'resurrection' ? '<i class="pt-fete"></i>' : ''}${evs || officesDu(j).some((o) => o.mienne) ? '<i class="pt-evt"></i>' : ''}${x.couleur === 'mercredi-vendredi' ? '<i class="trait"></i>' : ''}${estNinive(x) ? `<i class="poissons-case">${POISSON}${POISSON}</i>` : ''}</button>`;
     }
   }
   const s = jour(S.sel), notes = [];
   if (dimancheCopte(S.sel)) notes.push(dimancheCopte(S.sel) + '.');
+  officesDu(S.sel).forEach((o) => notes.push(`${o.mienne ? '' : nomCourtPar(PAR[o.idx]) + ' : '}${AR() && o.titreAr ? o.titreAr : o.titre} ${o.debut}–${o.fin}.`));
   if (commemoMensuelle(S.sel)) notes.push((AR() ? 'تذكار شهري: ' : 'Commémoration mensuelle : ') + commemoMensuelle(S.sel) + '.');
   if (s.fetes.length) notes.push(s.fetes.join(' · ') + '.');
   if (s.jeune) { notes.push(s.libelleJeune + '.'); if (s.niveau) notes.push(s.niveau + '.'); }
@@ -390,6 +408,11 @@ function aVenirListe() {
   if (P.paroisse.idx >= 0) P.paroisse.patrons.forEach((pt) => {
     const o = prochaineDate(pt, auj); if (o > fin) return;
     L.push({ j: o, cat: 'paroisse', titre: (AR() ? 'العيد الشفيع: ' : 'Fête patronale : ') + pt.nom, sous: [PAR[P.paroisse.idx].nom.replace(/^Paroisse (de la |de |)/, ''), enSemaineSainte(o) ? NON_CELEBRE() : ''].filter(Boolean).join(' · '), couleur: 'var(--gold)', ic: iconeSaint(pt.nom), cad: cadrageSaint(pt.nom) });
+  });
+  // 2b. Offices annoncés par ma paroisse
+  if (P.paroisse.idx >= 0) (PAR[P.paroisse.idx].offices || []).forEach((o) => {
+    const [y, m, d] = o.date.split('-').map(Number), j = gregVersJdn(y, m, d); if (j < auj || j > fin) return;
+    L.push({ j, cat: 'paroisse', titre: `${AR() && o.titreAr ? o.titreAr : o.titre} · ${o.debut}–${o.fin}`, sous: o.fete || '', couleur: 'var(--accent)' });
   });
   // 3. Église : fêtes, jeûnes, carême (périodes en cours comprises)
   const an = jdnVersCopte(auj).an, vus = new Set();

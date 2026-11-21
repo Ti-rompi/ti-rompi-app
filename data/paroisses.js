@@ -85,6 +85,106 @@ window.PAROISSES=[
    "mina",
    "mercure",
    "kyrillos"
+  ],
+  "offices": [
+   {
+    "date": "2026-11-23",
+    "debut": "18:30",
+    "fin": "20:30",
+    "titre": "Office de l’encens du soir",
+    "titreAr": "صلاة رفع بخور عشية",
+    "fete": "Fête de saint Mina",
+    "diocese": true
+   },
+   {
+    "date": "2026-11-24",
+    "debut": "07:30",
+    "fin": "09:30",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "Fête de saint Mina",
+    "diocese": true
+   },
+   {
+    "date": "2026-11-25",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-11-26",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-11-27",
+    "debut": "06:00",
+    "fin": "08:00",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-11-28",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-11-29",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-11-30",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-12-01",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-12-02",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-12-03",
+    "debut": "07:30",
+    "fin": "09:45",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   },
+   {
+    "date": "2026-12-04",
+    "debut": "06:00",
+    "fin": "08:00",
+    "titre": "Divine Liturgie",
+    "titreAr": "القداس الإلهي",
+    "fete": "De la fête de saint Mina à celle de saint Mercure"
+   }
   ]
  },
  {
