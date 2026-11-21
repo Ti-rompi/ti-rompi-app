@@ -235,8 +235,14 @@ function commemoMensuelle(j) {
 const ICO_COMMEMO = { 'Archange Michel': 'michel', 'Vierge Marie': 'vierge', 'رئيس الملائكة ميخائيل': 'michel', 'السيدة العذراء مريم': 'vierge' };
 function carteCommemo(j) {
   const nom = commemoMensuelle(j); if (!nom) return '';
-  const ic = window.ICONES && window.ICONES[ICO_COMMEMO[nom]];
-  return `<section class="carte carte-patron carte-commemo">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(nom)}">` : ''}<span><small class="etiquette">${AR() ? 'تذكار شهري' : 'Commémoration mensuelle'}</small><b class="serif">${esc(nom)}</b><small class="mut">${AR() ? 'كل شهر قبطي' : 'Chaque ' + jdnVersCopte(j).jour + ' du mois copte'}</small></span></section>`;
+  const cle = ICO_COMMEMO[nom], ic = window.ICONES && window.ICONES[cle], c = jdnVersCopte(j);
+  const grande = cle === 'michel' && c.mois === 3; // 12 Hatour : grande fête de l'archange
+  const D = cle === 'michel' ? (window.SAINTS || {}).michel || {} : {};
+  const dox = (D.dox || [])[0];
+  const strophes = dox ? dox.strophes.map((x) => `<div class="str"><p class="copte" lang="cop" dir="ltr">${esc(x.c).replace(/@/g, '@<br>')}</p>${AR() && x.a ? `<p class="fr ar" dir="rtl" lang="ar">${esc(x.a)}</p>` : `<p class="fr">${esc(x.f)}</p>`}</div>`).join('') : '';
+  return `<section class="carte carte-patron carte-commemo">${ic ? `<img class="icone-saint" src="${ic}" alt="${t('iconeDe')} ${esc(nom)}">` : ''}<span><small class="etiquette">${grande ? (AR() ? 'العيد' : 'Fête') : AR() ? 'تذكار شهري' : 'Commémoration mensuelle'}</small><b class="serif">${esc(grande ? (AR() ? 'عيد رئيس الملائكة ميخائيل' : 'Fête de l’archange Michel') : nom)}</b><small class="mut">${grande ? `12 ${nomMoisC(3)}` : AR() ? 'كل شهر قبطي' : 'Chaque ' + c.jour + ' du mois copte'}</small></span></section>
+  ${D.axios ? `<section class="carte axios commemo-axios"><p class="copte" lang="cop" dir="ltr">${esc(D.axios)}</p><p class="mut"${AR() ? ' dir="rtl"' : ''}>${esc(AR() ? D.axiosAr : D.axiosFr)}</p></section>` : ''}
+  ${dox ? `<details class="carte dox commemo-dox"><summary><b>${AR() ? 'ذكصولوجية رئيس الملائكة ميخائيل' : 'Doxologie de l’archange Michel'}</b><small class="mut">${n(dox.strophes.length)} ${AR() ? 'مقاطع' : 'strophes'}</small></summary>${strophes}<small class="mut src">${AR() ? 'الإبصلمودية السنوية' : 'Psalmodie annuelle'}</small></details>` : ''}`;
 }
 
 // ------------------------------------------------------------- Offices annoncés par les paroisses

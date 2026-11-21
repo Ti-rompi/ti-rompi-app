@@ -325,3 +325,6 @@ details.dox summary::-webkit-details-marker{display:none}
 .carte-offices ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .carte-offices li{display:flex;flex-direction:column;gap:2px}
 .carte-offices li b{color:var(--goldtx);font-variant-numeric:tabular-nums}
+
+.commemo-axios .copte{font-size:1.25em}
+.commemo-dox{margin-top:0}
